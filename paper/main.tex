@@ -1,0 +1,276 @@
+\documentclass[a4paper,12pt]{article}
+
+\usepackage[a4paper, left=0.6in, right=0.6in, top=0.85in, bottom=0.85in]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{textcomp}
+\usepackage{fontspec}
+\usepackage[russian]{babel}
+%\usepackage{polyglossia}
+%\setdefaultlanguage[spelling=modern]{russian}
+%\setotherlanguage{english}
+\setmainfont{CMU Serif}
+\setsansfont{CMU Sans Serif}
+\setmonofont{CMU Typewriter Text}
+
+\usepackage{amsmath, amssymb, amsthm, mathtools, thmtools}
+
+\newcommand\N{\ensuremath{\mathbb{N}}}
+\newcommand\R{\ensuremath{\mathbb{R}}}
+\newcommand\Z{\ensuremath{\mathbb{Z}}}
+\renewcommand\O{\ensuremath{\varnothing}}
+\newcommand\Q{\ensuremath{\mathbb{Q}}}
+\newcommand\C{\ensuremath{\mathbb{C}}}
+
+\theoremstyle{definition}
+
+\newtheorem{lemmaf}{Лемма}
+
+\newtheorem*{theoremf}{Теорема}
+\newtheorem*{statementf}{Утверждение}
+\newtheorem*{propositionf}{Предложение}
+\newtheorem*{problem}{Задача}
+
+\usepackage{mathdots}
+\usepackage{enumitem}
+\usepackage{mleftright}
+\usepackage{environ}
+
+\NewEnviron{pArray}[1]
+{
+\left(\begin{array}{#1}
+\BODY
+\end{array}\right)
+}
+
+
+% figure support
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+
+\newcommand{\incfig}[2][1]{%
+    \def\svgwidth{#1\columnwidth}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+
+\begin{document}
+    \begin{center}
+        \textbf{Приведение кубики к нормальной форме Вейерштрасса}
+    \end{center}
+
+    Для нашей кубики 
+    \[
+    F(x, y, z) = x^3 + y^3 + z^3 + (1 - N) (x^2 y + x^2 z + y^2 x + y^2 z + z^2 x + z^2 y) +
+    (3 - 2 N) x y z 
+    \] 
+    рациональная точка \(P = (1 : -1 : 0)\) является также точкой перегиба
+    (проверяется непосредственно подстановкой в Гессиан).
+
+    \begin{itemize}[leftmargin=1cm]
+        \item Шаг 1. Переведём точку \(P = (1 : -1 : 0)\) в точку
+        \((0 : 1 : 0)\) некоторым проективным преобразованием. Например,
+        подойдёт такое:
+        \[
+        \lambda
+        \begin{pmatrix}
+            \widetilde{x} \\
+            \widetilde{y} \\
+            \widetilde{z} \\
+        \end{pmatrix} 
+        = 
+        \begin{pmatrix}
+            1 & 1 & 0 \\
+            1 & 0 & 0 \\
+            0 & 0 & 1 \\
+        \end{pmatrix}
+        \begin{pmatrix}
+            x \\
+            y \\
+            z \\
+        \end{pmatrix}
+        \]
+        или
+        \[
+        \begin{pmatrix}
+            x \\
+            y \\
+            z \\
+        \end{pmatrix} =
+        \lambda
+        \begin{pmatrix}
+            0 & 1 & 0 \\
+            1 & -1 & 0 \\
+            0 & 0 & 1 \\
+        \end{pmatrix}
+        \begin{pmatrix}
+            \widetilde{x} \\
+            \widetilde{y} \\
+            \widetilde{z} \\
+        \end{pmatrix} 
+        .\] 
+        
+
+        Тогда наше уравнение преобразуется в следующее:  
+        \begin{align*}
+            \widetilde{F}(\widetilde{x}, \widetilde{y}, \widetilde{z}) &= 
+         \left(\widetilde{z}\right)^3
+         -(N + 2) \left(\widetilde{x}\right)^2 \widetilde{y} + (1 - N)
+         \left(\widetilde{x}\right)^2 \widetilde{z} + (N + 2) \,
+         \widetilde{x} \left(\widetilde{y}\right)^2 \\ 
+         &+ (1 - N) \, \widetilde{x} \left(\widetilde{z}\right)^2 + 
+         \left(\widetilde{x}\right)^3 + \widetilde{x} \,
+         \widetilde{y} \, \widetilde{z} -
+         \left(\widetilde{y}\right)^2 \widetilde{z}
+        .\end{align*}
+        
+
+        \item Шаг 2. Теперь мы хотим сделать преобразование,
+        сохраняющее точку \(O = (0 : 1 : 0)\), так, чтобы
+        прямая \(z = 0\) была касательной к кубике \(\widetilde{F}\) в точке
+        \(O\), то есть сделать преобразование \((\widetilde{x} :
+        \widetilde{y} : \widetilde{z}) \to (x' : y' : z')\), такое что
+        для \(F'(x', y', z')\) будет выполнено: 
+         \[
+        \frac{\partial F'}{\partial x'} (O) = \frac{\partial F'}{\partial y'}
+        (O) = 0, \quad \frac{\partial F'}{\partial z'} (O) \ne 0
+        .\]
+        Пусть имеет место соотношение
+        \[
+        \begin{pmatrix}
+            \widetilde{x} \\
+            \widetilde{y} \\
+            \widetilde{z} \\
+        \end{pmatrix} 
+        = 
+        \begin{pmatrix}
+            c_{11} & c_{12} & c_{13} \\
+            c_{21} & c_{22} & c_{23} \\
+            c_{31} & c_{32} & c_{33} \\
+        \end{pmatrix}
+        \begin{pmatrix}
+            x' \\
+            y' \\
+            z' \\
+        \end{pmatrix}
+        .\] 
+        Так как точка \(O\) должна быть неподвижна, то:
+        \[
+        \begin{pmatrix}
+            0 \\
+            1 \\
+            0 \\
+        \end{pmatrix}
+        = 
+        \begin{pmatrix}
+            c_{11} & c_{12} & c_{13} \\
+            c_{21} & c_{22} & c_{23} \\
+            c_{31} & c_{32} & c_{33} \\
+        \end{pmatrix}
+        \begin{pmatrix}
+            0 \\
+            1 \\
+            0 \\
+        \end{pmatrix}
+        ,\] 
+        откуда \(c_{12} = 0, c_{22} = 1, c_{32} = 0\). 
+            
+        Кроме того, поскольку \(F'(x', y', z') = \widetilde{F}(\widetilde{x}(x', y', z'),
+        \widetilde{y}(x', y', z'), \widetilde{z}(x', y', z'))\), то мы имеем:
+        %
+        \begin{align*}
+        \frac{\partial F'}{\partial x'} (O) &= \frac{\partial
+        \widetilde{F}}{\partial \widetilde{x}} (\widetilde{x}(O),
+        \widetilde{y}(O), \widetilde{z}(O))
+        \frac{\partial \widetilde{x}}{\partial x'} (O) + \frac{\partial
+        \widetilde{F}}{\partial \widetilde{y}} (\widetilde{x}(O),
+        \widetilde{y}(O), \widetilde{z}(O))
+        \frac{\partial \widetilde{y}}{\partial x'} (O) \\ 
+        &+ \frac{\partial
+        \widetilde{F}}{\partial \widetilde{z}} (\widetilde{x}(O),
+        \widetilde{y}(O), \widetilde{z}(O))
+        \frac{\partial \widetilde{z}}{\partial x'} (O) \\ &= 
+        \frac{\partial \widetilde{F}}{\partial \widetilde{x}}(c_{12}, c_{22},
+        c_{32}) c_{11} 
+        + \frac{\partial \widetilde{F}}{\partial
+        \widetilde{y}}(c_{12}, c_{22}, c_{32}) c_{21} + \frac{\partial
+        \widetilde{F}}{\partial \widetilde{z}}(c_{12}, c_{22}, c_{32}) c_{31} \\
+        &= 
+        \frac{\partial \widetilde{F}}{\partial \widetilde{x}}(0, 1, 0) c_{11} 
+        + \frac{\partial \widetilde{F}}{\partial
+        \widetilde{y}}(0, 1, 0) c_{21} + \frac{\partial
+        \widetilde{F}}{\partial \widetilde{z}}(0, 1, 0) c_{31} = (2 + N) c_{11}
+        - c_{31}
+        .\end{align*}
+        Аналогично получаем:
+        \begin{align*}
+        \frac{\partial F'}{\partial y'} (O) &= \left( \frac{\partial
+        \widetilde{F}}{\partial \widetilde{x}} 
+        \frac{\partial \widetilde{x}}{\partial y'}  + \frac{\partial
+        \widetilde{F}}{\partial \widetilde{y}} 
+        \frac{\partial \widetilde{y}}{\partial y'}  + \frac{\partial
+        \widetilde{F}}{\partial \widetilde{z}} 
+        \frac{\partial \widetilde{z}}{\partial y'} \right) \! \! \Bigg|_{O}  = (2 + N) \frac{\partial \widetilde{x}}{\partial y'}(O) - \frac{\partial
+        \widetilde{z}}{\partial y'} (O) = (2 + N) c_{12} - c_{32} \\
+        \frac{\partial F'}{\partial z'} (O) &= \left( \frac{\partial
+        \widetilde{F}}{\partial \widetilde{x}} 
+        \frac{\partial \widetilde{x}}{\partial z'}  + \frac{\partial
+        \widetilde{F}}{\partial \widetilde{y}} 
+        \frac{\partial \widetilde{y}}{\partial z'}  + \frac{\partial
+        \widetilde{F}}{\partial \widetilde{z}} 
+        \frac{\partial \widetilde{z}}{\partial z'} \right) \! \! \Bigg|_{O}  =
+        (2 + N) \frac{\partial \widetilde{x}}{\partial z'}(O) - \frac{\partial
+        \widetilde{z}}{\partial z'} (O) = (2 + N) c_{13} - c_{33}
+        .\end{align*}
+        Итак, мы получаем следующие условия на матрицу \(C = (c_{ij})\): 
+        \begin{align*}
+            (2 + N) c_{11} - c_{31} &= 0 \\
+            (2 + N) c_{12} - c_{32} &= 0 \\
+            (2 + N) c_{13} - c_{33} &\ne  0 \\
+            c_{12} = c_{32} &= 0 \\
+            c_{22} &= 1
+        .\end{align*}
+        Итого, получаем, что в качестве искомой матрицы можно взять следующую:
+        \[
+        \begin{pmatrix}
+            1 & 0 & 1 \\
+            1 & 1 &  1\\
+            2 + N & 0  & N + 1 \\
+        \end{pmatrix}
+        .\] 
+        А тогда наше преобразование будет иметь вид:
+        \[
+        \lambda \begin{pmatrix}
+            x' \\
+            y' \\
+            z' \\
+        \end{pmatrix} = 
+        \begin{pmatrix}
+            -N - 1 & 0 & 1 \\
+            -1 & 1 & 0 \\
+            N + 2 & 0 & -1 \\
+            % N + 3 & 0 & -1 \\
+            % -1 & 1 & 0 \\
+            % -N - 2 & 0 & 1 \\ 
+        \end{pmatrix}
+        \begin{pmatrix}
+            \widetilde{x} \\
+            \widetilde{y} \\
+            \widetilde{z} \\
+        \end{pmatrix}
+        .\] 
+        
+        \item Шаг 3. После второго преобразования, наше уравнение приняло вид:
+        \begin{align*}
+            F'(x', y', z') &= \left(2 N^2 + 11 N + 15\right) \left( x' \right)^3
+            + \left(5 N^2 + 24 N + 28\right) \left( x' \right)^2 z \\ &+ \left(4 N^2
+            + 17 N + 18\right) x \left( z' \right)^2 + \left(N^2 + 4 N +
+            4\right) \left( z' \right)^3  + x y z + \left( y' \right)^2 z + y
+            \left( z' \right)^2 
+        .\end{align*}
+
+        
+    \end{itemize}
+\end{document}
+
