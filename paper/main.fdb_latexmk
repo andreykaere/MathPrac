@@ -1,5 +1,5 @@
 # Fdb version 3
-["lualatex"] 1666400313 "main.tex" "main.pdf" "main" 1666400314
+["lualatex"] 1666437618 "main.tex" "main.pdf" "main" 1666437620
   "/home/andrey/local/texlive/2022/texmf-dist/fonts/opentype/public/cm-unicode/cmunbx.otf" 1278718173 319676 56f874892a7240ca1accbeab7675ad3c ""
   "/home/andrey/local/texlive/2022/texmf-dist/fonts/opentype/public/cm-unicode/cmunrm.otf" 1278718173 330492 16735f17d996f4a288f258a11e88dd08 ""
   "/home/andrey/local/texlive/2022/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
@@ -172,8 +172,8 @@
   "/home/andrey/local/texlive/2022/texmf-var/luatex-cache/generic/names/luaotfload-names.luc.gz" 1666349621 319740 e54abfa5481fda33adac7f31f57590fc ""
   "/home/andrey/local/texlive/2022/texmf-var/tex/generic/config/language.dat" 1658487188 6627 08213a94f030f3ace18040268efbc924 ""
   "/home/andrey/local/texlive/2022/texmf-var/web2c/luahbtex/lualatex.fmt" 1658487238 4615008 f697d35236ace7f27de35f907febfac7 ""
-  "main.aux" 1666400314 171 17f8f36a24a70077a03b93fa3f366732 "lualatex"
-  "main.tex" 1666400312 17191 f2ba05e57e5fbe6c3bc581c3696dd9de ""
+  "main.aux" 1666437620 171 17f8f36a24a70077a03b93fa3f366732 "lualatex"
+  "main.tex" 1666437616 18277 c6d0ba4898a9128c03539558fbed2341 ""
   (generated)
   "main.aux"
   "main.log"

@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.15.0 (TeX Live 2022)  (format=lualatex 2022.7.22)  22 OCT 2022 03:58
+This is LuaHBTeX, Version 1.15.0 (TeX Live 2022)  (format=lualatex 2022.7.22)  22 OCT 2022 14:20
  restricted system commands enabled.
  file:line:error style messages enabled.
 **main.tex
@@ -696,14 +696,14 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 Here is how much of LuaTeX's memory you used:
  10775 strings out of 477474
  100000,662416 words of node,token memory allocated
- 3899 words of node memory still in use:
-   103 hlist, 16 vlist, 15 rule, 8 math, 81 glue, 52 kern, 167 glyph, 93 attribute, 58 glue_spec, 48 attribute_list, 1 write nodes
-   avail lists: 1:1,2:1921,3:178,4:22,5:620,6:24,7:5060,8:85,9:1808,10:6,11:250
+ 3911 words of node memory still in use:
+   103 hlist, 16 vlist, 15 rule, 8 math, 81 glue, 52 kern, 167 glyph, 97 attribute, 58 glue_spec, 50 attribute_list, 1 write nodes
+   avail lists: 1:1,2:1915,3:178,4:22,5:620,6:24,7:5060,8:85,9:1808,10:6,11:250
  31242 multiletter control sequences out of 65536+600000
  68 fonts using 12328135 bytes
  72i,15n,84p,289b,286s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </home/andrey/local/texlive/2022/texmf-dist/fonts/opentype/public/cm-unicode/cmunrm.otf></home/andrey/local/texlive/2022/texmf-dist/fonts/opentype/public/cm-unicode/cmunbx.otf></home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on main.pdf (4 pages, 102290 bytes).
+Output written on main.pdf (4 pages, 103988 bytes).
 
 PDF statistics: 63 PDF objects out of 1000 (max. 8388607)
  42 compressed objects within 1 object stream
