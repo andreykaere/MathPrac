@@ -3,6 +3,7 @@
 from fractions import Fraction
 import matplotlib.pyplot as plt
 import math
+from math import *
 import numpy as np
 import itertools
 import matplotlib.animation as animation
@@ -21,11 +22,18 @@ def PointSum(a, b, xp, yp, xq, yq):
         return -1
     #dont work when tangent is verlical
     if (xp == xq) and (yp == yq):
+        if (yp == 0):
+            print("!!Tangent is vertical!!")
         m = (3 * xp * xp + a) / (2 * yp)
         xr = m * m - xp - xq
         yr = yp + m * (xr - xp)           
 
     else:
+        #print("__________________________")
+        #print(xp, yp)
+        #print(xq, yq)
+        #print("__________________________")
+        #print()
         m = (yp - yq)/ (xp - xq)
         xr = m * m - xp - xq
         yr = yp + m * (xr - xp)   
@@ -35,11 +43,43 @@ def PointSum(a, b, xp, yp, xq, yq):
 def ScMult(a, b, x, y, n):
     x0 = x
     y0 = y
+    #print(1,x, y)
     for i in range(n - 1):
         A = PointSum(a, b, x, y, x0, y0)
         x = A[0]
         y = A[1]
+        #print(i + 2, x, y)
     return [x, y]
+
+#return list of n point: P, P+P, .. n*P
+def GenerateNpoints(a, b, x, y, n):
+    xP = [x]
+    yP = [y]
+    x0 = x
+    y0 = y
+    for i in range(2, n + 1):
+        x0 = ScMult(a, b, x, y, i)[0]
+        y0 = ScMult(a, b, x, y, i)[1]
+        xP.append(x0)
+        yP.append(y0)
+    return [xP, yP]
+    
+def GenerateAlotPoints(a, b, x, y, n = 20):
+    xP = [x]
+    yP = [y]
+    x0 = x
+    y0 = y    
+    for i in range(n - 1):
+        try:
+            A = PointSum(a, b, x, y, x0, y0)
+        except:
+            A = PointSum(a, b, x, y, xP[1], yP[1])
+            
+        x = A[0]
+        y = A[1]
+        xP.append(x)
+        yP.append(y)
+    return [xP, yP]  
 
 def Draw(a = -5, b = 5, xPoints = [], yPoints = []):
     x = np.arange(-10,10,0.01)
@@ -50,11 +90,8 @@ def Draw(a = -5, b = 5, xPoints = [], yPoints = []):
     plt.show()    
 
 # to draw plt.show()
-def DrawSum(a = -5, b = 5, xPoints = [], yPoints = []):
-    x = np.arange(-10,10,0.01)
-    xL = np.arange(-5,5,0.1)
-    # vertex = b**(1/2)
- 
+def DrawCurve(a, b):
+    x = np.arange(-1000,1000,0.1)
     yCurveU = []
     yCurveD = []
      
@@ -72,17 +109,21 @@ def DrawSum(a = -5, b = 5, xPoints = [], yPoints = []):
             #yCurveD += [0]
    
     yCurveU = np.array(yCurveU)
-    yCurveD = np.array(yCurveD)
+    yCurveD = np.array(yCurveD)    
     
-    #yCurveU = ((x**3 + a * x + b))**(1/2)
-    #yCurveD = - ((x**3 + a * x + b))**(1/2)
-   
+    plt.plot(x,yCurveU,'b', x, yCurveD, 'b')
+    
+def DrawSum(a = -5, b = 5, xPoints = [], yPoints = []):
+
+    xL = np.arange(-1000,1000,0.1)
+ 
     xp = xPoints[0]
     yp = yPoints[0]
     xq = xPoints[1]
     yq = yPoints[1] 
+    
     A = PointSum(a, b, xp, yp, xq, yq)
-    #print(A)
+
     xr = A[0]
     yr = A[1]
     xr = [xr]
@@ -94,22 +135,21 @@ def DrawSum(a = -5, b = 5, xPoints = [], yPoints = []):
     else:
         m = (yp - yq)/ (xp - xq)
     yLine = m * (xL - xq) + yq
-    xLine1 = [xr]*2000
-    yLine1 = np.arange(-10, 10, 0.01)    
-    plt.title('Sum of two points')
+    xLine1 = [xr]*60000
+    yLine1 = np.arange(-30000, 30000, 1)    
+    plt.title('Sum of points')
 
-    plt.plot(x,yCurveU,'b', x, yCurveD, 'b')
     plt.plot(xL, yLine, linestyle = '-', linewidth = 1, color = 'y')
     plt.plot(xLine1, yLine1, linestyle = '--', linewidth = 1, color = 'darkmagenta')
     plt.plot(xPoints, yPoints, 'ro', xr, yr, 'go')
     #plt.show()
 
+# (not used) for x find y(x) > 0 
 def yC(x, a, b):
     y2 = (x**3 + a * x + b)
-    #y2 = -y2
     y2n =  abs(y2.numerator)
     y2d = abs(y2.denominator)
-    if (abs(y2n) > 10**10) or (abs(y2d) > 10**10):
+    if (abs(y2n) > 10**8) or (abs(y2d) > 10**8):
         print("!!!Check square mb unsave!!!")
     
     if (int(y2n**(1/2)) == y2n**(1/2)) and (int(y2d**(1/2)) == y2d**(1/2)):
@@ -124,9 +164,9 @@ def DrawSumN(a, b, x, y, n):
     yP = [y]
     x0 = x
     y0 = y
-    fig, ax = plt.subplots(figsize=(9, 9))
+    fig, ax = plt.subplots(figsize=(8, 8))
     
-    
+    DrawCurve(a, b)
     for i in range(1, n + 1):
         DrawSum(a, b, [x, x0], [y, y0])
         if (i != 1):
@@ -138,6 +178,65 @@ def DrawSumN(a, b, x, y, n):
     plt.plot([x], [y], 'yo')
     #plt.text(x0, y0+1, "result", fontsize=9)
     plt.show() 
+#https://stackoverflow.com/questions/2489435/check-if-a-number-is-a-perfect-square
+def is_square(apositiveint):
+    if (apositiveint == 1):
+        return True
+    x = apositiveint // 2
+    seen = set([x])
+    while x * x != apositiveint:
+        #print(x)
+        try:
+            x = (x + (apositiveint // x)) // 2
+        except:
+            print(x)
+        if x in seen: return False
+        seen.add(x)
+    return True
+
+def FindRational(a, b, R):
+    for xN in range(0, R):
+        for xD in range(1, R):
+            x = Fraction(xN, xD)
+            y2 = (x**3 + a * x + b)
+            
+            y2n =  abs(y2.numerator)
+            y2d = abs(y2.denominator)
+            if (y2n == 0):
+                print([x, Fraction(0)])
+            if (y2n != 0) and is_square(y2n) and is_square(y2d):
+                print( [x, Fraction(int(y2n**(1/2)), int(y2d**(1/2)))])
+    print("END")
+
+#task data
+N = 4
+a = -432 * (N**4) - 2592 * (N**3) - 3240 * (N**2) + 4536 * N + 7533
+b = 3456 * (N**6) + 31104 * (N**5) + 85536 * (N**4) + 15552 * (N**3) - 250776 * (N**2) - 239112 * N + 68526
+n = 9
+#Px = -81 - 135 * N - 72 * (N**2) - 12 * (N**3)
+#Py = 1620 + 1188 * N + 216 * (N ** 2)
+#Pz = -3 - N
+
+#x = Fraction(Px, Pz)
+#y = Fraction(Py, Pz)
+
+#x1 = Fraction(327, 1)
+#y1 = Fraction(0, 1)
+
+#print(PointSum(a, b, x, y, x1, y1))
+#A = PointSum(a, b, x, y, x1, y1)
+
+x = Fraction(103, 1)
+y = Fraction(5824, 1)
+
+
+#R = 500
+#FindRational(a, b, R)
+
+
+
+
+
 
 #data 1
 #a = -2
@@ -147,15 +246,22 @@ def DrawSumN(a, b, x, y, n):
 #y = Fraction(1)
 
 #data 2
-a = -5
-b = 5
-n = 5
-x = Fraction(1)
-y = Fraction(1)
+#a = -5
+#b = 5
+#n = 5
+#x = Fraction(1)
+#y = Fraction(1)
 
-
+n = 30
 print(ScMult(a, b, x, y, n))
-DrawSumN(a, b, x, y, n)
+#print(GenerateAlotPoints(a, b, x, y))
+print(GenerateNpoints(a, b, x, y, n))
+#DrawSumN(a, b, x, y, n)
+
+
+
+
+
 #print(xP, yP)
 #Draw(a, b, xP, yP )
 #y = Fraction(-1)
