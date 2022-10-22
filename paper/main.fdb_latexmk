@@ -1,5 +1,5 @@
 # Fdb version 3
-["lualatex"] 1666384383 "main.tex" "main.pdf" "main" 1666384385
+["lualatex"] 1666400313 "main.tex" "main.pdf" "main" 1666400314
   "/home/andrey/local/texlive/2022/texmf-dist/fonts/opentype/public/cm-unicode/cmunbx.otf" 1278718173 319676 56f874892a7240ca1accbeab7675ad3c ""
   "/home/andrey/local/texlive/2022/texmf-dist/fonts/opentype/public/cm-unicode/cmunrm.otf" 1278718173 330492 16735f17d996f4a288f258a11e88dd08 ""
   "/home/andrey/local/texlive/2022/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
@@ -22,6 +22,7 @@
   "/home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb" 1248133631 36741 fa121aac0049305630cf160b86157ee4 ""
   "/home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb" 1248133631 35469 70d41d2b9ea31d5d813066df7c99281c ""
   "/home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb" 1248133631 32722 d7379af29a190c3f453aba36302ff5a9 ""
+  "/home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb" 1248133631 32734 69e00a6b65cedb993666e42eedb3d48f ""
   "/home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb" 1248133631 32726 0a1aea6fcd6468ee2cf64d891f5c43c8 ""
   "/home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1248133631 32569 5e5ddc8df908dea60932f3c484a54c0d ""
   "/home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb" 1248133631 32626 4f5c1b83753b1dd3a97d1b399a005b4b ""
@@ -171,8 +172,8 @@
   "/home/andrey/local/texlive/2022/texmf-var/luatex-cache/generic/names/luaotfload-names.luc.gz" 1666349621 319740 e54abfa5481fda33adac7f31f57590fc ""
   "/home/andrey/local/texlive/2022/texmf-var/tex/generic/config/language.dat" 1658487188 6627 08213a94f030f3ace18040268efbc924 ""
   "/home/andrey/local/texlive/2022/texmf-var/web2c/luahbtex/lualatex.fmt" 1658487238 4615008 f697d35236ace7f27de35f907febfac7 ""
-  "main.aux" 1666384385 171 42b03cffa197db8a0f3307b9b0afeb6d "lualatex"
-  "main.tex" 1666384383 9907 b5af3f28257e335064c8ce28cfdcd974 ""
+  "main.aux" 1666400314 171 17f8f36a24a70077a03b93fa3f366732 "lualatex"
+  "main.tex" 1666400312 17191 f2ba05e57e5fbe6c3bc581c3696dd9de ""
   (generated)
   "main.aux"
   "main.log"

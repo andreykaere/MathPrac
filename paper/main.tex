@@ -68,7 +68,7 @@
     рациональная точка \(P = (1 : -1 : 0)\) является также точкой перегиба
     (проверяется непосредственно подстановкой в Гессиан).
 
-    \begin{itemize}[leftmargin=1cm]
+    \begin{itemize}[leftmargin=0.6cm]
         \item Шаг 1. Переведём точку \(P = (1 : -1 : 0)\) в точку
         \((0 : 1 : 0)\) некоторым проективным преобразованием. Например,
         подойдёт такое:
@@ -258,19 +258,202 @@
             \widetilde{x} \\
             \widetilde{y} \\
             \widetilde{z} \\
-        \end{pmatrix}
-        .\] 
+        \end{pmatrix} .\] 
         
         \item Шаг 3. После второго преобразования, наше уравнение приняло вид:
         \begin{align*}
             F'(x', y', z') &= \left(2 N^2 + 11 N + 15\right) \left( x' \right)^3
-            + \left(5 N^2 + 24 N + 28\right) \left( x' \right)^2 z \\ &+ \left(4 N^2
-            + 17 N + 18\right) x \left( z' \right)^2 + \left(N^2 + 4 N +
-            4\right) \left( z' \right)^3  + x y z + \left( y' \right)^2 z + y
+            + \left(5 N^2 + 24 N + 28\right) \left( x' \right)^2 z' \\ &+ \left(4 N^2
+            + 17 N + 18\right) x' \left( z' \right)^2 + \left(N^2 + 4 N +
+            4\right) \left( z' \right)^3  + x' y' z' + \left( y' \right)^2 z' + y'
             \left( z' \right)^2 
         .\end{align*}
+        Поэтому условие \(F'(x', y', z') = 0\) можно переписать как 
+        \begin{align*}
+           -\left( y' \right)^2 z' - x' y' z' - y'
+            \left( z' \right)^2 &= \left(2 N^2 + 11 N + 15\right) \left( x' \right)^3
+            + \left(5 N^2 + 24 N + 28\right) \left( x' \right)^2 z' \\ &+ \left(4 N^2
+            + 17 N + 18\right) x' \left( z' \right)^2 + \left(N^2 + 4 N +
+            4\right) \left( z' \right)^3
+        .\end{align*}
+        Выделяем полный квадрат по \(y'\):
+        \begin{align*}
+           -\left( y' + \frac{1}{2}(x' + z')  \right)^2 z' + \frac{1}{2} (x' +
+           z')^2 z' &= \left(2 N^2 + 11 N + 15\right) \left( x' \right)^3
+            + \left(5 N^2 + 24 N + 28\right) \left( x' \right)^2 z' \\ &+ \left(4 N^2
+            + 17 N + 18\right) x' \left( z' \right)^2 + \left(N^2 + 4 N +
+            4\right) \left( z' \right)^3
+        .\end{align*}
+        Переносим свободные члены от \(y'\) в правую часть:
+        \begin{align*}
+           -\left( y' + \frac{1}{2}(x' + z')  \right)^2 z' &= \left(2 N^2 + 11 N + 15\right) \left( x' \right)^3
+            + \left(5 N^2 + 24 N + 28 - \frac{1}{4} \right) \left( x' \right)^2 z' \\ &+ \left(4 N^2
+            + 17 N + 18 - \frac{1}{2} \right) x' \left( z' \right)^2 + \left(N^2 + 4 N +
+            4 - \frac{1}{4} \right) \left( z' \right)^3
+        .\end{align*}
+        Как известно, многочлен \(a x^3 + b x^2 + c x + d\) линейной заменой \(x
+        \mapsto x - \frac{b}{3 a}\)
+        приводится к виду \(p x^3 + q x + s\). В нашем
+        случае замена будет такой:
+        \[
+        x'' = x' + \frac{5 N^2 + 24 N + 28 - \frac{1}{4}}{3(2 N^2 + 11 N + 15)}
+        z'
+        .\] 
+        После подстановки получим:
+        \begin{align*}
+            -\left( y' + \frac{1}{2}(x' + z')  \right)^2 z' &= \left(2 N^2 + 11 N
+            + 15\right) \left( x'' \right)^3 + A x'' \left( z' \right)^2 + B
+            \left( z' \right)^3        
+        ,\end{align*}
+        где
+        \begin{align*}
+            &&\begin{split}
+                A =   
+                - \frac{N^4}{3 (N + 3) (2 N + 5)} - \frac{2
+                N^3}{(N + 3) (2 N + 5)} - \frac{5 N^2}{2 (N + 3) (2 N + 5)} + \\
+                \frac{7 N}{2 (N + 3) (2 N + 5)} + \frac{93}{16 (N + 3) (2 N +
+                5)} 
+            \end{split} \\ \\
+            &&\begin{split}
+                B =   - \frac{2 N^6}{27 (N + 3)^2 (2 N + 5)^2} -
+                \frac{2 N^5}{3 (N + 3)^2 (2 N + 5)^2} - \frac{11 N^4}{6 (N + 3)^2 (2
+                N + 5)^2} \\ - \frac{N^3}{3 (N + 3)^2 (2 N + 5)^2} + \frac{43 N^2}{8 (N
+                + 3)^2 (2 N + 5)^2} \\ + \frac{41 N}{8 (N + 3)^2 (2 N + 5)^2} -
+                \frac{47}{32 (N + 3)^2 (2 N + 5)^2}
+            \end{split}
+        .\end{align*}
 
-        
+        Деля на \(2 N^2 + 11 N + 15\), получаем
+        \[
+        -\left( y'' \right)^2 z' = (x'')^3 + a x'' \left( z'' \right)^2 + b \left(
+        z'' \right)^3
+        ,\] 
+        где
+        \begin{align*}
+            y'' &=  y' + \frac{1}{2}(x' + z') \\
+            z'' &= \frac{z'}{2 N^2 + 11 N + 15} \\
+            a &= A \left( 2 N^2 + 11 N + 15 \right)\\
+            b &= B \left( 2 N^2 + 11 N + 15 \right)^2
+        .\end{align*}
+        Заметим, что все \(N\)-ки в знаменателях сократятся и в итоге у нас
+        получится:
+        \begin{align*}
+            -\left( y'' \right)^2 z' &= \left( x'' \right)^3  +  \frac{1}{48}
+            \left(-16 N^4 - 96 N^3 - 120 N^2 + 168 N + 279\right) x'' \left( z''
+            \right)^2 \\ 
+            &+ \frac{1}{864} \left(-64 N^6 - 576 N^5 - 1584 N^4 - 288 N^3
+            + 4644 N^2 + 4428 N - 1269\right) \left( z'' \right)^3
+        .\end{align*}
+
+        Окончательно, делая замены \(x''' = 6 x'', z''' = -6^3 z''\), получаем:
+        \begin{multline*}
+            \left( y'' \right)^2 z''' = \left( x''' \right)^3  +  \left(-432 N^4
+            - 2592 N^3 - 3240 N^2 + 4536 N + 7533\right) x''' \left( z'''
+            \right)^2 \\ 
+            +  \left(3456 N^6 + 31104 N^5 + 85536 N^4 + 15552 N^3 -
+            250776 N^2 - 239112 N + 68526 \right) \left( z''' \right)^3
+        .\end{multline*}
+
+        Преобразования в шаге 3:
+        \[
+        \lambda \begin{pmatrix}
+            x'' \\
+            y'' \\
+            z'' \\
+        \end{pmatrix} = 
+        \begin{pmatrix}
+            1 & 0 & \frac{20 N^2 + 96 N + 111}{180 + 132 N + 24 N^2} \\
+            \frac{1}{2} & 1 & \frac{1}{2} \\
+            0 & 0 & \frac{1}{2 N^2 + 11 N + 15} \\
+        \end{pmatrix}
+        \begin{pmatrix}
+            x' \\
+            y' \\
+            z' \\
+        \end{pmatrix}
+        .\] 
+        И
+        \[
+        \lambda \begin{pmatrix}
+            x''' \\
+            y''' \\
+            z''' \\
+        \end{pmatrix} = 
+        \begin{pmatrix}
+            6 & 0 & 0 \\
+            0 & 1 & 0 \\
+            0 & 0 & -216 \\
+        \end{pmatrix}
+        \begin{pmatrix}
+            x'' \\
+            y'' \\
+            z'' \\
+        \end{pmatrix}
+        .\] 
     \end{itemize}
+
+    Итого, собирая все преобразования вместе, получаем искомое проективное
+    преобразование:
+    \[
+        \lambda \begin{pmatrix}
+            x''' \\
+            y''' \\
+            z''' \\
+        \end{pmatrix} = 
+        \begin{pmatrix}
+            6 & 0 & 0 \\
+            0 & 1 & 0 \\
+            0 & 0 & -216 \\
+        \end{pmatrix}
+        \begin{pmatrix}
+            1 & 0 & \frac{20 N^2 + 96 N + 111}{180 + 132 N + 24 N^2} \\
+            \frac{1}{2} & 1 & \frac{1}{2} \\
+            0 & 0 & \frac{1}{2 N^2 + 11 N + 15} \\
+        \end{pmatrix}
+        \begin{pmatrix}
+            -N - 1 & 0 & 1 \\
+            -1 & 1 & 0 \\
+            N + 2 & 0 & -1 \\
+        \end{pmatrix}
+        \begin{pmatrix}
+            1 & 1 & 0 \\
+            1 & 0 & 0 \\
+            0 & 0 & 1 \\
+        \end{pmatrix}
+        \begin{pmatrix}
+            x \\
+            y \\
+            z \\
+        \end{pmatrix}
+    .\] 
+    То есть искомая матрица есть
+    \[
+    \begin{pmatrix}
+     -N + \frac{1}{N + \frac{5}{2}} + \frac{3}{2
+   (N + 3)} + \frac{1}{2} &
+   -N + \frac{1}{N + \frac{5}{2}} + \frac{3}{2
+   (N + 3)} + \frac{1}{2} & \frac{4}{2 N + 5} + \frac{3}{2
+   (N + 3)} + 1 \\
+ \frac{1}{2} & -\frac{1}{2} & 0 \\
+ -\frac{216 (N + 2)}{(N + 3) (2 N + 5)} & -\frac{216
+   (N + 2)}{(N + 3) (2 N + 5)} & \frac{216}{(N + 3) (2 N + 5)}
+   \\
+    \end{pmatrix}
+    .\] 
+    Так как матрица проективного преобразования определена с точностью до
+    умножения на скаляр, то умножая всю матрицу на \(2 (3 + N) (5 + 2 N)\),
+    имеем:
+    \[
+    \begin{pmatrix}
+        -4 N^3 - 20 N^2 - 9 N + 42 & -4 N^3 - 20 N^2 - 9 N + 42 & 4 N^2 + 36 N + 69 \\
+        2 N^2 + 11 N + 15 &  -2 N^2 - 11 N - 15 & 0 \\
+        -432 N - 864 &  -432 N - 864 & 432 \\
+    \end{pmatrix}
+    .\] 
+    
+    
+    
+
+
 \end{document}
 
