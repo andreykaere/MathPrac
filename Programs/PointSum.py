@@ -208,14 +208,54 @@ def FindRational(a, b, R):
                 print( [x, Fraction(int(y2n**(1/2)), int(y2d**(1/2)))])
     print("END")
 
+def Reverse(x, y, z, N):
+    N = Fraction(N)
+    #to do: chech if point on curve
+    a = [[1/(72*(3 + N)*(5 + 2*N)), 
+     1/(216*(3 + N)*(5 + 2*N)), 
+     -((69 + 4*N*(9 + N))/(24*(3 + N)*(5 + 2*N)))], 
+   [1/(72*(3 + N)*(5 + 2*N)), 
+     -(1/(216*(3 + N)*(5 + 2*N))), 
+     -((69 + 4*N*(9 + N))/(24*(3 + N)*(5 + 2*N)))], 
+   [1/(36*(7 + 2*N + 1/(2 + N))), 0, 
+     Fraction(1,12)*(1 - 2*N + 3/(3 + N) + 4/(5 + 2*N))]]
+    
+    x0 = a[0][0] * x + a[0][1] * y + a[0][2] * z
+    y0 = a[1][0] * x + a[1][1] * y + a[1][2] * z
+    z0 = a[2][0] * x + a[2][1] * y + a[2][2] * z
+    return [x0, y0, z0]
+
+def RevFind(xP, yP, N):
+    n = len(xP)
+    zP = []
+    for i in range(n):
+        zP.append(Fraction(1))
+
+    for i in range(n):
+        x = xP[i]
+        y = yP[i]
+        z = zP[i]
+        V = Reverse(x, y, z, N)
+        x0 = V[0]
+        y0 = V[1]
+        z0 = V[2]
+    
+        if (x0 >= 0) and (y0 >= 0) and (z0 >= 0):
+            return [x0, y0, z0]
+        if (x0 <= 0) and (y0 <= 0) and  (z0 <= 0):
+            return [x0, y0, z0]
+    print("No points")
+    return 0
+
+
 #task data
 N = 4
 a = -432 * (N**4) - 2592 * (N**3) - 3240 * (N**2) + 4536 * N + 7533
 b = 3456 * (N**6) + 31104 * (N**5) + 85536 * (N**4) + 15552 * (N**3) - 250776 * (N**2) - 239112 * N + 68526
-n = 9
+
 #Px = -81 - 135 * N - 72 * (N**2) - 12 * (N**3)
 #Py = 1620 + 1188 * N + 216 * (N ** 2)
-#Pz = -3 - N
+#Pz = -3 - Ni
 
 #x = Fraction(Px, Pz)
 #y = Fraction(Py, Pz)
@@ -229,6 +269,7 @@ n = 9
 x = Fraction(103, 1)
 y = Fraction(5824, 1)
 
+#print(Reverse(x, y, Fraction(1), N))
 
 #R = 500
 #FindRational(a, b, R)
@@ -253,14 +294,39 @@ y = Fraction(5824, 1)
 #y = Fraction(1)
 
 n = 30
-print(ScMult(a, b, x, y, n))
+#print(ScMult(a, b, x, y, n))
 #print(GenerateAlotPoints(a, b, x, y))
-print(GenerateNpoints(a, b, x, y, n))
+#print(GenerateNpoints(a, b, x, y, n))
 #DrawSumN(a, b, x, y, n)
+V = GenerateNpoints(a, b, x, y, n)
+xP = V[0]
+yP = V[1]
+Ans = RevFind(xP, yP, N)
+#print(Ans)
+a = Ans[0]
+b = Ans[1]
+c = Ans[2]
+ad = a.denominator
+bd = b.denominator
+cd = c.denominator
+a = abs(a.numerator * bd * cd)
+b = abs(b.numerator * ad * cd)
+c = abs(c.numerator * ad * bd)
 
+print()
+print()
+print("a =", a)
+print()
+print("b =", b)
+print()
+print("c =", c)
 
+a = Fraction(a, 1)
+b = Fraction(b, 1)
+c = Fraction(c, 1)
 
-
+print()
+print("a/(b+c) + b/(a+c) + c/(a+b) =", a/ (b + c) + b/(a + c) + c/ (a + b))
 
 #print(xP, yP)
 #Draw(a, b, xP, yP )
