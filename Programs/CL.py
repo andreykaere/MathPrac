@@ -5,7 +5,7 @@ from math import sqrt
 
 
 def is_square(x):
-    for i in range(sqrt(x) + 1):
+    for i in range(int(sqrt(x)) + 1):
         if i**2 == x:
             return True
     return False
@@ -36,11 +36,13 @@ def find_solution(a, b, c):
 
             if is_square(z0) and (x0 != 0 or y0 != 0 or z0 != 0):
                 return (x0, y0, z0)
+
+    
     
 
 def main():
     print("input a, b, c")
-    
+
     a = int(input())
     b = int(input())
     c = int(input())

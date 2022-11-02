@@ -7,7 +7,7 @@ from math import *
 import numpy as np
 import itertools
 import matplotlib.animation as animation
-from time import *
+
 
 # only for z = 1, for now
 # int a, b ;      Fraction xp, yp, xq, yq  better for accuracy 
@@ -90,8 +90,8 @@ def Draw(a = -5, b = 5, xPoints = [], yPoints = []):
     plt.show()    
 
 # to draw plt.show()
-def DrawCurve(a, b, rng = 1000):
-    x = np.arange(-rng,rng, 0.1)
+def DrawCurve(a, b):
+    x = np.arange(-1000,1000,0.1)
     yCurveU = []
     yCurveD = []
      
@@ -197,20 +197,16 @@ def is_square(apositiveint):
 def FindRational(a, b, R):
     for xN in range(0, R):
         for xD in range(1, R):
-            if gcd(xN, xD) == 1:
-                x = Fraction(xN, xD)
-                y2 = (x**3 + a * x + b)
+            x = Fraction(xN, xD)
+            y2 = (x**3 + a * x + b)
             
-                y2n =  abs(y2.numerator)
-                y2d = abs(y2.denominator)
-                if (y2n == 0):
-                    print([x, Fraction(0)])
-                    return 0
-                if (y2n != 0) and is_square(y2n) and is_square(y2d):
-                    print( [x, Fraction(int(y2n**(1/2)), int(y2d**(1/2)))])
-                    return 0
+            y2n =  abs(y2.numerator)
+            y2d = abs(y2.denominator)
+            if (y2n == 0):
+                print([x, Fraction(0)])
+            if (y2n != 0) and is_square(y2n) and is_square(y2d):
+                print( [x, Fraction(int(y2n**(1/2)), int(y2d**(1/2)))])
     print("END")
-    return -1
 
 def Reverse(x, y, z, N):
     N = Fraction(N)
@@ -229,13 +225,13 @@ def Reverse(x, y, z, N):
     z0 = a[2][0] * x + a[2][1] * y + a[2][2] * z
     return [x0, y0, z0]
 
-def RevFind(xP, yP, N, start = 0):
+def RevFind(xP, yP, N):
     n = len(xP)
     zP = []
     for i in range(n):
         zP.append(Fraction(1))
 
-    for i in range(start, n):
+    for i in range(n):
         x = xP[i]
         y = yP[i]
         z = zP[i]
@@ -245,13 +241,13 @@ def RevFind(xP, yP, N, start = 0):
         z0 = V[2]
     
         if (x0 >= 0) and (y0 >= 0) and (z0 >= 0):
-
-            return [[x0, y0, z0], i]
+            return [x0, y0, z0]
         if (x0 <= 0) and (y0 <= 0) and  (z0 <= 0):
-            return [[x0, y0, z0], i]
-    print("No more points")
+            return [x0, y0, z0]
+    print("No points")
     return 0
 
+<<<<<<< HEAD
 def RevNFind(a, b, x, y, n):
     
     V = GenerateNpoints(a, b, x, y, n)
@@ -263,6 +259,7 @@ def RevNFind(a, b, x, y, n):
         Ans = RevFind(xP, yP, N, start)
         if type(Ans) == int:
             break
+        
         PointNum += 1
         a = Ans[0][0]
         b = Ans[0][1]
@@ -272,9 +269,11 @@ def RevNFind(a, b, x, y, n):
         ad = a.denominator
         bd = b.denominator
         cd = c.denominator
-        sgn = 1
+       
+       sgn = 1
         if (a < 0):
             sgn = -1
+
         a = a.numerator * bd * cd * sgn
         b = b.numerator * ad * cd * sgn
         c = c.numerator * ad * bd * sgn
@@ -282,6 +281,7 @@ def RevNFind(a, b, x, y, n):
         a = a // d
         b = b // d
         c = c // d
+
         if PointNum == 1:
             minLen = min(len(str(a)), len(str(b)), len(str(c)))
         else:
@@ -306,10 +306,13 @@ def RevNFind(a, b, x, y, n):
     print()
     print("Points found:", PointNum)
     print("Min length", minLen)
+=======
+
+>>>>>>> parent of 111ee21 (added some things to SumPoint)
 #task data
-#N = 4
-#a = -432 * (N**4) - 2592 * (N**3) - 3240 * (N**2) + 4536 * N + 7533
-#b = 3456 * (N**6) + 31104 * (N**5) + 85536 * (N**4) + 15552 * (N**3) - 250776 * (N**2) - 239112 * N + 68526
+N = 4
+a = -432 * (N**4) - 2592 * (N**3) - 3240 * (N**2) + 4536 * N + 7533
+b = 3456 * (N**6) + 31104 * (N**5) + 85536 * (N**4) + 15552 * (N**3) - 250776 * (N**2) - 239112 * N + 68526
 
 #Px = -81 - 135 * N - 72 * (N**2) - 12 * (N**3)
 #Py = 1620 + 1188 * N + 216 * (N ** 2)
@@ -324,37 +327,17 @@ def RevNFind(a, b, x, y, n):
 #print(PointSum(a, b, x, y, x1, y1))
 #A = PointSum(a, b, x, y, x1, y1)
 
-
-# GOOD POINT
-#x = Fraction(103, 1)
-#y = Fraction(5824, 1)
+x = Fraction(103, 1)
+y = Fraction(5824, 1)
 
 #print(Reverse(x, y, Fraction(1), N))
 
+#R = 500
+#FindRational(a, b, R)
 
-FindRational(2, 2, 5700)
 
-for R in range(100,100):
-    R = 400
-    n = 10
-    p = 0
-    To = time()
-    for i in range(n):
-        for j in range(n):
-           # print("________________")
-            print("a =", i, "b =", j)
-           # t = time()
-           # R = 50
-            if (FindRational(i, j, R) == 0):
-                p += 1
-           # print("Work time :", time()-t, "Total time:", time() - To)
-    print(p, "probability =", p / (n**2), "in range:", R)
-#very GOOD POINTS
-#x = Fraction(246, 1)
-#y = Fraction(2106, 1)
 
-#x = Fraction(291,1)
-#y = Fraction(756, 1)
+
 
 
 #data 1
@@ -371,21 +354,40 @@ for R in range(100,100):
 #x = Fraction(1)
 #y = Fraction(1)
 
-
+n = 30
 #print(ScMult(a, b, x, y, n))
 #print(GenerateAlotPoints(a, b, x, y))
 #print(GenerateNpoints(a, b, x, y, n))
-
-
-
-#-----------------------
-#n = 9
 #DrawSumN(a, b, x, y, n)
+V = GenerateNpoints(a, b, x, y, n)
+xP = V[0]
+yP = V[1]
+Ans = RevFind(xP, yP, N)
+#print(Ans)
+a = Ans[0]
+b = Ans[1]
+c = Ans[2]
+ad = a.denominator
+bd = b.denominator
+cd = c.denominator
+a = abs(a.numerator * bd * cd)
+b = abs(b.numerator * ad * cd)
+c = abs(c.numerator * ad * bd)
 
-#RevNFind(a, b, x, y, n)
-#-----------------------
+print()
+print()
+print("a =", a)
+print()
+print("b =", b)
+print()
+print("c =", c)
 
+a = Fraction(a, 1)
+b = Fraction(b, 1)
+c = Fraction(c, 1)
 
+print()
+print("a/(b+c) + b/(a+c) + c/(a+b) =", a/ (b + c) + b/(a + c) + c/ (a + b))
 
 #print(xP, yP)
 #Draw(a, b, xP, yP )
