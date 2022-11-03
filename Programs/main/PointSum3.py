@@ -94,18 +94,9 @@ def FindRational(a, b, R):
 
 
 #finds coordinate of point in the original coordinate system
-def Reverse(x, y, z, N):
-    N = Fraction(N)
+def Reverse(x, y, z, matrix):
+    a = matrix
     #to do: chech if point on curve
-    a = [[1/(72*(3 + N)*(5 + 2*N)), 
-     1/(216*(3 + N)*(5 + 2*N)), 
-     -((69 + 4*N*(9 + N))/(24*(3 + N)*(5 + 2*N)))], 
-   [1/(72*(3 + N)*(5 + 2*N)), 
-     -(1/(216*(3 + N)*(5 + 2*N))), 
-     -((69 + 4*N*(9 + N))/(24*(3 + N)*(5 + 2*N)))], 
-   [1/(36*(7 + 2*N + 1/(2 + N))), 0, 
-     Fraction(1,12)*(1 - 2*N + 3/(3 + N) + 4/(5 + 2*N))]]
-    
     x0 = a[0][0] * x + a[0][1] * y + a[0][2] * z
     y0 = a[1][0] * x + a[1][1] * y + a[1][2] * z
     z0 = a[2][0] * x + a[2][1] * y + a[2][2] * z
@@ -114,7 +105,7 @@ def Reverse(x, y, z, N):
 # finds first point from P_1, .. P_n,
 # that has natural coordinates in the original coordinate system
 # and return these coordinates
-def RevFind(xP, yP, N, start = 0):
+def RevFind(xP, yP, matrix, start = 0):
     n = len(xP)
     zP = []
     for i in range(n):
@@ -124,7 +115,7 @@ def RevFind(xP, yP, N, start = 0):
         x = xP[i]
         y = yP[i]
         z = zP[i]
-        V = Reverse(x, y, z, N)
+        V = Reverse(x, y, z, matrix)
         x0 = V[0]
         y0 = V[1]
         z0 = V[2]
@@ -142,7 +133,7 @@ def RevFind(xP, yP, N, start = 0):
 # in the original system 
 # return their coordinates
 # it is the solution for our equation
-def RevNFind(a, b, x, y, n, N):
+def RevNFind(a, b, x, y, n, matrix):
     
     V = GenerateNpoints(a, b, x, y, n)
     xP = V[0]
@@ -150,7 +141,7 @@ def RevNFind(a, b, x, y, n, N):
     PointNum = 0
     start = 0
     while True:
-        Ans = RevFind(xP, yP, N, start)
+        Ans = RevFind(xP, yP, matrix, start)
         if type(Ans) == int:
             break
         PointNum += 1
