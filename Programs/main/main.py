@@ -1,22 +1,23 @@
 from PointSum3 import *
 from DrawSum import *
+from WeierstrassForm import *
+
+n, x, y, z = symbols('n x y z')
+
+cubic = "x^3 + y^3 + z^3 + (1 - n) (x^2 y + x^2 z + y^2 x + y^2 z + z^2 x + z^2 y) + (3 - 2 n) x y z"
+
+cubic = mathematica(cubic)
+
+cubic = cubic.subs(n, 4)
+
+((a, b), trans) = weirstrass_form(cubic)
+
+print(a, b)
 
 #-----------------------
 N = 4
 N = Fraction(4)
 
-matrix = [[1/(72*(3 + N)*(5 + 2*N)), 
- 1/(216*(3 + N)*(5 + 2*N)), 
- -((69 + 4*N*(9 + N))/(24*(3 + N)*(5 + 2*N)))], 
-[1/(72*(3 + N)*(5 + 2*N)), 
- -(1/(216*(3 + N)*(5 + 2*N))), 
- -((69 + 4*N*(9 + N))/(24*(3 + N)*(5 + 2*N)))], 
-[1/(36*(7 + 2*N + 1/(2 + N))), 0, 
- Fraction(1,12)*(1 - 2*N + 3/(3 + N) + 4/(5 + 2*N))]]
-
-
-a = -432 * (N**4) - 2592 * (N**3) - 3240 * (N**2) + 4536 * N + 7533
-b = 3456 * (N**6) + 31104 * (N**5) + 85536 * (N**4) + 15552 * (N**3) - 250776 * (N**2) - 239112 * N + 68526
 
 x = Fraction(246, 1)
 y = Fraction(2106, 1)
@@ -24,7 +25,7 @@ y = Fraction(2106, 1)
 
 n = 30
 
-RevNFind(a, b, x, y, n, matrix)
+RevNFind(a, b, x, y, n, trans)
 
 n = 9
 DrawSumN(a, b, x, y, n)
