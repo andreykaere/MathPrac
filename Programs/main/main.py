@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 from PointSum3 import *
 from DrawSum import *
 from WeierstrassForm import *
@@ -16,11 +18,13 @@ print(a, b)
 
 #-----------------------
 N = 4
-N = Fraction(4)
 
+# R = 2000
+R = 700
+# print(FindRational(a, b, R))
 
-x = Fraction(246, 1)
-y = Fraction(2106, 1)
+x = Fraction(-573, 1)
+y = Fraction(7020, 1)
 
 
 n = 30
