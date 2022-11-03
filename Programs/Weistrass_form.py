@@ -3,6 +3,8 @@
 from sympy import *
 # from sympy.parsing.sympy_parser import parse_expr
 from sympy.parsing.mathematica import mathematica
+from sympy.ntheory import factorint
+# from sympy.ntheory import primefactors
 
 from fractions import Fraction
 import numpy as np
@@ -200,7 +202,10 @@ def weirstrass_form_step2(cubic):
         [c21, 1, c23],
         [c31, 0, c33],
     ])
+    
 
+    # Note, that since after step 1 there is no y^3, then it folows that partial
+    # derivative wrt y is always 0
     p = diff(cubic, x).subs({x: 0, y: 1, z: 0})
     q = diff(cubic, z).subs({x: 0, y: 1, z: 0})
 
@@ -210,32 +215,31 @@ def weirstrass_form_step2(cubic):
     #     [c31, c33],
     # ]).T)
 
-    print(p)
-    print(q)
+    # print(p)
+    # print(q)
 
     if p == 0 and q == 0:
         print("SOMETHING IS WRONG: p == 0 and q == 0")
 
     
 
-    if p != 0:
-        matrix.subs({
-            c11: 1,
-            c13: -Fraction(q, p),
-            c21: 1,
-            c23: -Fraction(q, p),
-            c31: 1,
-            c33: -Fraction(q, p) - 1,
-        })
-    
     if q != 0:
-        matrix.subs({
+        matrix = matrix.subs({
+            c11: 1,
+            c31: -Fraction(p, q),
             c13: 1,
-            c11: -Fraction(p, q),
+            c33: -Fraction(p, q) - 1,
+            c21: 1,
             c23: 1,
-            c21: -Fraction(p, q),
+        })
+    elif p != 0:
+        matrix = matrix.subs({
+            c11: -Fraction(q, p),
+            c31: 1,
+            c13: -Fraction(q, p) - 1,
             c33: 1,
-            c31: -Fraction(p, q) - 1,
+            c21: 1,
+            c23: 1,
         })
 
     # solve([
@@ -249,13 +253,145 @@ def weirstrass_form_step2(cubic):
     #     ((Poly(p * c31 + q * c33), Poly(0, c31)), '!='),
     # ]])
 
-    print(matrix)
+    # print(matrix)
+    # print(diff(cubic, x).subs({x: 0, y: 1, z: 0}))
+    # print(diff(cubic, y).subs({x: 0, y: 1, z: 0}))
+    # print(diff(cubic, z).subs({x: 0, y: 1, z: 0}))
 
+    a, b, c = symbols('a b c')
+    (x1, y1, z1) = tuple(matrix * Matrix([a, b, c]))
+    
+    cubic = simplify(cubic.subs({x: x1, y: y1, z: z1}))
+    cubic = cubic.subs({a: x, b: y, c: z})
+
+    
+    # print(cubic)
+
+
+    # print(diff(cubic, x))
+    # print(diff(cubic, x).subs({x: 0, y: 1, z: 0}))
+    # print(diff(cubic, y).subs({x: 0, y: 1, z: 0}))
+    # print(diff(cubic, z).subs({x: 0, y: 1, z: 0}))
+
+    return (list(matrix.inv()), cubic)
+
+
+
+
+def eliminate_denominators(cubic):
+    denom = 1
+
+    for coeff in Poly(cubic).coeffs():
+        denom = max(denom, abs(coeff.denominator))
+    
+    return cubic * denom
+
+
+
+
+# This function just tries to reduce coefficients as much as possible
+# //We also assume here, that `eliminate_denominators` function was called if
+# //needed
+#
+# TODO: maybe I will need to involve z in simplification
+def simplify_weirstrass_form(cubic):
+    n, x, y, z = symbols('n x y z')
+    y_ = symbols('y_')
+    
+    cubic = eliminate_denominators(cubic)
+
+    a = abs(cubic.coeff(y**2 * z))
+
+    print(a)
+
+    # a = decompose(a) ..
+    primes = factorint(a)
+
+    coeff = 1
+
+    for i in primes.keys():
+        if primes[i] % 2 == 0:
+            coeff *= i**(int(primes[i]/2))
+    
+    cubic = cubic.subs(y, y_/coeff).simplify()
+    
+    matrix = [
+        [1, 0, 0],
+        [0, coeff, 0],
+        [0, 0, 1],
+    ]
+
+    cubic = cubic.subs(y_, y).simplify()
+
+    return (matrix, cubic)
 
 
 def weirstrass_form_step3(cubic):
     n, x, y, z = symbols('n x y z')
-    pass
+    x_, y_, z_ = symbols('x_ y_ z_')
+    matrix = []
+
+    coeff = cubic.coeff(y**2 * z)
+    cubic = cubic / coeff
+
+    a = 1
+    b = cubic.coeff(y * x * z)
+    c = cubic.coeff(y * z**2)
+    
+    h, k, t = symbols('h k t')
+    (p, q) = tuple(solve((t + h)**2 + k  - (t**2  + b * t * x  + c * t * z), [h, k])[0])
+    # print(p, q)
+
+    # print(solve((t + h)**2 + k  - (t**2  + b * t * x  + c * t * z), [h, k]))
+
+
+
+    cubic = cubic.subs(y, y_ - p).expand().simplify()
+    cubic = cubic.subs(y_, y)
+    # print(cubic)
+    (matrix, cubic) = simplify_weirstrass_form(cubic)
+    print(cubic)
+
+
+
+    
+    a = cubic.coeff(x**3)
+    b = cubic.coeff(x**2 * z)
+    # c = cubic.coeff(x * z**2)
+    # d = cubic.coeff(z**3)
+
+    if (a == 0):
+        print("SOMETHING IS WRONG, a == 0, step 3")
+    
+    # print(Fraction(b, 3 * a))
+
+
+    cubic = cubic.subs(x, x_ - Fraction(b, 3 * a) * z).expand().simplify()
+    cubic = cubic.subs(x_, x)
+   
+    a = cubic.coeff(x**3)
+    cubic = (cubic.subs(z, z_ * a) / a).expand().simplify()
+    cubic = cubic.subs(z_, z)
+    # print(cubic)
+
+    
+    denom = 1
+
+    for coeff in Poly(cubic).coeffs():
+        denom = max(denom, abs(coeff.denominator))
+
+    cubic = cubic.subs(z, - z_ * denom**3).expand().simplify()
+    cubic = cubic.subs(x, x_ * denom).expand().simplify()
+
+    cubic = (cubic / denom**3).simplify()
+
+    cubic = cubic.subs({x_: x, z_: z})
+    print(cubic)
+
+    return (matrix, cubic)
+
+
+
     
 def weirstrass_form(cubic):
     n, x, y, z = symbols('n x y z')
@@ -298,9 +434,12 @@ def main():
 
     # weirstrass_form(cubic)
 
-    print(weirstrass_form_step1(cubic, (-1, 1, 0)))
-    (trans, cubic) = weirstrass_form_step1(cubic, (-1, 1, 0))
-    print(weirstrass_form_step2(cubic))
+    # print(weirstrass_form_step1(cubic, (-1, 1, 0)))
+    (trans1, cubic) = weirstrass_form_step1(cubic, (-1, 1, 0))
+    (trans2, cubic) = weirstrass_form_step2(cubic)
+    (trans3, cubic) = weirstrass_form_step3(cubic)
+    # print(cubic)
+    # print(weirstrass_form_step3(cubic))
 
 
 

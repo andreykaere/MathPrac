@@ -1,4 +1,4 @@
-PWD /home/andrey/Documents/MSU/MathPrac/paper
+PWD /home/andrey/Documents/MSU/MathPrac/Paper
 INPUT /home/andrey/local/texlive/2022/texmf-var/web2c/luahbtex/lualatex.fmt
 INPUT ./main.tex
 OUTPUT main.log
