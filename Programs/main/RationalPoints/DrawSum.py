@@ -7,7 +7,10 @@ import itertools
 import matplotlib.animation as animation
 from time import *
 
-from PointSum3 import *
+try:
+    from PointSum import *
+except ModuleNotFoundError:
+    from .PointSum import *
 
 
 def DrawCurve(a, b, rng = 1000):
