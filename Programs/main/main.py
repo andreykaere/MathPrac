@@ -23,25 +23,37 @@ inv_trans = np.reshape(inv_trans, (3, 3))
 print(inv_trans)
 
 print(a, b)
-
+print()
 #-----------------------
-N = 4
-
-# R = 2000
 R = 700
-# print(FindRational(a, b, R))
+
+P = FindRational(a, b, R)
+if P[1] == 1:
+    print("Start point is :", P[0])
+    x = P[0][0]
+    y = P[0][1]
+    # better point for a picture for N = 4
+    #x = Fraction(246, 1)
+    #y = Fraction(2106, 1)     
+    
+    n = 30
+    
+    RevNFind(a, b, x, y, n, inv_trans)
+    
+    n = 9
+    #DrawSumN(a, b, x, y, n)    
+    
+else:
+    print("no good rational points found, cant apply algoritm")
+
+
+
+
 
 # x = Fraction(-573, 1)
 # y = Fraction(7020, 1)
 
-x = Fraction(246, 1)
-y = Fraction(2106, 1)
-
-n = 30
-
-RevNFind(a, b, x, y, n, inv_trans)
-
-n = 9
-DrawSumN(a, b, x, y, n)
+#x = Fraction(246, 1)
+#y = Fraction(2106, 1)
 
 #-----------------------

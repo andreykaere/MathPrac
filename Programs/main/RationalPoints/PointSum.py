@@ -75,6 +75,7 @@ def is_square(apositiveint):
 
 # Finds (if possible) in range R for numerator and denominator
 def FindRational(a, b, R):
+    flag = 0
     for xN in range(-R, R):
         for xD in range(1, R):
             if gcd(abs(xN), xD) == 1:
@@ -84,12 +85,26 @@ def FindRational(a, b, R):
                 y2n =  abs(y2.numerator)
                 y2d = abs(y2.denominator)
                 if (y2n == 0):
-                    return [[x, Fraction(0)], 1]
-                    
+                    try:
+                        y = Fraction(0)
+                        ScMult(a, b, x, y, 7)
+                        return [[x, y], 1]
+                    except:
+                        flag = 2
+                        xt = x
+                        yt = y
                 if (y2n != 0) and is_square(y2n) and is_square(y2d) and (y2 > 0):
-                    return [[x, Fraction(int(y2n**(1/2)), int(y2d**(1/2)))], 1]
-                    
-    print("END")
+                    try:
+                        y = Fraction(int(y2n**(1/2)), int(y2d**(1/2)))
+                        ScMult(a, b, x, y, 7)
+                        return [[x, y], 1]
+                    except:
+                        flag = 2
+                        xt = x
+                        yt = y
+    if (flag == 2):
+        print("Was found only a totion point")
+        return [[xt, yt], flag]
     return [[], 0]
 
 
