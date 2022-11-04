@@ -190,19 +190,16 @@ def simplify_cubic(cubic):
     return (matrix, cubic)
 
 
-
 def to_integer_matrix(matrix):
-    # print(matrix) 
     mat_list = np.array(matrix).flatten().tolist()
+    
+    lcm = np.lcm.reduce([i.denominator for i in mat_list])
+    mat_list = (Matrix(mat_list) * lcm).tolist()
+    gcd = np.gcd.reduce([i for i in mat_list])
 
-    # print(mat_list)
-
-    gcd = np.gcd.reduce([i.denominator for i in mat_list])
-    # print([i.denominator for i in mat_list])
-
-    # print(Matrix(mat_list) * gcd)
-
-    return matrix
+    matrix = Matrix(matrix) * lcm/gcd
+    
+    return matrix.tolist()
 
 
 def weierstrass_form_step3(cubic):
@@ -346,13 +343,11 @@ def weierstrass_form(cubic):
 
     a = cubic.coeff(x * z**2)
     b = cubic.coeff(z**3)
-
+   
     # print(cubic)
     # print(a,b)
-    print(trans)
-
+    
     trans = to_integer_matrix(trans)
-
 
     return ((a, b), trans)
 
