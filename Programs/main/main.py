@@ -6,6 +6,7 @@ from WeierstrassForm.WeierstrassForm import weierstrass_form
 
 from sympy import *
 from sympy.parsing.mathematica import mathematica
+import numpy as np
 
 n, x, y, z = symbols('n x y z')
 cubic = "x^3 + y^3 + z^3 + (1 - n) (x^2 y + x^2 z + y^2 x + y^2 z + z^2 x + z^2 y) + (3 - 2 n) x y z"
@@ -13,6 +14,13 @@ cubic = mathematica(cubic)
 cubic = cubic.subs(n, 4)
 
 ((a, b), trans) = weierstrass_form(cubic)
+
+# print(Matrix(trans))
+# print(Matrix(trans).inv())
+inv_trans = np.array(list(map(lambda i: Fraction(i), Matrix(trans).inv())))
+inv_trans = np.reshape(inv_trans, (3, 3))
+
+print(inv_trans)
 
 print(a, b)
 
@@ -31,7 +39,7 @@ y = Fraction(2106, 1)
 
 n = 30
 
-RevNFind(a, b, x, y, n, trans)
+RevNFind(a, b, x, y, n, inv_trans)
 
 n = 9
 DrawSumN(a, b, x, y, n)

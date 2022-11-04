@@ -140,10 +140,13 @@ def weierstrass_form_step2(cubic):
     
     cubic = simplify(cubic.subs({x: x1, y: y1, z: z1}))
     cubic = cubic.subs({a: x, b: y, c: z})
-
     
-    (matrix1, cubic) = simplify_cubic(cubic)
-
+    # print("foo")
+    # print(cubic) 
+    # (matrix1, cubic) = simplify_cubic(cubic)
+    
+    # print(matrix1, cubic)
+    # matrix1 = Matrix(matrix1).inv().tolist()
     
     # print(matrix)
     # print(Matrix(matrix).inv().tolist())
@@ -155,10 +158,15 @@ def weierstrass_form_step2(cubic):
     # print(diff(cubic, y).subs({x: 0, y: 1, z: 0}))
     # print(diff(cubic, z).subs({x: 0, y: 1, z: 0}))
 
-    return (Matrix(multiply(matrix1, matrix)).inv().tolist(), cubic)
+    # print("bar")
+    # print(Matrix(multiply(matrix1, matrix)).inv().tolist(), cubic)
+
+    # return (Matrix(multiply(matrix1, matrix)).inv().tolist(), cubic)
+    return (Matrix(matrix).inv().tolist(), cubic)
 
 
 # This function just tries to reduce coefficients as much as possible
+# Matrix is the actual matrix in projective transformation (not inverted)
 #
 # TODO: maybe I will need to involve z in simplification
 def simplify_cubic(cubic):
@@ -321,7 +329,13 @@ def weierstrass_form(cubic):
     
     (trans1, cubic) = weierstrass_form_step1(cubic, point)
     (trans2, cubic) = weierstrass_form_step2(cubic)
+    
+    print(trans2, cubic)
     (trans3, cubic) = weierstrass_form_step3(cubic)
+    # print(multiply(trans2,
+    #       multiply(trans1,
+    #                trans0
+    #                )))
 
     # print(trans1)
     # print(trans2)
