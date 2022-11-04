@@ -31,7 +31,7 @@ def eliminate_denominators(cubic):
     
     return cubic * denom
 
-# Map point `point` to (0 : 1 : 0)
+# In step1 we map inflection point `point` to (0 : 1 : 0)
 def weierstrass_form_step1(cubic, point):
     n, x, y, z = symbols('n x y z')
     (xp, yp, zp) = point
@@ -41,7 +41,10 @@ def weierstrass_form_step1(cubic, point):
         [0, 1, 0],
         [0, 0, 1],
     ]
-
+    
+    # First, we want to change the variable order, such that if point has zero
+    # coordinates, they go like this: (1 : 0 : 0), i.e. if 1 zero, then the
+    # point has coordinates (x : y : 0), if 2 zeros, then (x : 0 : 0)
     if zp != 0:
         if xp == 0:
             (zp, xp) = (xp, zp)
@@ -72,7 +75,8 @@ def weierstrass_form_step1(cubic, point):
             [1, 0, 0],
             [0, 0, 1],
         ]
-
+    
+    # Invertable matrix, such that sends our point to (0 : 1 : 0)
     matrix2 = [
         [Fraction(yp, xp), -1, 0],
         [Fraction(1, xp), 0, 0],
@@ -91,11 +95,12 @@ def weierstrass_form_step1(cubic, point):
     cubic = simplify(cubic.subs({x: x1, y: y1, z: z1}))
     cubic = cubic.subs({a: x, b: y, c: z})
     
-    # print(cubic)
-
     return (matrix, cubic)
 
 
+
+# In step 3 we make a transformation such that z = 0 becomes a tangent to our
+# cubic at point (0 : 1 : 0)
 def weierstrass_form_step2(cubic):
     n, x, y, z = symbols('n x y z')
     c11, c31, c21, c23, c13, c33 = symbols('c11 c31 c21 c23 c13 c33') 
@@ -128,8 +133,6 @@ def weierstrass_form_step2(cubic):
             [-p/q, 0, -p/q - 1],
         ]
 
-
-
     # print(matrix)
     # print(diff(cubic, x).subs({x: 0, y: 1, z: 0}))
     # print(diff(cubic, y).subs({x: 0, y: 1, z: 0}))
@@ -140,29 +143,17 @@ def weierstrass_form_step2(cubic):
     
     cubic = simplify(cubic.subs({x: x1, y: y1, z: z1}))
     cubic = cubic.subs({a: x, b: y, c: z})
-    
-    # print("foo")
-    # print(cubic) 
-    # (matrix1, cubic) = simplify_cubic(cubic)
-    
-    # print(matrix1, cubic)
-    # matrix1 = Matrix(matrix1).inv().tolist()
-    
-    # print(matrix)
-    # print(Matrix(matrix).inv().tolist())
-    # print(cubic)
 
+    (matrix1, cubic) = simplify_cubic(cubic)
+    matrix = Matrix(matrix).inv().tolist()
+    
 
     # print(diff(cubic, x))
     # print(diff(cubic, x).subs({x: 0, y: 1, z: 0}))
     # print(diff(cubic, y).subs({x: 0, y: 1, z: 0}))
     # print(diff(cubic, z).subs({x: 0, y: 1, z: 0}))
 
-    # print("bar")
-    # print(Matrix(multiply(matrix1, matrix)).inv().tolist(), cubic)
-
-    # return (Matrix(multiply(matrix1, matrix)).inv().tolist(), cubic)
-    return (Matrix(matrix).inv().tolist(), cubic)
+    return (multiply(matrix1, matrix), cubic)
 
 
 # This function just tries to reduce coefficients as much as possible
@@ -231,21 +222,16 @@ def weierstrass_form_step3(cubic):
     cubic = cubic.subs(y, y_ - p).expand().simplify()
     cubic = cubic.subs(y_, y)
     
-    # Complete square by `y`
+    # Complete the square by `y`
     matrix0 = [
         [1, 0, 0],
         [p.coeff(x), 1, p.coeff(z)],
         [0, 0, 1],
     ]
 
-
-    # print(cubic)
-    # print(matrix0, cubic)
+    
+    # Reduce coefficients, because otherwise they are enormous
     (matrix1, cubic) = simplify_cubic(cubic)
-
-    # print(matrix1, cubic)
-
-
 
     
     a = cubic.coeff(x**3)
@@ -258,34 +244,34 @@ def weierstrass_form_step3(cubic):
     
     # print(Fraction(b, 3 * a))
 
-
+    
+    # Eliminating the x^2 z monomial
     cubic = cubic.subs(x, x_ - Fraction(b, 3 * a) * z).expand().simplify()
     cubic = cubic.subs(x_, x)
     matrix2 = [
-        [1, 0, b/(3 * a)],
+        [1, 0, Fraction(b, 3 * a)],
         [0, 1, 0],
         [0, 0, 1],
     ]
     
 
-   
+    # Normalizing the coefficient of x^3
     a = cubic.coeff(x**3)
     cubic = (cubic.subs(z, z_ * a) / a).expand().simplify()
     cubic = cubic.subs(z_, z)
     matrix3 = [
         [1, 0, 0],
         [0, 1, 0],
-        [0, 0, 1/a],
+        [0, 0, Fraction(1, a)],
     ]
-    # return (matrix3, cubic)
-    # print(cubic)
-
+   
     
     denom = 1
-
     for coeff in Poly(cubic).coeffs():
         denom = max(denom, abs(coeff.denominator))
 
+    
+    # Getting rid of denominators in the fractions
     cubic = cubic.subs(z, - z_ * denom**3).expand().simplify()
     cubic = cubic.subs(x, x_ * denom).expand().simplify()
     matrix4 = [
@@ -301,10 +287,8 @@ def weierstrass_form_step3(cubic):
                       matrix0
                       ))))
 
-    # matrix = simplify_transformation(matrix)
 
     cubic = (cubic / denom**3).simplify()
-
     cubic = cubic.subs({x_: x, z_: z})
     # print(cubic)
 
@@ -329,25 +313,7 @@ def weierstrass_form(cubic):
     
     (trans1, cubic) = weierstrass_form_step1(cubic, point)
     (trans2, cubic) = weierstrass_form_step2(cubic)
-    
-    print(trans2, cubic)
     (trans3, cubic) = weierstrass_form_step3(cubic)
-    # print(multiply(trans2,
-    #       multiply(trans1,
-    #                trans0
-    #                )))
-
-    # print(trans1)
-    # print(trans2)
-    # print(trans3)
-   
-    # trans = np.dot(trans3,
-    #         np.dot(trans2, 
-    #         np.dot(trans1,
-    #                trans0
-    #         ).tolist()
-    #         ).tolist()
-    #         ).tolist() 
 
     trans = multiply(trans3,
             multiply(trans2,
@@ -364,11 +330,6 @@ def weierstrass_form(cubic):
     trans = to_integer_matrix(trans)
 
     return ((a, b), trans)
-
-    
-
-
-
 
 
 def main():
@@ -398,4 +359,3 @@ def main():
 if __name__ == '__main__':
     main()
 
-# print(resultant(get_gessian(cubic), cubic, z))
