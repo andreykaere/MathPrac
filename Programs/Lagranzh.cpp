@@ -1,13 +1,68 @@
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
+#include <iostream>
+
+//Переделать майн с использованием структуры дробей
+
+int gcd(int a, int b)
+{
+	if(a == 0)
+		return abs(b);
+	return gcd(b % a, a);
+}
 
 struct Frac
 {
 	int num, den;
+	Frac(int nw_num, int nw_den) : num(nw_num), den(nw_den)
+	{}
+
+	Frac()
+	{
+		num = 1;
+		den = 1;
+	}
 };
 
-//const Frac operator+();
+const Frac operator+(const Frac& q1, const Frac& q2)
+{
+	int a = q1.num * q2.den + q2.num * q1.den;
+	int b = q1.den * q2.den;
+	int c = gcd(a, b);
+	
+	return Frac(a / c, b / c);
+}
+
+const Frac operator-(const Frac& q1)
+{
+	return Frac(-q1.num, q1.den);
+}
+
+const Frac operator-(const Frac& q1, const Frac& q2)
+{
+	Frac q = -q2;
+	return q1 + q;
+}
+
+const Frac operator*(const Frac& q1, const Frac& q2)
+{
+	int a = q1.num * q2.num;
+	int b = q1.den * q2.den;
+	return Frac(a/gcd(a, b), b/gcd(a, b));
+}
+
+const Frac operator/(const Frac& q1, const Frac& q2)
+{
+	int a = q2.den*q1.num;
+	int b = q2.num*q1.den;
+	if(b < 0)
+	{
+		a = -a;
+		b = -b;
+	}
+	return Frac(a / gcd(a, b), b / gcd(a, b));
+}
 
 
 //Умножение матрицы А справа на В: А1 = А*В
@@ -36,6 +91,7 @@ void mat_prod_r(double *a, double *b, int n)
 //Умножение матрицы А слева на В: А1 = В*А
 void mat_prod_l(double *a, double *b, int n)
 {
+
 	double buf[9];
 	for(int i = 0; i < n; ++i)
 		for(int j = 0; j < n; ++j)
@@ -107,6 +163,24 @@ void swap(double *a, int n, int p, int q, double *tr)
 
 int main()
 {
+	
+	printf("Vvedi drobi\n");
+	char l;
+	Frac p, q, r;
+	scanf("%d%c%d", &p.num, &l, &p.den);
+	scanf("%d%c%d", &q.num, &l, &q.den);
+	r = p + q;
+	printf("%d/%d\n", r.num, r.den);
+
+	r = p - q;
+	printf("%d/%d\n", r.num, r.den);
+
+	r = p * q;
+	printf("%d/%d\n", r.num, r.den);
+
+	r = p / q;
+	printf("%d/%d\n", r.num, r.den);
+	
 	
 	double a[9], tr[9], c[9], a1[9];
 	int n = 3;
