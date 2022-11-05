@@ -7,7 +7,7 @@ struct Frac
 	int num, den;
 };
 
-const Frac operator+();
+//const Frac operator+();
 
 
 //Умножение матрицы А справа на В: А1 = А*В
