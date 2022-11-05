@@ -11,7 +11,7 @@ import numpy as np
 n, x, y, z = symbols('n x y z')
 cubic = "x^3 + y^3 + z^3 + (1 - n) (x^2 y + x^2 z + y^2 x + y^2 z + z^2 x + z^2 y) + (3 - 2 n) x y z"
 cubic = mathematica(cubic)
-cubic = cubic.subs(n, 4)
+cubic = cubic.subs(n, 8)
 
 ((a, b), trans) = weierstrass_form(cubic)
 
@@ -21,11 +21,12 @@ inv_trans = np.array(list(map(lambda i: Fraction(i), Matrix(trans).inv())))
 inv_trans = np.reshape(inv_trans, (3, 3))
 
 print(inv_trans)
-
+a = -3260115
+b = 2265609582
 print(a, b)
 print()
 #-----------------------
-R = 700
+R = 3000
 
 P = FindRational(a, b, R)
 if P[1] == 1:

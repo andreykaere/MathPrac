@@ -339,9 +339,7 @@ def main():
     n, x, y, z = symbols('n x y z')
 
     cubic = "x^3 + y^3 + z^3 + (1 - n) (x^2 y + x^2 z + y^2 x + y^2 z + z^2 x + z^2 y) + (3 - 2 n) x y z"
-
     cubic = mathematica(cubic)
-
     cubic = cubic.subs(n, 4)
 
     print(weierstrass_form(cubic))

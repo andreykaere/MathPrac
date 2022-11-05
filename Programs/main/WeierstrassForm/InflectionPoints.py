@@ -10,8 +10,7 @@ from fractions import Fraction
 import numpy as np
 
 
-
-def get_gessian(c):
+def get_hessian(c):
     n, x, y, z = symbols('n x y z')
     return Matrix([
        [diff(c, x, x), diff(c, x, y), diff(c, x, z)],
@@ -57,7 +56,7 @@ def from_solution_to_point(cubic, sol):
         pass
 
 
-def fix_zero_leading_coefficients(cubic, gessian):
+def fix_zero_leading_coefficients(cubic, hessian):
     n, x, y, z = symbols('n x y z')
     pass
 
@@ -65,19 +64,24 @@ def fix_zero_leading_coefficients(cubic, gessian):
 def points_of_inflection(cubic):
     n, x, y, z = symbols('n x y z')
     trans = []
-    gessian = get_gessian(cubic)
+    hessian = get_hessian(cubic)
+
+    print(hessian)
 
     # if a0 b0 = 0, fix it 
     a0 = Poly(cubic, z).all_coeffs()[0]
-    b0 = Poly(gessian, z).all_coeffs()[0]
+    b0 = Poly(hessian, z).all_coeffs()[0]
 
     if a0 * b0 == 0:
-        (cubic, gessian, trans) = fix_zero_leading_coefficients(cubic, gessian)
+        (cubic, hessian, trans) = fix_zero_leading_coefficients(cubic, hessian)
 
 
     t = symbols('t')
-    res = resultant(cubic, gessian, z)
+    res = resultant(cubic, hessian, z)
+    
+
     res_t = Poly(collect(expand(res/y**9).subs(x/y, t), t), t)
+    print(res_t)
     
     # Reducing our polynom, so that our enumeration algorithm will not take 
     # forever to finish
@@ -98,7 +102,9 @@ def points_of_inflection(cubic):
         res_t = expand(res_t / t)
     
     # Updating data after reducing
-    coeff_t = res_t.all_coeffs()
+    coeff_t = Poly(res_t).all_coeffs()
+    
+
     last  = coeff_t[-1]
     first = coeff_t[0]
 
@@ -111,11 +117,26 @@ def points_of_inflection(cubic):
                 solutions.add(Fraction(-j, i))
     
     points = []
-
+    
     for solution in list(solutions):
-        point = from_solution_to_point(solution)
+        point = from_solution_to_point(cubic, solution)
         points.append(point)
 
     # TODO: printing when there are no rational points on cubic
 
     return (points, trans)
+
+
+def main():
+    n, x, y, z = symbols('n x y z')
+
+    cubic = "x^3 + y^3 + z^3 + (1 - n) (x^2 y + x^2 z + y^2 x + y^2 z + z^2 x + z^2 y) + (3 - 2 n) x y z"
+    cubic = mathematica(cubic)
+    cubic = cubic.subs(n, 4)
+    
+    print(points_of_inflection(cubic))
+
+
+
+if __name__ == "__main__":
+    main()
