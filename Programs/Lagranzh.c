@@ -2,59 +2,126 @@
 #include <math.h>
 #include <stdlib.h>
 
-void swap(double *a, int n, int p, int q)
+struct Frac
 {
-	double *a2;
-	a2 = (double*)malloc(n * n * sizeof(double));
-	for(int i = 0; i < n; ++i)
-	{
-		if((i != p))
-		{
-			a2[i*n + p] = a[i*n + q];
-			a2[p*n + i] = a[q*n + i];
-		}
-		if(i != q)
-		{
-			a2[q*n + i] = a[p*n + i];
-			a2[i*n + q] = a[i*n + p];
-		}
-	}
-	a2[p*n + p] = a[q*n + q];
-	a2[q*n + q] = a[p*n + p];
-	
-	a2[p*n + q] = a[q*n + p];
-	a2[q*n + p] = a[p*n + q];
+	int num, den;
+};
 
+const Frac operator+();
+
+
+//Умножение матрицы А справа на В: А1 = А*В
+void mat_prod_r(double *a, double *b, int n)
+{
+	double buf[9];
+	for(int i = 0; i < n; ++i)
+		for(int j = 0; j < n; ++j)
+			buf[i*n + j] = a[i*n + j];
+
+
+	double h = 0;
+	
+	for(int i = 0; i < n; ++i)
+		for(int j = 0; j < n; ++j)
+		{
+			h = 0;
+			for(int k = 0; k < n; ++k)
+				h += buf[i*n + k] * b[k*n + j];
+			a[i*n + j] = h;
+		}
+	return ;
+}
+
+
+//Умножение матрицы А слева на В: А1 = В*А
+void mat_prod_l(double *a, double *b, int n)
+{
+	double buf[9];
+	for(int i = 0; i < n; ++i)
+		for(int j = 0; j < n; ++j)
+			buf[i*n + j] = a[i*n + j];
+	
+	double h = 0;
+	
+	for(int i = 0; i < n; ++i)
+		for(int j = 0; j < n; ++j)
+		{
+			h = 0;
+			for(int k = 0; k < n; ++k)
+				h += b[i*n + k] * buf[k*n + j];
+			a[i*n + j] = h;
+		}
+
+	
+	return ;
+}
+
+
+//Преобразование матрицы квадратичной формы А1 = С^T * A * C
+void transf(double *a, double *tr, int n)
+{
+	double trt[9];
+	for(int i = 0; i < n; ++i)
+		for(int j = 0; j < n; ++j)
+			trt[i*n + j] = tr[j*n + i];
+	
+	mat_prod_l(a, trt, n);
+	mat_prod_r(a, tr, n);
+	
+	
+	
+	return ;
+}
+
+//Замена р-bIX и q-bIX базиснbIX векторoB
+void swap(double *a, int n, int p, int q, double *tr)
+{
+
+	double c[9];
+	if(p == q)
+		return ;
 	for(int i = 0; i < n; ++i)
 	{
 		for(int j = 0; j < n; ++j)
 		{
-			if(!((i!= p) && (i!= q) && (j != p) && (j != q)))
-				a[i*n + j] = a2[i*n + j];
-
-			//printf("%lf ", a[i*n + j]);
+			if((i != p) && (i != q) && (j != p) && (j != q))
+				c[i*n + j] = (i == j);
 		}
-
-		//printf("\n");
+		c[i*n + p] = 0;
+		c[p*n + i] = 0;
+		c[q*n + i] = 0;
+		c[i*n + q] = 0;
 	}
+
+	c[p*n + p] = 0;
+	c[p*n + q] = 1;
+	c[q*n + p] = 1;
+	c[q*n + q] = 0;
+
+	mat_prod_r(tr, c, n);
+	transf(a, c, n);
+
+	
 	return ;
 }
 
 int main()
 {
 	
-	double *a, *a1;
+	double a[9], tr[9], c[9], a1[9];
 	int n = 3;
 	char per[3] = {'x', 'y', 'z'};
-
-	a = (double*)malloc(n * n * sizeof(double));
-	a1 = (double*)malloc(n*n * sizeof(double));
 	
+
 	printf("Введите квадратичную форму:\n");
 	
 	for(int i = 0; i < n; ++i)
 		for(int j = 0; j < n; ++j)
+		{
 			scanf("%lf", &a[i*n + j]);
+			a1[i*n + j] = a[i*n + j];
+			tr[i*n + j] = (i == j);
+		}
 
 	printf("\n");
 
@@ -68,25 +135,21 @@ int main()
 	
 	if(nenul > -1)
 	{
-		//printf("%d\n", nenul);
-		swap(a, n, 0, nenul);
-		a1[0*n + 0] = a[0 * n + 0];
-		a1[0*n + 1] = 0;
-		a1[0*n + 2] = 0;
 		
-
-		a1[1*n + 1] = a[1*n + 1] - (a[0*n + 1]* a[0*n + 1])/a[0*n + 0];
-		a1[1*n + 2] = a[1*n + 2] - a[0*n + 1] * a[0*n + 2] / a[0*n + 0];
-		a1[2*n + 2] = a[2*n + 2] - (a[0*n + 2] * a[0*n + 2]) / a[0*n + 0];
+		swap(a, n, 0, nenul, tr);
 		
-		a1[1*n + 0] = a1[0*n + 1];
-		a1[2*n + 0] = a1[0*n + 2];
-		a1[2*n + 1] = a1[1*n + 2];
+		c[0*n + 0] = 1;
+		c[0*n + 1] = -a[0*n + 1] / a[0*n + 0];
+		c[0*n + 2] = -a[0*n + 2] / a[0*n + 0];
+		c[1*n + 0] = 0;
+		c[1*n + 1] = 1;
+		c[1*n + 2] = 0;
+		c[2*n + 0] = 0;
+		c[2*n + 1] = 0;
+		c[2*n + 2] = 1;
 		
-		//printf("\n");
-		for(int i = 0; i < n; ++i)
-			for(int j = 0; j < n; ++j)
-				a[i*n + j] = a1[i*n + j];
+		mat_prod_r(tr, c, n);
+		transf(a, c, n);
 	}
 	else
 	{
@@ -108,7 +171,7 @@ int main()
 		
 		if(i_nen < 0)
 		{
-			printf("Квадратичная форма вырожденная\n");
+			//В этом случае квадратичная форма нулевая
 			for(int i = 0; i < n; ++i)
 			{
 				for(int j = 0; j < n; ++j)
@@ -120,54 +183,23 @@ int main()
 			return 0;
 		}
 
-		//printf("%d %d\n", i_nen, j_nen);
-
-		swap(a, n, i_nen, 0);
-		swap(a, n, j_nen, 1);
-		
-		a1[0*n + 0] = 2 * a[0*n + 1];
-		a1[1*n + 1] = -2 * a[0*n + 1];
-		a1[0*n + 2] = (a[0*n + 2] + a[1*n + 2]);
-		a1[1*n + 2] = (a[0*n + 2] - a[1*n +2]);
-		
-		a1[2*n + 2] = a[2*n + 2];
-		a1[0*n + 1] = 0;
-		a1[1*n + 0] = 0;
-		
-		a1[2*n + 0] = a1[0*n + 2];
-		a1[2*n + 1] = a1[1*n + 2];
-
-		
-		for(int i = 0; i < n; ++i)
-			for(int j = 0; j < n; ++j)
-				a[i*n + j] = a1[i*n + j];
-
-		a1[0*n + 0] = a[0 * n + 0];
-		a1[0*n + 1] = 0;
-		a1[0*n + 2] = 0;
 		
 
-		a1[1*n + 1] = a[1*n + 1] - (a[0*n + 1]* a[0*n + 1])/a[0*n + 0];
-		a1[1*n + 2] = a[1*n + 2] - a[0*n + 1] * a[0*n + 2] / a[0*n + 0];
-		a1[2*n + 2] = a[2*n + 2] - (a[0*n + 2] * a[0*n + 2]) / a[0*n + 0];
+		swap(a, n, i_nen, 0, tr);
+		swap(a, n, j_nen, 1, tr);
 		
-		a1[1*n + 0] = a1[0*n + 1];
-		a1[2*n + 0] = a1[0*n + 2];
-		a1[2*n + 1] = a1[1*n + 2];
-
-		for(int i = 0; i < n; ++i)
-			for(int j = 0; j < n; ++j)
-				a[i*n + j] = a1[i*n + j];
-
+		c[0*n + 0] = 1;
+		c[0*n + 1] = 1;
+		c[0*n + 2] = 0;
+		c[1*n + 0] = 1;
+		c[1*n + 1] = -1;
+		c[1*n + 2] = 0;
+		c[2*n + 0] = 0;
+		c[2*n + 1] = 0;
+		c[2*n + 2] = 0;
+		mat_prod_r(tr, c, n);
+		transf(a, c, n);
 	}
-	
-	/*for(int i = 0; i < n; ++i)
-	{
-		for(int j = 0; j < n; ++j)
-			printf("%lf ", a[i*n + j]);
-
-		printf("\n");
-	}*/
 	
 	
 	nenul = -1;
@@ -180,36 +212,46 @@ int main()
 	
 	if(nenul >= 1)
 	{
-		swap(a, n, nenul, 1);
-		a1[1*n + 1] = a[1*n + 1];
-		a1[1*n + 2] = 0;
-		a1[2*n + 1] = 0;
-		a1[2*n + 2] = a[2*n + 2] - a[1*n + 2] * a[1*n + 2] / a[1*n + 1];
-		for(int i = 1; i < n; ++i)
-			for(int j = 1; j < n; ++j)
-				a[i*n + j] = a1[i*n + j];
+		swap(a, n, nenul, 1, tr);
+		c[0*n + 0] = 1;
+		c[0*n + 1] = 0;
+		c[0*n + 2] = 0;
+		c[1*n + 0] = 0;
+		c[1*n + 1] = 1;
+		c[1*n + 2] = -a[1*n + 2]/a[1*n + 1];
+		c[2*n + 0] = 0;
+		c[2*n + 1] = 0;
+		c[2*n + 2] = 1;
 
+		mat_prod_r(tr, c, n);
+		transf(a, c, n);
 	}
 	else
 	{
 		if(fabs(a[1*n + 2]) < 0.0000000001)
-			printf("Квадратичная форма вырожденная\n");
+			printf("Квадратичная форма вырожденная\n"); //В этом случае дополнительный к (1, 1) минор нулевой
 
 		else
 		{
-			a1[1*n + 1] = 2 * a[1*n + 2];
-			a1[1*n + 2] = 0;
-			a1[2*n + 1] = 0;
-			a1[2*n + 2] = -2 * a[1*n + 2];
-			for(int i = 0; i < n; ++i)
-				for(int j = 0; j < n; ++j)
-					a[i*n + j] = a1[i*n + j];
+
+			c[0*n + 0] = 1;
+			c[0*n + 1] = 0;
+			c[0*n + 2] = 0;
+			c[1*n + 0] = 0;
+			c[1*n + 1] = 1;
+			c[1*n + 2] = 1;
+			c[2*n + 0] = 0;
+			c[2*n + 1] = 1;
+			c[2*n + 2] = -1;
+			
+			mat_prod_r(tr, c, n);
+			transf(a, c, n);
 		}
 		
 	}
 	
-	printf("Канонический вид этой квадратичной формы:\n");
 
+	printf("Канонический вид этой квадратичной формы:\n");
 	for(int i = 0; i < n; ++i)
 	{
 		for(int j = 0; j < n; ++j)
@@ -217,7 +259,6 @@ int main()
 
 		printf("\n");
 	}
-	
 	printf("\n");
 
 	for(int i = 0; i < n; ++i)
@@ -233,8 +274,16 @@ int main()
 
 		}
 	}
-	printf("\n");
 
-	free(a);
+
+	printf("\n");
+	printf("Матрица преобразования:\n");
+	for(int i = 0; i < n; ++i)
+	{
+		for(int j = 0; j < n; ++j)
+			printf("%lf ", tr[i*n + j]);
+		printf("\n");
+	}
+
 	return 0;
 }
