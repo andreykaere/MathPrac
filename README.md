@@ -1,6 +1,6 @@
 ## About
-This repository is mainly dedicated to solving the following problem: for $N
-\in \mathbb{N}$ find a natural solution, i.e. $a, b, c \in \mathbb{N}$,
+This repository is mainly dedicated to solving the following problem: for 
+$N \in \mathbb{N}$ find a natural solution, i.e. $a, b, c \in \mathbb{N}$,
 such that the following equation holds:
 ```math
 \frac{a}{b + c} + \frac{b}{a + c} + \frac{c}{a + b} = N.
