@@ -2,84 +2,23 @@
 #include <math.h>
 #include <stdlib.h>
 #include <iostream>
-
-//Переделать майн с использованием структуры дробей
-
-int gcd(int a, int b)
-{
-	if(a == 0)
-		return abs(b);
-	return gcd(b % a, a);
-}
-
-struct Frac
-{
-	int num, den;
-	Frac(int nw_num, int nw_den) : num(nw_num), den(nw_den)
-	{}
-
-	Frac()
-	{
-		num = 1;
-		den = 1;
-	}
-};
-
-const Frac operator+(const Frac& q1, const Frac& q2)
-{
-	int a = q1.num * q2.den + q2.num * q1.den;
-	int b = q1.den * q2.den;
-	int c = gcd(a, b);
-	
-	return Frac(a / c, b / c);
-}
-
-const Frac operator-(const Frac& q1)
-{
-	return Frac(-q1.num, q1.den);
-}
-
-const Frac operator-(const Frac& q1, const Frac& q2)
-{
-	Frac q = -q2;
-	return q1 + q;
-}
-
-const Frac operator*(const Frac& q1, const Frac& q2)
-{
-	int a = q1.num * q2.num;
-	int b = q1.den * q2.den;
-	return Frac(a/gcd(a, b), b/gcd(a, b));
-}
-
-const Frac operator/(const Frac& q1, const Frac& q2)
-{
-	int a = q2.den*q1.num;
-	int b = q2.num*q1.den;
-	if(b < 0)
-	{
-		a = -a;
-		b = -b;
-	}
-	return Frac(a / gcd(a, b), b / gcd(a, b));
-}
-
+#include "fraction.h"
 
 //Умножение матрицы А справа на В: А1 = А*В
-void mat_prod_r(double *a, double *b, int n)
+void mat_prod_r(Frac *a, Frac *b, int n)
 {
-	double buf[9];
+	Frac buf[9];
 	for(int i = 0; i < n; ++i)
 		for(int j = 0; j < n; ++j)
 			buf[i*n + j] = a[i*n + j];
 
 
-	double h = 0;
+	Frac h, zer(0, 1);
 	
 	for(int i = 0; i < n; ++i)
 		for(int j = 0; j < n; ++j)
 		{
-			h = 0;
+			h = zer;
 			for(int k = 0; k < n; ++k)
 				h += buf[i*n + k] * b[k*n + j];
 			a[i*n + j] = h;
@@ -89,20 +28,20 @@ void mat_prod_r(double *a, double *b, int n)
 
 
 //Умножение матрицы А слева на В: А1 = В*А
-void mat_prod_l(double *a, double *b, int n)
+void mat_prod_l(Frac *a, Frac *b, int n)
 {
 
-	double buf[9];
+	Frac buf[9];
 	for(int i = 0; i < n; ++i)
 		for(int j = 0; j < n; ++j)
 			buf[i*n + j] = a[i*n + j];
 	
-	double h = 0;
+	Frac h(0, 1), zer(0, 1);
 	
 	for(int i = 0; i < n; ++i)
 		for(int j = 0; j < n; ++j)
 		{
-			h = 0;
+			h = zer;
 			for(int k = 0; k < n; ++k)
 				h += b[i*n + k] * buf[k*n + j];
 			a[i*n + j] = h;
@@ -114,9 +53,9 @@ void mat_prod_l(double *a, double *b, int n)
 
 
 //Преобразование матрицы квадратичной формы А1 = С^T * A * C
-void transf(double *a, double *tr, int n)
+void transf(Frac *a, Frac *tr, int n)
 {
-	double trt[9];
+	Frac trt[9];
 	for(int i = 0; i < n; ++i)
 		for(int j = 0; j < n; ++j)
 			trt[i*n + j] = tr[j*n + i];
@@ -130,78 +69,65 @@ void transf(double *a, double *tr, int n)
 }
 
 //Замена р-bIX и q-bIX базиснbIX векторoB
-void swap(double *a, int n, int p, int q, double *tr)
+void swap(Frac *a, int n, int p, int q, Frac *tr)
 {
 
-	double c[9];
+	Frac c1[9];
+	Frac ed(1, 1), zer(0, 1);
 	if(p == q)
 		return ;
 	for(int i = 0; i < n; ++i)
 	{
 		for(int j = 0; j < n; ++j)
-		{
 			if((i != p) && (i != q) && (j != p) && (j != q))
-				c[i*n + j] = (i == j);
-		}
-		c[i*n + p] = 0;
-		c[p*n + i] = 0;
-		c[q*n + i] = 0;
-		c[i*n + q] = 0;
-	}
+				c1[i*n + j] = Frac((i == j), 1);
 
-	c[p*n + p] = 0;
-	c[p*n + q] = 1;
-	c[q*n + p] = 1;
-	c[q*n + q] = 0;
+		c1[i*n + p] = zer;
+		c1[p*n + i] = zer;
+		c1[q*n + i] = zer;
+		c1[i*n + q] = zer;
+	}	
 
-	mat_prod_r(tr, c, n);
-	transf(a, c, n);
-
+	c1[p*n + p] = zer;
+	c1[p*n + q] = ed;
+	c1[q*n + p] = ed;
+	c1[q*n + q] = zer;
+	printf("Svapaju, nachinaju perehod\n");
+	mat_prod_r(tr, c1, n);
+	printf("Pereshel\n");
+	transf(a, c1, n);
+	printf("Transformiroval\n");
 	
 	return ;
 }
 
 int main()
 {
-	
-	printf("Vvedi drobi\n");
-	char l;
-	Frac p, q, r;
-	scanf("%d%c%d", &p.num, &l, &p.den);
-	scanf("%d%c%d", &q.num, &l, &q.den);
-	r = p + q;
-	printf("%d/%d\n", r.num, r.den);
-
-	r = p - q;
-	printf("%d/%d\n", r.num, r.den);
-
-	r = p * q;
-	printf("%d/%d\n", r.num, r.den);
-
-	r = p / q;
-	printf("%d/%d\n", r.num, r.den);
-	
-	
-	double a[9], tr[9], c[9], a1[9];
+	Frac a[9], tr[9], c[9];
 	int n = 3;
 	char per[3] = {'x', 'y', 'z'};
+	int val = 0;
 	
+	Frac ed(1, 1), zer(0, 1);
 
 	printf("Введите квадратичную форму:\n");
 	
 	for(int i = 0; i < n; ++i)
 		for(int j = 0; j < n; ++j)
 		{
-			scanf("%lf", &a[i*n + j]);
-			a1[i*n + j] = a[i*n + j];
-			tr[i*n + j] = (i == j);
+			scanf("%d", &val);
+			a[i*n + j] = Frac(val, 1);
+
+			//a1[i*n + j] = a[i*n + j];
+
+			tr[i*n + j] = Frac((i ==j), 1);
 		}
 
 	printf("\n");
 
 	int nenul = -1;
 	for(int i = 0; i < n; ++i)
-		if(fabs(a[i*n + i]) > 0.0000000001)
+		if(a[i*n + i].num != 0)
 		{
 			nenul = i;
 			break;
@@ -211,16 +137,16 @@ int main()
 	{
 		
 		swap(a, n, 0, nenul, tr);
-		
-		c[0*n + 0] = 1;
+		printf("Ya zhiv!4\n");
+		c[0*n + 0] = ed;
 		c[0*n + 1] = -a[0*n + 1] / a[0*n + 0];
 		c[0*n + 2] = -a[0*n + 2] / a[0*n + 0];
-		c[1*n + 0] = 0;
-		c[1*n + 1] = 1;
-		c[1*n + 2] = 0;
-		c[2*n + 0] = 0;
-		c[2*n + 1] = 0;
-		c[2*n + 2] = 1;
+		c[1*n + 0] = zer;
+		c[1*n + 1] = ed;
+		c[1*n + 2] = zer;
+		c[2*n + 0] = zer;
+		c[2*n + 1] = zer;
+		c[2*n + 2] = ed;
 		
 		mat_prod_r(tr, c, n);
 		transf(a, c, n);
@@ -232,7 +158,7 @@ int main()
 		{
 			for(int j = 0; j < n; ++j)
 			{
-				if(fabs(a[i*n + j]) > 0.0000000001)
+				if(a[i*n + j].num != 0)
 				{
 					i_nen = i;
 					j_nen = j;
@@ -250,27 +176,27 @@ int main()
 			{
 				for(int j = 0; j < n; ++j)
 				{
-					printf("%lf ", a[i*n + j]);
+					printf("%d/%d ", a[i*n + j].num, a[i*n +j].den);
 				}
 				printf("\n");
 			}
 			return 0;
 		}
 
-		
+		printf("Ya zhiv3!\n");
 
 		swap(a, n, i_nen, 0, tr);
 		swap(a, n, j_nen, 1, tr);
 		
-		c[0*n + 0] = 1;
-		c[0*n + 1] = 1;
-		c[0*n + 2] = 0;
-		c[1*n + 0] = 1;
-		c[1*n + 1] = -1;
-		c[1*n + 2] = 0;
-		c[2*n + 0] = 0;
-		c[2*n + 1] = 0;
-		c[2*n + 2] = 0;
+		c[0*n + 0] = ed;
+		c[0*n + 1] = ed;
+		c[0*n + 2] = zer;
+		c[1*n + 0] = ed;
+		c[1*n + 1] = -ed;
+		c[1*n + 2] = zer;
+		c[2*n + 0] = zer;
+		c[2*n + 1] = zer;
+		c[2*n + 2] = ed;
 		mat_prod_r(tr, c, n);
 		transf(a, c, n);
 	}
@@ -278,7 +204,7 @@ int main()
 	
 	nenul = -1;
 	for(int i = 1; i < n*n; ++i)
-		if(fabs(a[i*n + i]) > 0.0000000001)
+		if(a[i*n + i].num != 0)
 		{
 			nenul = i;
 			break;
@@ -286,37 +212,44 @@ int main()
 	
 	if(nenul >= 1)
 	{
-		swap(a, n, nenul, 1, tr);
-		c[0*n + 0] = 1;
-		c[0*n + 1] = 0;
-		c[0*n + 2] = 0;
-		c[1*n + 0] = 0;
-		c[1*n + 1] = 1;
-		c[1*n + 2] = -a[1*n + 2]/a[1*n + 1];
-		c[2*n + 0] = 0;
-		c[2*n + 1] = 0;
-		c[2*n + 2] = 1;
+		printf("Ya zhiv2!\n");
 
+		swap(a, n, nenul, 1, tr);
+		printf("Poluchilosj zaswapatj\n");
+		printf("%d\n", n);
+		//printf("%d/%d \n", a[1*n + 1].num, a[1*n + 1].den);
+		
+		c[0*n + 0] = ed;
+
+		printf("Nu hotj chto-to schitaetsja\n");
+		c[0*n + 1] = zer;
+		c[0*n + 2] = zer;
+		c[1*n + 0] = zer;
+		c[1*n + 1] = ed;
+		c[1*n + 2] = -a[1*n + 2]/a[1*n + 1];
+		c[2*n + 0] = zer;
+		c[2*n + 1] = zer;
+		c[2*n + 2] = ed;
 		mat_prod_r(tr, c, n);
 		transf(a, c, n);
 	}
 	else
 	{
-		if(fabs(a[1*n + 2]) < 0.0000000001)
+		if(a[1*n + 2].num == 0)
 			printf("Квадратичная форма вырожденная\n"); //В этом случае дополнительный к (1, 1) минор нулевой
 
 		else
 		{
-
-			c[0*n + 0] = 1;
-			c[0*n + 1] = 0;
-			c[0*n + 2] = 0;
-			c[1*n + 0] = 0;
-			c[1*n + 1] = 1;
-			c[1*n + 2] = 1;
-			c[2*n + 0] = 0;
-			c[2*n + 1] = 1;
-			c[2*n + 2] = -1;
+			printf("Ya zhiv1!\n");
+			c[0*n + 0] = ed;
+			c[0*n + 1] = zer;
+			c[0*n + 2] = zer;
+			c[1*n + 0] = zer;
+			c[1*n + 1] = ed;
+			c[1*n + 2] = ed;
+			c[2*n + 0] = zer;
+			c[2*n + 1] = ed;
+			c[2*n + 2] = -ed;
 			
 			mat_prod_r(tr, c, n);
 			transf(a, c, n);
@@ -329,7 +262,7 @@ int main()
 	for(int i = 0; i < n; ++i)
 	{
 		for(int j = 0; j < n; ++j)
-			printf("%lf ", a[i*n + j]);
+			printf("%d/%d ", a[i*n + j].num, a[i*n+j].den);
 
 		printf("\n");
 	}
@@ -340,9 +273,12 @@ int main()
 		for(int j = i; j < n; ++j)
 		{
 			if(i == j)
-				printf("%lf*%c^2", a[i*n +j], per[i]);
+				printf("%d/%d*%c^2", a[i*n +j].num, a[i*n + j].den, per[i]);
 			else
-				printf("%lf*%c%c", 2*a[i*n + j], per[i], per[j]);
+			{
+				Frac out = 2*a[i*n + j];
+				printf("%d/%d*%c%c", out.num, out.den, per[i], per[j]);
+			}
 			if(i*n + j < n*n - 1)
 				printf(" + ");
 
@@ -355,7 +291,7 @@ int main()
 	for(int i = 0; i < n; ++i)
 	{
 		for(int j = 0; j < n; ++j)
-			printf("%lf ", tr[i*n + j]);
+			printf("%d/%d ", tr[i*n + j].num, tr[i*n+j].den);
 		printf("\n");
 	}
 
