@@ -103,7 +103,7 @@ def FindRational(a, b, R):
                         xt = x
                         yt = y
     if (flag == 2):
-        print("Was found only a totion point")
+        print("Was found only a torsion point")
         return [[xt, yt], flag]
     return [[], 0]
 

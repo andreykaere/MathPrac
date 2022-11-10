@@ -25,7 +25,6 @@ def multiply(matrix1, matrix2):
 
 def eliminate_denominators(cubic):
     denom = 1
-
     for coeff in Poly(cubic).coeffs():
         denom = max(denom, abs(coeff.denominator))
     
@@ -92,7 +91,7 @@ def weierstrass_form_step1(cubic, point):
 
     (x1, y1, z1) = tuple(Matrix(matrix).inv() * Matrix([a, b, c]))
 
-    cubic = simplify(cubic.subs({x: x1, y: y1, z: z1}))
+    cubic = simplify(cubic.subs({x: x1, y: y1, z: z1})).expand()
     cubic = cubic.subs({a: x, b: y, c: z})
     
     return (matrix, cubic)
@@ -141,7 +140,7 @@ def weierstrass_form_step2(cubic):
     a, b, c = symbols('a b c')
     (x1, y1, z1) = tuple(Matrix(matrix) * Matrix([a, b, c]))
     
-    cubic = simplify(cubic.subs({x: x1, y: y1, z: z1}))
+    cubic = simplify(cubic.subs({x: x1, y: y1, z: z1})).expand()
     cubic = cubic.subs({a: x, b: y, c: z})
 
     (matrix1, cubic) = simplify_cubic(cubic)
@@ -174,8 +173,8 @@ def simplify_cubic(cubic):
         if primes[i] % 2 == 0:
             coeff *= i**(int(primes[i]/2))
     
-    cubic = cubic.subs(y, y_/coeff).simplify()
-    cubic = cubic.subs(z, z_ * coeff**2/a).simplify()
+    cubic = cubic.subs(y, y_/coeff).simplify().expand()
+    cubic = cubic.subs(z, z_ * coeff**2/a).simplify().expand()
     
     matrix = [
         [1, 0, 0],
@@ -183,8 +182,8 @@ def simplify_cubic(cubic):
         [0, 0, a/coeff**2],
     ]
 
-    cubic = cubic.subs(y_, y).simplify()
-    cubic = cubic.subs(z_, z).simplify()
+    cubic = cubic.subs(y_, y).simplify().expand()
+    cubic = cubic.subs(z_, z).simplify().expand()
 
     return (matrix, cubic)
 
@@ -219,7 +218,7 @@ def weierstrass_form_step3(cubic):
     # print(solve((t + h)**2 + k  - (t**2  + b * t * x  + c * t * z), [h, k]))
     # print(cubic)
 
-    cubic = cubic.subs(y, y_ - p).expand().simplify()
+    cubic = cubic.subs(y, y_ - p).expand().simplify().expand()
     cubic = cubic.subs(y_, y)
     
     # Complete the square by `y`
@@ -229,7 +228,6 @@ def weierstrass_form_step3(cubic):
         [0, 0, 1],
     ]
 
-    
     # Reduce coefficients, because otherwise they are enormous
     (matrix1, cubic) = simplify_cubic(cubic)
 
@@ -246,7 +244,7 @@ def weierstrass_form_step3(cubic):
 
     
     # Eliminating the x^2 z monomial
-    cubic = cubic.subs(x, x_ - Fraction(b, 3 * a) * z).expand().simplify()
+    cubic = cubic.subs(x, x_ - Fraction(b, 3 * a) * z).expand().simplify().expand()
     cubic = cubic.subs(x_, x)
     matrix2 = [
         [1, 0, Fraction(b, 3 * a)],
@@ -257,7 +255,7 @@ def weierstrass_form_step3(cubic):
 
     # Normalizing the coefficient of x^3
     a = cubic.coeff(x**3)
-    cubic = (cubic.subs(z, z_ * a) / a).expand().simplify()
+    cubic = (cubic.subs(z, z_ * a) / a).expand().simplify().expand()
     cubic = cubic.subs(z_, z)
     matrix3 = [
         [1, 0, 0],
@@ -272,8 +270,8 @@ def weierstrass_form_step3(cubic):
 
     
     # Getting rid of denominators in the fractions
-    cubic = cubic.subs(z, - z_ * denom**3).expand().simplify()
-    cubic = cubic.subs(x, x_ * denom).expand().simplify()
+    cubic = cubic.subs(z, - z_ * denom**3).expand().simplify().expand()
+    cubic = cubic.subs(x, x_ * denom).expand().simplify().expand()
     matrix4 = [
         [Fraction(1, denom), 0, 0],
         [0, 1, 0],
@@ -288,7 +286,7 @@ def weierstrass_form_step3(cubic):
                       ))))
 
 
-    cubic = (cubic / denom**3).simplify()
+    cubic = (cubic / denom**3).simplify().expand()
     cubic = cubic.subs({x_: x, z_: z})
     # print(cubic)
 
@@ -300,20 +298,17 @@ def weierstrass_form_step3(cubic):
 def weierstrass_form(cubic):
     n, x, y, z = symbols('n x y z')
 
-    # TODO: uncomment
-    # (points, trans0) = points_of_inflection(cubic)
-    # point = points[0]
-    
-    point = (1, -1, 0)
-    trans0 = [
-        [1, 0, 0],
-        [0, 1, 0],
-        [0, 0, 1],
-    ]
+    (points, trans0) = infp.points_of_inflection(cubic)
+    point = points[0]
+
+    # print(point)
     
     (trans1, cubic) = weierstrass_form_step1(cubic, point)
+
     (trans2, cubic) = weierstrass_form_step2(cubic)
     (trans3, cubic) = weierstrass_form_step3(cubic)
+    # print(cubic)
+    # return 
 
     trans = multiply(trans3,
             multiply(trans2,
@@ -338,9 +333,12 @@ def main():
     # cubic = input()
     n, x, y, z = symbols('n x y z')
 
-    cubic = "x^3 + y^3 + z^3 + (1 - n) (x^2 y + x^2 z + y^2 x + y^2 z + z^2 x + z^2 y) + (3 - 2 n) x y z"
+    # cubic = "x^3 + y^3 + z^3 + (1 - n) (x^2 y + x^2 z + y^2 x + y^2 z + z^2 x + z^2 y) + (3 - 2 n) x y z"
+    # TODO: uncomment
+    # cubic = "x^3 + y^3 + z^3 + 4 x y z"
+    cubic = "x^3 + y^3 + z^3 + 3 x y z"
     cubic = mathematica(cubic)
-    cubic = cubic.subs(n, 4)
+    # cubic = cubic.subs(n, 8)
 
     print(weierstrass_form(cubic))
 
