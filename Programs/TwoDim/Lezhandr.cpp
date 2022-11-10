@@ -18,7 +18,7 @@ bool is_square(int x, int a)
 
 bool CL(int a, int b, int c)
 {
-    bool p = ((gcd(a, b) == 1) && (gcd(a, c) == 1) && (gcd(a, c) == 1));
+    bool p = ((gcd(a, b) == 1) && (gcd(a, c) == 1) && (gcd(b, c) == 1));
 	return p && (is_square(b*c, a) && is_square(a*c, b) && is_square(-a*b, c));
 }
 
