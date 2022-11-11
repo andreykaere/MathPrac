@@ -298,6 +298,11 @@ def weierstrass_form_step3(cubic):
 def weierstrass_form(cubic):
     n, x, y, z = symbols('n x y z')
 
+    if infp.is_cubic_singular(cubic):
+        print("Cubic is singular, cannot proceed, aborting ...")
+        # exit()
+        return 
+
     (points, trans0) = infp.points_of_inflection(cubic)
     point = points[0]
 
@@ -334,13 +339,16 @@ def main():
     n, x, y, z = symbols('n x y z')
 
     # cubic = "x^3 + y^3 + z^3 + (1 - n) (x^2 y + x^2 z + y^2 x + y^2 z + z^2 x + z^2 y) + (3 - 2 n) x y z"
-    # TODO: uncomment
-    # cubic = "x^3 + y^3 + z^3 + 4 x y z"
-    cubic = "x^3 + y^3 + z^3 + 3 x y z"
+    cubic = "x^3 + y^3 + z^3 + 4 x y z"
+    # cubic = "x^3 + y^3 + z^3 + 3 x y z"
+    # cubic = "-x^3 - 3*x^2*z + y^2*z - 3*x*z^2 - z^3"
     cubic = mathematica(cubic)
     # cubic = cubic.subs(n, 8)
 
-    print(weierstrass_form(cubic))
+    form = weierstrass_form(cubic)
+
+    if form != None:
+        print(form)
 
     # print(weierstrass_form_step1(cubic, (-1, 1, 0)))
     # (trans1, cubic) = weierstrass_form_step1(cubic, (-1, 1, 0))

@@ -9,20 +9,49 @@ from sympy.ntheory import factorint
 from fractions import Fraction
 import numpy as np
 
-# TODO
+
 def is_cubic_singular(cubic):
     n, x, y, z = symbols('n x y z')
+    t = symbols('t')
+    
+    if cubic.subs({x: 0, y: 0, z: 1}) == 0:
+        # print("point (0 : 0 : 1) is singular")
+        return True
 
     fx = diff(cubic, x)
     fy = diff(cubic, y)
     fz = diff(cubic, z)
 
-    # print(resultant(resultant(fx, fy, z), fz, z).simplify().expand())
-    # res = resultant(fx, fy, z).simplify().expand()
-    # solutions = {(0, 0)}
-    # print(res)
+    g = resultant(fx, fy, z).simplify().expand()
+    h = resultant(fx, fz, z).simplify().expand()
+    k = Poly(h).homogeneous_order()
+    m = Poly(g).homogeneous_order()
+    
+    # Now x != 0 or y != 0
+    # First, if y != 0 
+    h_xy_t = collect(expand(h/y**k).subs(x/y, t), t).simplify().expand()
+    g_xy_t = collect(expand(g/y**m).subs(x/y, t), t).simplify().expand()
+    res_xy = resultant(h_xy_t, g_xy_t, t).simplify().expand()
+    
+    # Now if x != 0
+    h_yx_t = collect(expand(h/x**k).subs(y/x, t), t).simplify().expand()
+    g_yx_t = collect(expand(g/x**m).subs(y/x, t), t).simplify().expand()
+    res_yx = resultant(h_yx_t, g_yx_t, t).simplify().expand()
+    
+    # print(k, m)
+    # print(h)
+    # print(g)
+    # print(h_yx_t)
+    # print(g_yx_t)
+    # print(res_xy, res_yx)
 
-    pass
+    # If one of these is zero, than there is a common solutions for fx, fy,
+    # fz: either (0, 1) or (1, 0) therefore there a point (0 : 1 : z0) or 
+    # (1 : 0 : z0) such that all fx, fy, fz is zero, i.e. singular point
+    if res_xy == 0 or res_yx == 0:
+        return True
+    
+    return False
 
 def get_hessian(c):
     n, x, y, z = symbols('n x y z')
@@ -39,7 +68,6 @@ def resultant(f, g, var):
 
     f = Poly(f, var)
     g = Poly(g, var)
-    
     n = f.degree()
     m = g.degree()
     size = m + n
@@ -47,6 +75,7 @@ def resultant(f, g, var):
     coeff_f = f.all_coeffs()
     coeff_g = g.all_coeffs()
 
+    # # Just a test 
     # coeff_f = [i for i in range(1, n+2)]
     # coeff_g = [-i for i in range(1, m+2)]
 
@@ -84,12 +113,18 @@ def fix_zero_leading_coefficients(cubic, hessian):
 def get_rational_roots(poly_t):
     t = symbols('t')
     coeff_t = poly_t.all_coeffs()
-    
-    # TODO: getting rid of zero roots
+    solutions = set()
+
+    if poly_t.subs(t, 0) == 0:
+        solutions.add(0)
+
+    # Getting rid of multiple zero roots so that we can start our enumeration 
+    # algorithm 
+    while poly_t.subs(t, 0) == 0:
+        poly_t = expand(poly_t / t)
 
     last  = coeff_t[-1]
     first = coeff_t[0]
-    solutions = set()
 
     # Function `divisors` gives us positive integer solutions, so we have to
     # consider negative possible ones ourselves
@@ -165,7 +200,6 @@ def points_of_inflection(cubic):
         if result:
             points += points_loc
     
-    # TODO (DONE): printing when there are no rational points on cubic
     if points == []:
         print("Fatal: No rational inflection points exist on the cubic, can't proceed")
 
@@ -177,11 +211,16 @@ def points_of_inflection(cubic):
 def main():
     n, x, y, z = symbols('n x y z')
 
-    cubic = "x^3 + y^3 + z^3 + (1 - n) (x^2 y + x^2 z + y^2 x + y^2 z + z^2 x + z^2 y) + (3 - 2 n) x y z"
+    # cubic = "x^3 + y^3 + z^3 + (1 - n) (x^2 y + x^2 z + y^2 x + y^2 z + z^2 x + z^2 y) + (3 - 2 n) x y z"
+    # cubic = "y^2 z - x^3 - x^2 z"
+    # cubic = "-x^3 - x^2*z + y^2*z + 2*y*z^2 + z^3"
+    # cubic = "-x^3 - 4*x^2*z + y^2*z - 5*x*z^2 - 2*z^3"
+    # cubic = "-x^3 - 4*x^2*z + y^2*z - 5*x*z^2 + 2*y*z^2 - z^3"
+    cubic = "-x^3 - 3*x^2*z + y^2*z - 3*x*z^2 - z^3"
     cubic = mathematica(cubic)
-    cubic = cubic.subs(n, 4)
+    # cubic = cubic.subs(n, 4)
 
-    # is_cubic_singular(cubic)
+    print(is_cubic_singular(cubic))
     
     # print(points_of_inflection(cubic))
 
