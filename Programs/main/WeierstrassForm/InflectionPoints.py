@@ -10,6 +10,7 @@ from fractions import Fraction
 import numpy as np
 
 
+# TODO: fix it 
 def is_cubic_singular(cubic):
     n, x, y, z = symbols('n x y z')
     t = symbols('t')
@@ -38,9 +39,11 @@ def is_cubic_singular(cubic):
     g_yx_t = collect(expand(g/x**m).subs(y/x, t), t).simplify().expand()
     res_yx = resultant(h_yx_t, g_yx_t, t).simplify().expand()
     
-    # print(k, m)
-    # print(h)
     # print(g)
+    # print(h)
+    # print(k, m)
+    # print(h_xy_t)
+    # print(g_xy_t)
     # print(h_yx_t)
     # print(g_yx_t)
     # print(res_xy, res_yx)
@@ -95,18 +98,41 @@ def from_solution_to_rational_points(cubic, sol):
     yp = sol[1]
 
     cubic = cubic.subs({x: xp, y: yp}).simplify().expand()
-
     rational_z = get_rational_roots(Poly(cubic).subs(z, t))
 
     if rational_z == []:
         return (False, [])    
     
-    return (True, [(xp, yp, zp) for zp in rational_z])
+    return (True, [(xp, yp, zp) for zp in rational_z if (xp, yp, zp) != (0, 0, 0)])
      
     
 def fix_zero_leading_coefficients(cubic, hessian):
     n, x, y, z = symbols('n x y z')
-    pass
+    i = 1 
+
+    # Searching for point that does not lie on both cubics
+    while cubic.subs({x: 0, y: i, z: 1}) == 0 and hessian.subs({x: 0, y: i, z: 1}) == 0:
+        i += 1
+   
+    point = (0, i, 1)
+    
+    matrix = [
+        [1, 0, 0],
+        [0, 1, i],
+        [1, 0, 1],
+    ]
+
+    
+    a, b, c = symbols('a b c')
+    (x1, y1, z1) = tuple(Matrix(matrix).inv() * Matrix([a, b, c]))
+    
+    cubic = simplify(cubic.subs({x: x1, y: y1, z: z1})).expand()
+    cubic = cubic.subs({a: x, b: y, c: z})
+    hessian = simplify(hessian.subs({x: x1, y: y1, z: z1})).expand()
+    hessian = hessian.subs({a: x, b: y, c: z})
+    
+    return (cubic, hessian, matrix)
+
 
 
 # Considering, that poly is polynomial of variable `t`
@@ -148,15 +174,11 @@ def points_of_inflection(cubic):
     ]
     hessian = get_hessian(cubic)
 
-    # print(hessian)
+    a0 = cubic.coeff(z**3)
+    b0 = hessian.coeff(z**3)
 
-    a0 = Poly(cubic, z).all_coeffs()[0]
-    b0 = Poly(hessian, z).all_coeffs()[0]
-
-    # TODO: if a0 b0 = 0, fix it 
     if a0 * b0 == 0:
         (cubic, hessian, trans) = fix_zero_leading_coefficients(cubic, hessian)
-
 
     t = symbols('t')
     res = resultant(cubic, hessian, z)
@@ -216,12 +238,16 @@ def main():
     # cubic = "-x^3 - x^2*z + y^2*z + 2*y*z^2 + z^3"
     # cubic = "-x^3 - 4*x^2*z + y^2*z - 5*x*z^2 - 2*z^3"
     # cubic = "-x^3 - 4*x^2*z + y^2*z - 5*x*z^2 + 2*y*z^2 - z^3"
-    cubic = "-x^3 - 3*x^2*z + y^2*z - 3*x*z^2 - z^3"
+    # cubic = "-x^3 - 3*x^2*z + y^2*z - 3*x*z^2"
+    cubic = "x^3 + y^2 z + z^3"
     cubic = mathematica(cubic)
     # cubic = cubic.subs(n, 4)
 
     print(is_cubic_singular(cubic))
     
+    # print(cubic)
+    # print(get_hessian(cubic))
+
     # print(points_of_inflection(cubic))
 
 
