@@ -10,34 +10,106 @@ from fractions import Fraction
 import numpy as np
 
 
+def find_common_projective_solutions(f, g):
+    n, x, y, z = symbols('n x y z')
+    t = symbols('t')
+
+    solutions = set()
+
+
+    
+    # If x != 0
+    res1 = resultant(f, g, z).simplify().expand()
+    k1 = Poly(res1).homogeneous_order()
+    res_t1 = collect(expand(res1/x**k1).subs(y/x, t), t).simplify().expand()
+
+    print(solve(res_t1, t))
+    print(res_t1)
+
+
+    # If y != 0
+    res_t2 = collect(expand(res1/y**k1).subs(x/y, t), t).simplify().expand()
+
+    print(solve(res_t2, t))
+    print(res_t2)
+
+
+
+    
+
 # TODO: fix it 
 def is_cubic_singular(cubic):
     n, x, y, z = symbols('n x y z')
     t = symbols('t')
     
-    if cubic.subs({x: 0, y: 0, z: 1}) == 0:
-        # print("point (0 : 0 : 1) is singular")
-        return True
-
     fx = diff(cubic, x)
     fy = diff(cubic, y)
     fz = diff(cubic, z)
 
-    g = resultant(fx, fy, z).simplify().expand()
-    h = resultant(fx, fz, z).simplify().expand()
-    k = Poly(h).homogeneous_order()
-    m = Poly(g).homogeneous_order()
+    points1 = set(find_common_projective_solutions(fx, fy))
+    points2 = set(find_common_projective_solutions(fx, fz))
+    singular_points = list(points1.intersection(point2))
+
+    if singular_points != []:
+        print("Cubic is singular at points", singular_points)
+        return True
+
+    return False
+
+
+    # First, check if there is a singular point (x0 : y0 : 0) 
+    # fx0 = fx.subs(z, 0).simplify().expand()
+    # fy0 = fy.subs(z, 0).simplify().expand()
+    # fz0 = fz.subs(z, 0).simplify().expand()
+    # print(fx0)
+    # print(fy0)
+    # print(fz0)
+
+
+
+    # g0 = resultant(fx0, fy0, x).simplify().expand()
+    # h0 = resultant(fx0, fz0, x).simplify().expand()
+    # k0 = Poly(h0).homogeneous_order()
+    # m0 = Poly(g0).homogeneous_order()
+
+    # print(g0)
+    # print(h0)
+
+    # return
     
     # Now x != 0 or y != 0
     # First, if y != 0 
-    h_xy_t = collect(expand(h/y**k).subs(x/y, t), t).simplify().expand()
-    g_xy_t = collect(expand(g/y**m).subs(x/y, t), t).simplify().expand()
-    res_xy = resultant(h_xy_t, g_xy_t, t).simplify().expand()
+    # h0_xy_t = collect(expand(h0/y**k).subs(x/y, t), t).simplify().expand()
+    # g0_xy_t = collect(expand(g0/y**m).subs(x/y, t), t).simplify().expand()
+    # res0_xy = resultant(h0_xy_t, g0_xy_t, t).simplify().expand()
     
-    # Now if x != 0
-    h_yx_t = collect(expand(h/x**k).subs(y/x, t), t).simplify().expand()
-    g_yx_t = collect(expand(g/x**m).subs(y/x, t), t).simplify().expand()
-    res_yx = resultant(h_yx_t, g_yx_t, t).simplify().expand()
+    # # Now if x != 0
+    # h0_yx_t = collect(expand(h0/y**k).subs(y/x, t), t).simplify().expand()
+    # g0_yx_t = collect(expand(g0/y**m).subs(y/x, t), t).simplify().expand()
+    # res0_yx = resultant(h0_yx_t, g0_yx_t, t).simplify().expand()
+
+    # print(res0_xy)
+    # print(res0_yx)
+
+    # if cubic.subs({x: 0, y: 0, z: 1}) == 0:
+    #     # print("point (0 : 0 : 1) is singular")
+    #     return True
+
+#     g = resultant(fx, fy, z).simplify().expand()
+#     h = resultant(fx, fz, z).simplify().expand()
+#     k = Poly(h).homogeneous_order()
+#     m = Poly(g).homogeneous_order()
+    
+#     # Now x != 0 or y != 0
+#     # First, if y != 0 
+#     h_xy_t = collect(expand(h/y**k).subs(x/y, t), t).simplify().expand()
+#     g_xy_t = collect(expand(g/y**m).subs(x/y, t), t).simplify().expand()
+#     res_xy = resultant(h_xy_t, g_xy_t, t).simplify().expand()
+    
+#     # Now if x != 0
+#     h_yx_t = collect(expand(h/x**k).subs(y/x, t), t).simplify().expand()
+#     g_yx_t = collect(expand(g/x**m).subs(y/x, t), t).simplify().expand()
+#     res_yx = resultant(h_yx_t, g_yx_t, t).simplify().expand()
     
     # print(g)
     # print(h)
@@ -51,10 +123,10 @@ def is_cubic_singular(cubic):
     # If one of these is zero, than there is a common solutions for fx, fy,
     # fz: either (0, 1) or (1, 0) therefore there a point (0 : 1 : z0) or 
     # (1 : 0 : z0) such that all fx, fy, fz is zero, i.e. singular point
-    if res_xy == 0 or res_yx == 0:
-        return True
+    # if res_xy == 0 or res_yx == 0:
+    #     return True
     
-    return False
+    # return False
 
 def get_hessian(c):
     n, x, y, z = symbols('n x y z')
@@ -68,6 +140,9 @@ def get_hessian(c):
 def resultant(f, g, var):
     n, x, y, z = symbols('n x y z')
     matrix = []
+
+    if f == 0 or g == 0:
+        return Integer(0)
 
     f = Poly(f, var)
     g = Poly(g, var)
