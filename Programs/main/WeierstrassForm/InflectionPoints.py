@@ -39,6 +39,8 @@ def find_common_projective_solutions(f, g):
 
 # TODO: fix it 
 def is_cubic_singular(cubic):
+    return False 
+
     n, x, y, z = symbols('n x y z')
     t = symbols('t')
     

@@ -301,7 +301,7 @@ def weierstrass_form(cubic):
     if infp.is_cubic_singular(cubic):
         print("Cubic is singular, cannot proceed, aborting ...")
         # exit()
-        return 
+        return (False, [])
 
     (points, trans0) = infp.points_of_inflection(cubic)
     point = points[0]
@@ -329,26 +329,28 @@ def weierstrass_form(cubic):
     
     trans = to_integer_matrix(trans)
 
-    return ((a, b), trans)
+    return (True, ((a, b), trans))
 
 
 def main():
-    # print("Enter your cubic's equation in homogenious coordinates x, y, z:")
+    print("""Enter your cubic's equation in homogenious coordinates x, y, z:
+    For example: x^3 + y^3 + z^3 + 3 x y z
+    """)
 
-    # cubic = input()
+    cubic = input()
     n, x, y, z = symbols('n x y z')
 
     # cubic = "x^3 + y^3 + z^3 + (1 - n) (x^2 y + x^2 z + y^2 x + y^2 z + z^2 x + z^2 y) + (3 - 2 n) x y z"
     # cubic = "x^3 + y^3 + z^3 + 4 x y z"
-    cubic = "x^3 + y^2 z + z^3"
+    # cubic = "x^3 + y^2 z + z^3"
     # cubic = "x^3 + y^3 + z^3 + 3 x y z"
     # cubic = "-x^3 - 3*x^2*z + y^2*z - 3*x*z^2 - z^3"
     cubic = mathematica(cubic)
     # cubic = cubic.subs(n, 8)
 
-    form = weierstrass_form(cubic)
+    (res, form) = weierstrass_form(cubic)
 
-    if form != None:
+    if res:
         print(form)
 
     # print(weierstrass_form_step1(cubic, (-1, 1, 0)))

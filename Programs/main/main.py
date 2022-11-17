@@ -14,7 +14,7 @@ cubic = mathematica(cubic)
 cubic = cubic.subs(n, 4)
 # cubic = cubic.subs(n, 8)
 
-((a, b), trans) = weierstrass_form(cubic)
+(res, ((a, b), trans)) = weierstrass_form(cubic)
 
 # print(Matrix(trans))
 # print(Matrix(trans).inv())
