@@ -53,3 +53,8 @@
     \def\svgwidth{#1\columnwidth}
     \import{./figures/}{#2.pdf_tex}
 }
+\usepackage{hyperref}
+
+\usepackage[backref=page, backend=biber]{biblatex}
+\addbibresource{references.bib}
+\nocite{*}

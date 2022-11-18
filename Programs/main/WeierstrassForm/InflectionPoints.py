@@ -197,7 +197,7 @@ def intersection_points(cubic1, cubic2):
     return points_all
    
 
-def points_of_inflection(cubic):
+def find_inflection_points(cubic):
     n, x, y, z = symbols('n x y z')
     
     hessian = get_hessian(cubic)
@@ -212,8 +212,8 @@ def points_of_inflection(cubic):
     return points
 
 
-def non_singular_point_of_inflection(cubic):
-    points = points_of_inflection(cubic)
+def find_non_singular_inflection_point(cubic):
+    points = find_inflection_points(cubic)
 
     if points == []:
         return (False, ())
@@ -244,7 +244,7 @@ def main():
     # print(cubic)
     # print(get_hessian(cubic))
 
-    print(non_singular_point_of_inflection(cubic))
+    print(find_non_singular_inflection_point(cubic))
     print(cubic)
 
 

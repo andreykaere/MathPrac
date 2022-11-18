@@ -298,7 +298,7 @@ def weierstrass_form_step3(cubic):
 def weierstrass_form(cubic):
     n, x, y, z = symbols('n x y z')
 
-    (res, point) = infp.non_singular_point_of_inflection(cubic)
+    (res, point) = infp.find_non_singular_inflection_point(cubic)
     if not res:
         return (False, []) 
         
