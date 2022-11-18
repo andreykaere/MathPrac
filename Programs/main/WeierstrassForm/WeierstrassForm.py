@@ -20,7 +20,8 @@ except ModuleNotFoundError:
 
 
 def multiply(matrix1, matrix2):
-    return np.dot(matrix1, matrix2).tolist() 
+    return np.matmul(np.array(matrix1),
+                     np.array(matrix2)).tolist() 
 
 
 def eliminate_denominators(cubic):
@@ -75,6 +76,7 @@ def weierstrass_form_step1(cubic, point):
             [0, 0, 1],
         ]
     
+    
     # Invertable matrix, such that sends our point to (0 : 1 : 0)
     matrix2 = [
         [Fraction(yp, xp), -1, 0],
@@ -91,7 +93,7 @@ def weierstrass_form_step1(cubic, point):
 
     (x1, y1, z1) = tuple(Matrix(matrix).inv() * Matrix([a, b, c]))
 
-    cubic = simplify(cubic.subs({x: x1, y: y1, z: z1})).expand()
+    cubic = cubic.subs({x: x1, y: y1, z: z1}).simplify().expand()
     cubic = cubic.subs({a: x, b: y, c: z})
     
     return (matrix, cubic)
@@ -288,28 +290,19 @@ def weierstrass_form_step3(cubic):
 
     cubic = (cubic / denom**3).simplify().expand()
     cubic = cubic.subs({x_: x, z_: z})
-    # print(cubic)
 
     return (matrix, cubic)
-
 
 
     
 def weierstrass_form(cubic):
     n, x, y, z = symbols('n x y z')
 
-    if infp.is_cubic_singular(cubic):
-        print("Cubic is singular, cannot proceed, aborting ...")
-        # exit()
-        return (False, [])
-
-    (points, trans0) = infp.points_of_inflection(cubic)
-    point = points[0]
-
-    # print(point)
-    
+    (res, point) = infp.non_singular_point_of_inflection(cubic)
+    if not res:
+        return (False, []) 
+        
     (trans1, cubic) = weierstrass_form_step1(cubic, point)
-
     (trans2, cubic) = weierstrass_form_step2(cubic)
     (trans3, cubic) = weierstrass_form_step3(cubic)
     # print(cubic)
@@ -317,15 +310,11 @@ def weierstrass_form(cubic):
 
     trans = multiply(trans3,
             multiply(trans2,
-            multiply(trans1,
-                     trans0
-                     )))
+                     trans1
+                     ))
 
     a = cubic.coeff(x * z**2)
     b = cubic.coeff(z**3)
-   
-    # print(cubic)
-    # print(a,b)
     
     trans = to_integer_matrix(trans)
 
@@ -333,20 +322,23 @@ def weierstrass_form(cubic):
 
 
 def main():
-    print("""Enter your cubic's equation in homogenious coordinates x, y, z:
-    For example: x^3 + y^3 + z^3 + 3 x y z
-    """)
+    # print("""Enter your cubic's equation in homogenious coordinates x, y, z:
+    # For example: x^3 + y^3 + z^3 + 3 x y z
+    # """)
 
-    cubic = input()
+    # cubic = input()
     n, x, y, z = symbols('n x y z')
+    # cubic = "5 y^3 + z^2 x + y^2 x - 34 y^2 z"
 
-    # cubic = "x^3 + y^3 + z^3 + (1 - n) (x^2 y + x^2 z + y^2 x + y^2 z + z^2 x + z^2 y) + (3 - 2 n) x y z"
+    cubic = "x^3 + y^3 + z^3 + (1 - n) (x^2 y + x^2 z + y^2 x + y^2 z + z^2 x + z^2 y) + (3 - 2 n) x y z"
     # cubic = "x^3 + y^3 + z^3 + 4 x y z"
     # cubic = "x^3 + y^2 z + z^3"
     # cubic = "x^3 + y^3 + z^3 + 3 x y z"
     # cubic = "-x^3 - 3*x^2*z + y^2*z - 3*x*z^2 - z^3"
     cubic = mathematica(cubic)
-    # cubic = cubic.subs(n, 8)
+    cubic = cubic.subs(n, 4)
+
+    # print("hessian", infp.get_hessian(cubic))
 
     (res, form) = weierstrass_form(cubic)
 

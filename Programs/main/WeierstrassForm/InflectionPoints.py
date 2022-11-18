@@ -10,37 +10,7 @@ from fractions import Fraction
 import numpy as np
 
 
-def find_common_projective_solutions(f, g):
-    n, x, y, z = symbols('n x y z')
-    t = symbols('t')
-
-    solutions = set()
-
-
-    
-    # If x != 0
-    res1 = resultant(f, g, z).simplify().expand()
-    k1 = Poly(res1).homogeneous_order()
-    res_t1 = collect(expand(res1/x**k1).subs(y/x, t), t).simplify().expand()
-
-    print(solve(res_t1, t))
-    print(res_t1)
-
-
-    # If y != 0
-    res_t2 = collect(expand(res1/y**k1).subs(x/y, t), t).simplify().expand()
-
-    print(solve(res_t2, t))
-    print(res_t2)
-
-
-
-    
-
-# TODO: fix it 
-def is_cubic_singular(cubic):
-    return False 
-
+def is_point_singular(cubic, point):
     n, x, y, z = symbols('n x y z')
     t = symbols('t')
     
@@ -48,87 +18,11 @@ def is_cubic_singular(cubic):
     fy = diff(cubic, y)
     fz = diff(cubic, z)
 
-    points1 = set(find_common_projective_solutions(fx, fy))
-    points2 = set(find_common_projective_solutions(fx, fz))
-    singular_points = list(points1.intersection(point2))
+    (x0, y0, z0) = point
 
-    if singular_points != []:
-        print("Cubic is singular at points", singular_points)
-        return True
-
-    return False
-
-
-    # First, check if there is a singular point (x0 : y0 : 0) 
-    # fx0 = fx.subs(z, 0).simplify().expand()
-    # fy0 = fy.subs(z, 0).simplify().expand()
-    # fz0 = fz.subs(z, 0).simplify().expand()
-    # print(fx0)
-    # print(fy0)
-    # print(fz0)
-
-
-
-    # g0 = resultant(fx0, fy0, x).simplify().expand()
-    # h0 = resultant(fx0, fz0, x).simplify().expand()
-    # k0 = Poly(h0).homogeneous_order()
-    # m0 = Poly(g0).homogeneous_order()
-
-    # print(g0)
-    # print(h0)
-
-    # return
-    
-    # Now x != 0 or y != 0
-    # First, if y != 0 
-    # h0_xy_t = collect(expand(h0/y**k).subs(x/y, t), t).simplify().expand()
-    # g0_xy_t = collect(expand(g0/y**m).subs(x/y, t), t).simplify().expand()
-    # res0_xy = resultant(h0_xy_t, g0_xy_t, t).simplify().expand()
-    
-    # # Now if x != 0
-    # h0_yx_t = collect(expand(h0/y**k).subs(y/x, t), t).simplify().expand()
-    # g0_yx_t = collect(expand(g0/y**m).subs(y/x, t), t).simplify().expand()
-    # res0_yx = resultant(h0_yx_t, g0_yx_t, t).simplify().expand()
-
-    # print(res0_xy)
-    # print(res0_yx)
-
-    # if cubic.subs({x: 0, y: 0, z: 1}) == 0:
-    #     # print("point (0 : 0 : 1) is singular")
-    #     return True
-
-#     g = resultant(fx, fy, z).simplify().expand()
-#     h = resultant(fx, fz, z).simplify().expand()
-#     k = Poly(h).homogeneous_order()
-#     m = Poly(g).homogeneous_order()
-    
-#     # Now x != 0 or y != 0
-#     # First, if y != 0 
-#     h_xy_t = collect(expand(h/y**k).subs(x/y, t), t).simplify().expand()
-#     g_xy_t = collect(expand(g/y**m).subs(x/y, t), t).simplify().expand()
-#     res_xy = resultant(h_xy_t, g_xy_t, t).simplify().expand()
-    
-#     # Now if x != 0
-#     h_yx_t = collect(expand(h/x**k).subs(y/x, t), t).simplify().expand()
-#     g_yx_t = collect(expand(g/x**m).subs(y/x, t), t).simplify().expand()
-#     res_yx = resultant(h_yx_t, g_yx_t, t).simplify().expand()
-    
-    # print(g)
-    # print(h)
-    # print(k, m)
-    # print(h_xy_t)
-    # print(g_xy_t)
-    # print(h_yx_t)
-    # print(g_yx_t)
-    # print(res_xy, res_yx)
-
-    # If one of these is zero, than there is a common solutions for fx, fy,
-    # fz: either (0, 1) or (1, 0) therefore there a point (0 : 1 : z0) or 
-    # (1 : 0 : z0) such that all fx, fy, fz is zero, i.e. singular point
-    # if res_xy == 0 or res_yx == 0:
-    #     return True
-    
-    # return False
+    return fx.subs({x: x0, y: y0, z: z0}) == 0 and \
+           fy.subs({x: x0, y: y0, z: z0}) == 0 and \
+           fz.subs({x: x0, y: y0, z: z0}) == 0 
 
 def get_hessian(c):
     n, x, y, z = symbols('n x y z')
@@ -168,19 +62,25 @@ def resultant(f, g, var):
     return Matrix(matrix).det()
 
 
-def from_solution_to_rational_points(cubic, sol):
+def from_solution_to_rational_points(cubic1, cubic2, solution):
     n, x, y, z, t = symbols('n x y z t')
     # x_, y_, z_ = symbols('n x y z')
-    xp = sol[0]
-    yp = sol[1]
+    xp = solution[0]
+    yp = solution[1]
 
-    cubic = cubic.subs({x: xp, y: yp}).simplify().expand()
-    rational_z = get_rational_roots(Poly(cubic).subs(z, t))
+    cubic1 = cubic1.subs({x: xp, y: yp}).simplify().expand()
 
-    if rational_z == []:
-        return (False, [])    
-    
-    return (True, [(xp, yp, zp) for zp in rational_z if (xp, yp, zp) != (0, 0, 0)])
+    rational_z = get_rational_roots(Poly(cubic1).subs(z, t))
+
+    points = []
+    for zp in rational_z:
+        if (xp, yp, zp) != (0, 0, 0) and cubic2.subs({x: xp, y: yp, z: zp}) == 0:
+            points = [(xp, yp, zp)]
+
+    if points != []: 
+        return (True, points)
+
+    return (False, [])    
      
     
 def fix_zero_leading_coefficients(cubic, hessian):
@@ -240,28 +140,27 @@ def get_rational_roots(poly_t):
                 solutions.add(Fraction(-j, i))
 
     return list(solutions)
-    
+   
 
-def points_of_inflection(cubic):
+def intersection_points(cubic1, cubic2):
     n, x, y, z = symbols('n x y z')
     trans = [
         [1, 0, 0],
         [0, 1, 0],
         [0, 0, 1],
     ]
-    hessian = get_hessian(cubic)
 
-    a0 = cubic.coeff(z**3)
-    b0 = hessian.coeff(z**3)
+    a0 = cubic1.coeff(z**3)
+    b0 = cubic2.coeff(z**3)
 
     if a0 * b0 == 0:
-        (cubic, hessian, trans) = fix_zero_leading_coefficients(cubic, hessian)
+        (cubic1, cubic2, trans) = fix_zero_leading_coefficients(cubic1, cubic2)
 
     t = symbols('t')
-    res = resultant(cubic, hessian, z)
+    res = resultant(cubic1, cubic2, z)
     
     # Creating set and not array, because we don't care if roots are multiple 
-    # or not
+    # or not and in fact don't want to have multiple roots
     solutions = {(0, 0)}
 
     if res.subs({x: 1, y: 0}) == 0:
@@ -269,7 +168,6 @@ def points_of_inflection(cubic):
 
 
     res_t = Poly(collect(expand(res/y**9).subs(x/y, t), t), t)
-    # print(res_t)
     
     # Reducing our polynom, so that our enumeration algorithm will not take 
     # forever to finish
@@ -277,34 +175,56 @@ def points_of_inflection(cubic):
     gcd = np.gcd.reduce(coeff_t)
     res_t = simplify(res_t / gcd).expand()
 
-
     if res_t.subs(t, 0) == 0:
         solutions.add((0, 1))
         res_t = expand(res_t / t)
-    
     
     rational_sols = get_rational_roots(Poly(res_t))
 
     for sol in rational_sols:
         solutions.add((sol, 1))
-
     
-    points = []
+    points_all = []
+
     
     for solution in list(solutions):
-        (result, points_loc) = from_solution_to_rational_points(cubic, solution)
-
-        # print(points_loc)
+        (result, points) = from_solution_to_rational_points(cubic1, cubic2, solution)
         
         if result:
-            points += points_loc
+            for point in points:
+                points_all += [tuple(Matrix(trans).inv() * Matrix(list(point)))]
+
+    return points_all
+   
+
+def points_of_inflection(cubic):
+    n, x, y, z = symbols('n x y z')
     
+    hessian = get_hessian(cubic)
+    
+
+    points = intersection_points(cubic, hessian)
+
     if points == []:
-        print("Fatal: No rational inflection points exist on the cubic, can't proceed")
+        print("Fatal: No rational inflection point exists on the cubic, can't proceed, aborting ...")
+        return []
 
-    # print(points)
+    return points
 
-    return (points, trans)
+
+def non_singular_point_of_inflection(cubic):
+    points = points_of_inflection(cubic)
+
+    if points == []:
+        return (False, ())
+
+    for point in points:
+        if not is_point_singular(cubic, point):
+            return (True, point)
+    
+    print("Fatal: There is no rational non-singular inflection point, can't proceed, aborting ...")
+    
+    return (False, ())
 
 
 def main():
@@ -316,16 +236,16 @@ def main():
     # cubic = "-x^3 - 4*x^2*z + y^2*z - 5*x*z^2 - 2*z^3"
     # cubic = "-x^3 - 4*x^2*z + y^2*z - 5*x*z^2 + 2*y*z^2 - z^3"
     # cubic = "-x^3 - 3*x^2*z + y^2*z - 3*x*z^2"
-    cubic = "x^3 + y^2 z + z^3"
+
+    cubic = "5 y^3 + z^2 x + y^2 x - 34 y^2 z"
     cubic = mathematica(cubic)
     # cubic = cubic.subs(n, 4)
 
-    print(is_cubic_singular(cubic))
-    
     # print(cubic)
     # print(get_hessian(cubic))
 
-    # print(points_of_inflection(cubic))
+    print(non_singular_point_of_inflection(cubic))
+    print(cubic)
 
 
 
