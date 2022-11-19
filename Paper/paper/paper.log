@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.15.0 (TeX Live 2022)  (format=lualatex 2022.7.22)  19 NOV 2022 17:20
+This is LuaHBTeX, Version 1.15.0 (TeX Live 2022)  (format=lualatex 2022.7.22)  19 NOV 2022 18:51
  restricted system commands enabled.
  file:line:error style messages enabled.
 **paper.tex
@@ -1060,19 +1060,19 @@ Package biblatex Info: ... file 'paper.bbl' found.
 Package biblatex Info: Reference section=0 on input line 5.
 Package biblatex Info: Reference segment=0 on input line 5.
  (../sections/weierstrass.tex
-LaTeX Font Info:    Trying to load font information for U+msa on input line 8.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 7.
  (/home/andrey/local/texlive/2022/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 8.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 7.
  (/home/andrey/local/texlive/2022/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Package hyperref Info: bookmark level for unknown theoremf defaults to 0 on input line 31.
+Package hyperref Info: bookmark level for unknown theoremf defaults to 0 on input line 30.
  [1
 
 {/home/andrey/local/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-Package hyperref Info: bookmark level for unknown remark* defaults to 0 on input line 143.
+Package hyperref Info: bookmark level for unknown remark* defaults to 0 on input line 146.
 ) (../sections/weierstrass_special_case.tex [2] [3] [4] [5]) (../sections/pointsum.tex
 Package hyperref Info: bookmark level for unknown remark defaults to 0 on input line 36.
  [6]
@@ -1091,19 +1091,19 @@ Package logreq Info: Writing requests to 'paper.run.xml'.
 )
 
 Here is how much of LuaTeX's memory you used:
- 25823 strings out of 477474
+ 25825 strings out of 477474
  156360,1373583 words of node,token memory allocated
- 4024 words of node memory still in use:
-   103 hlist, 16 vlist, 15 rule, 8 math, 81 glue, 52 kern, 167 glyph, 113 attribute, 71 glue_spec, 58 attribute_list, 1 write nodes
-   avail lists: 1:2,2:2035,3:198,4:35,5:711,6:39,7:10983,8:86,9:2139,10:12,11:1418
- 45858 multiletter control sequences out of 65536+600000
- 73 fonts using 13945839 bytes
+ 4034 words of node memory still in use:
+   103 hlist, 16 vlist, 15 rule, 8 math, 81 glue, 52 kern, 167 glyph, 113 attribute, 73 glue_spec, 58 attribute_list, 1 write nodes
+   avail lists: 1:1,2:2035,3:203,4:31,5:710,6:38,7:11205,8:86,9:2139,10:13,11:1442
+ 45859 multiletter control sequences out of 65536+600000
+ 74 fonts using 14310327 bytes
  77i,15n,87p,509b,1679s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </home/andrey/local/texlive/2022/texmf-dist/fonts/opentype/public/cm-unicode/cmunti.otf></home/andrey/local/texlive/2022/texmf-dist/fonts/opentype/public/cm-unicode/cmunss.otf></home/andrey/local/texlive/2022/texmf-dist/fonts/opentype/public/cm-unicode/cmunrm.otf></home/andrey/local/texlive/2022/texmf-dist/fonts/opentype/public/cm-unicode/cmunbx.otf></home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on paper.pdf (8 pages, 151976 bytes).
+Output written on paper.pdf (8 pages, 152037 bytes).
 
-PDF statistics: 124 PDF objects out of 1000 (max. 8388607)
- 91 compressed objects within 1 object stream
- 22 named destinations out of 1000 (max. 131072)
+PDF statistics: 125 PDF objects out of 1000 (max. 8388607)
+ 92 compressed objects within 1 object stream
+ 23 named destinations out of 1000 (max. 131072)
  1 words of extra memory for PDF output out of 10000 (max. 100000000)
 
