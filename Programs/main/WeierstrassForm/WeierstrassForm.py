@@ -213,8 +213,9 @@ def weierstrass_form_step3(cubic):
     b = cubic.coeff(y * x * z)
     c = cubic.coeff(y * z**2)
     
-    h, k, t = symbols('h k t')
-    (p, q)  = tuple(solve((t + h)**2 + k  - (t**2  + b * t * x  + c * t * z), [h, k])[0])
+    # h, k, t = symbols('h k t')
+    # (p, q)  = tuple(solve((t + h)**2 + k  - (t**2  + b * t * x  + c * t * z), [h, k])[0])
+    p = (b * x + c * z)/2
     # print(p, q)
 
     # print(solve((t + h)**2 + k  - (t**2  + b * t * x  + c * t * z), [h, k]))
@@ -222,6 +223,7 @@ def weierstrass_form_step3(cubic):
 
     cubic = cubic.subs(y, y_ - p).expand().simplify().expand()
     cubic = cubic.subs(y_, y)
+    cubic = (-1) * cubic
     
     # Complete the square by `y`
     matrix0 = [
@@ -266,18 +268,15 @@ def weierstrass_form_step3(cubic):
     ]
    
     
-    denom = 1
-    for coeff in Poly(cubic).coeffs():
-        denom = max(denom, abs(coeff.denominator))
+    lcm = np.lcm.reduce([coeff.denominator for coeff in Poly(cubic).coeffs()])
 
-    
     # Getting rid of denominators in the fractions
-    cubic = cubic.subs(z, - z_ * denom**3).expand().simplify().expand()
-    cubic = cubic.subs(x, x_ * denom).expand().simplify().expand()
+    cubic = cubic.subs(z, z_ * lcm**3).expand().simplify().expand()
+    cubic = cubic.subs(x, x_ * lcm).expand().simplify().expand()
     matrix4 = [
-        [Fraction(1, denom), 0, 0],
+        [Fraction(1, lcm), 0, 0],
         [0, 1, 0],
-        [0, 0, -Fraction(1, denom**3)],
+        [0, 0, Fraction(1, lcm**3)],
     ]
     
     matrix = multiply(matrix4,
@@ -287,8 +286,7 @@ def weierstrass_form_step3(cubic):
                       matrix0
                       ))))
 
-
-    cubic = (cubic / denom**3).simplify().expand()
+    cubic = (cubic / lcm**3).simplify().expand()
     cubic = cubic.subs({x_: x, z_: z})
 
     return (matrix, cubic)
@@ -330,13 +328,13 @@ def main():
     n, x, y, z = symbols('n x y z')
     # cubic = "5 y^3 + z^2 x + y^2 x - 34 y^2 z"
 
-    cubic = "x^3 + y^3 + z^3 + (1 - n) (x^2 y + x^2 z + y^2 x + y^2 z + z^2 x + z^2 y) + (3 - 2 n) x y z"
+    # cubic = "x^3 + y^3 + z^3 + (1 - n) (x^2 y + x^2 z + y^2 x + y^2 z + z^2 x + z^2 y) + (3 - 2 n) x y z"
     # cubic = "x^3 + y^3 + z^3 + 4 x y z"
     # cubic = "x^3 + y^2 z + z^3"
-    # cubic = "x^3 + y^3 + z^3 + 3 x y z"
+    cubic = "x^3 + y^3 + z^3 + 3 x y z"
     # cubic = "-x^3 - 3*x^2*z + y^2*z - 3*x*z^2 - z^3"
     cubic = mathematica(cubic)
-    cubic = cubic.subs(n, 4)
+    # cubic = cubic.subs(n, 4)
 
     # print("hessian", infp.get_hessian(cubic))
 
