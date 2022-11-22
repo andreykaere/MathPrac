@@ -1,15 +1,17 @@
-[0] Config.pm:306> INFO - This is Biber 2.18
-[0] Config.pm:309> INFO - Logfile is 'paper.blg'
-[84] biber:340> INFO - === Sat Nov 19, 2022, 16:45:49
-[101] Biber.pm:418> INFO - Reading 'paper.bcf'
-[222] Biber.pm:975> INFO - Using all citekeys in bib section 0
-[259] Biber.pm:4401> INFO - Processing section 0
-[284] Biber.pm:4592> INFO - Looking for bibtex file 'references.bib' for section 0
-[285] bibtex.pm:1713> INFO - LaTeX decoding ...
-[290] bibtex.pm:1518> INFO - Found BibTeX data source 'references.bib'
-[347] UCollate.pm:68> INFO - Overriding locale 'ru-RU' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[347] UCollate.pm:68> INFO - Overriding locale 'ru-RU' defaults 'variable = shifted' with 'variable = non-ignorable'
-[347] Biber.pm:4221> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'ru-RU'
-[347] Biber.pm:4227> INFO - No sort tailoring available for locale 'ru-RU'
-[350] bbl.pm:654> INFO - Writing 'paper.bbl' with encoding 'UTF-8'
-[351] bbl.pm:757> INFO - Output to paper.bbl
+[0] Config.pm:304> INFO - This is Biber 2.14 (beta)
+[0] Config.pm:307> INFO - Logfile is 'paper.blg'
+[147] biber:322> INFO - === Вт ноя 22, 2022, 13:52:29
+[172] Biber.pm:415> INFO - Reading 'paper.bcf'
+[297] Biber.pm:940> INFO - Using all citekeys in bib section 0
+[322] Biber.pm:4256> INFO - Processing section 0
+[322] Utils.pm:75> INFO - Globbing data source 'references.bib'
+[322] Utils.pm:91> INFO - Globbed data source 'references.bib' to references.bib
+[342] Biber.pm:4455> INFO - Looking for bibtex format file 'references.bib' for section 0
+[344] bibtex.pm:1653> INFO - LaTeX decoding ...
+[348] bibtex.pm:1471> INFO - Found BibTeX data source 'references.bib'
+[400] UCollate.pm:68> INFO - Overriding locale 'ru-RU' defaults 'variable = shifted' with 'variable = non-ignorable'
+[400] UCollate.pm:68> INFO - Overriding locale 'ru-RU' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[401] Biber.pm:4084> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'ru-RU'
+[401] Biber.pm:4090> INFO - No sort tailoring available for locale 'ru-RU'
+[404] bbl.pm:652> INFO - Writing 'paper.bbl' with encoding 'UTF-8'
+[405] bbl.pm:755> INFO - Output to paper.bbl
