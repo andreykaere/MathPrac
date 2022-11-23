@@ -1,5 +1,5 @@
 % $ biblatex auxiliary file $
-% $ biblatex bbl format version 3.1 $
+% $ biblatex bbl format version 3.2 $
 % Do not modify the above lines!
 %
 % This is an auxiliary file used by the 'biblatex' package.
@@ -19,6 +19,30 @@
 
 \refsection{0}
   \datalist[entry]{nty/global//global/global}
+    \entry{unus_rep_prob}{article}{}
+      \name{author}{1}{}{%
+        {{hash=c67b6ace6a0234d30158e93bc82fac67}{%
+           family={Bremner\bibnamedelima A.},
+           familyi={B\bibinitperiod\bibinitdelim A\bibinitperiod},
+           given={Macleod\bibnamedelima A.},
+           giveni={M\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+      }
+      \strng{namehash}{c67b6ace6a0234d30158e93bc82fac67}
+      \strng{fullhash}{c67b6ace6a0234d30158e93bc82fac67}
+      \strng{bibnamehash}{c67b6ace6a0234d30158e93bc82fac67}
+      \strng{authorbibnamehash}{c67b6ace6a0234d30158e93bc82fac67}
+      \strng{authornamehash}{c67b6ace6a0234d30158e93bc82fac67}
+      \strng{authorfullhash}{c67b6ace6a0234d30158e93bc82fac67}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Annales Mathematicae et Informaticae}
+      \field{title}{An unusual cubic representation problem}
+      \field{year}{2014}
+      \field{dateera}{ce}
+      \keyw{trusted}
+    \endentry
     \entry{pra_sol}{book}{}
       \name{author}{1}{}{%
         {{hash=9bc61ee907898cc275686ec682467289}{%
@@ -37,13 +61,12 @@
       \strng{authornamehash}{9bc61ee907898cc275686ec682467289}
       \strng{authorfullhash}{9bc61ee907898cc275686ec682467289}
       \field{sortinit}{В}
-      \field{sortinithash}{902012ffa0e35aa229c9a3d688e40f89}
+      \field{sortinithash}{769561dacf0468c568f33adb4926797c}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Эллиптические функции и алгебраические уравнения}
       \field{year}{1997}
       \field{dateera}{ce}
-      \true{nocite}
       \keyw{trusted}
     \endentry
   \enddatalist
