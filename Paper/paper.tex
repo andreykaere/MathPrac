@@ -1,3 +1,5 @@
+\documentclass[a4paper,12pt]{report}
+
 \usepackage[a4paper, left=0.6in, right=0.6in, top=0.85in, bottom=0.85in]{geometry}
 \usepackage[utf8]{inputenc}
 \usepackage{textcomp}
@@ -63,3 +65,14 @@
 \usepackage[backref=page, backend=biber]{biblatex}
 \addbibresource{references.bib}
 \nocite{*}
+
+\begin{document}
+    \input{./sections/introduction.tex}
+    \input{./sections/quadric.tex}
+    \input{./sections/weierstrass.tex}
+    \input{./sections/weierstrass_special_case.tex}
+    \input{./sections/pointsum.tex}
+
+    \printbibliography
+\end{document}
+

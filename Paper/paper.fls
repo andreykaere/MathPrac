@@ -443,6 +443,8 @@ INPUT /home/andrey/local/texlive/2022/texmf-dist/fonts/tfm/public/amsfonts/symbo
 INPUT /home/andrey/local/texlive/2022/texmf-dist/fonts/tfm/public/cm/cmr12.tfm
 INPUT /home/andrey/local/texlive/2022/texmf-dist/fonts/tfm/public/cm/cmr8.tfm
 INPUT /home/andrey/local/texlive/2022/texmf-dist/fonts/tfm/public/cm/cmr6.tfm
+INPUT ../sections/quadric.tex
+INPUT ../sections/quadric.tex
 INPUT ../sections/weierstrass.tex
 INPUT ../sections/weierstrass.tex
 INPUT ../sections/weierstrass_special_case.tex
