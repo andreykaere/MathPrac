@@ -42,11 +42,15 @@ if P[1] == 1:
     
     RevNFind(a, b, x, y, n, inv_trans)
     
-    n = 4
-    DrawSumN(a, b, x, y, n)    
+    # n = 4
+    # DrawSumN(a, b, x, y, n)    
+
+    for n in range(2, 9):
+        DrawSumN(a, b, x, y, n)    
+        
     
 else:
-    print("no good rational points found, cant apply algoritm")
+    print("No good rational points found, can't apply algoritm")
 
 
 

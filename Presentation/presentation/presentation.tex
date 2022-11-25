@@ -25,6 +25,7 @@
 
 \newtheorem{lemmaf}{Лемма}
 \newtheorem{theoremf}{Теорема}
+\newtheorem{definitionf}{Определение}
 \newtheorem{remark}{Замечание}
 \newtheorem{statementf}{Утверждение}
 \newtheorem{propositionf}{Предложение}
@@ -182,13 +183,31 @@
             j}\). 
         \end{block}
         }
-
+    
         \onslide<+->{
-        \begin{block}{}
-            Рассмотрим Гессиан нашей кубики \(H(F) := \det \left(
-            \frac{\partial F}{\partial x^{i} \partial x^{j}}\right)_{ij}\),
-            где \(x = x^{1}, y = x^{2}, z = x^{3}\). 
-        \end{block}
+        \begin{definitionf}
+            Точка \(P_0\) кубики \(F(x^{1}, x^{2}, x^{3}) = 0\) называется
+            \textit{точкой перегиба}, если касательная к ней в точке \(P\)
+            имеет касание третьего порядка, то есть для любой точки \(Q =
+            (x^{1}_q : x^{2}_q : x^{3}_q)\) на касательной выполнено
+            \[
+            \sum_{i,j = 1}^{3} \frac{\partial^2 F}{\partial x^{i} \partial
+            x^{j}} (P_0) \, x^{i}_q x^{j}_q = 0
+            .\] 
+        \end{definitionf}
+        }
+
+    \end{frame}
+
+    \begin{frame}
+        \onslide<+->{
+        \begin{definitionf}
+            \textit{Гессианом} кубики \(F(x^{1}, x^{2}, x^{3}) = 0\) называется кубика
+            \[
+            H(F) := \det \left( \frac{\partial^2 F}{\partial x^{i} \partial
+            x^{j}}\right)_{ij}
+            .\] 
+        \end{definitionf}
         }
 
         \onslide<+->{
@@ -197,9 +216,11 @@
             точки пересечения кубики с её Гессианом.
         \end{theoremf}
         }
+
     \end{frame}
 
     \begin{frame}
+        \onslide<+->{
         \begin{block}{}
             Мы не будем проверять кубику на наличие особенностей, а просто найдём
             все точки пересечения с Гессианом и посмотрим, есть ли там
@@ -207,7 +228,10 @@
             подходит и мы можем переходить к следующему шагу. Если все точки
             особые, то алгоритм продолжить нельзя.
         \end{block}
+        }
 
+        
+        \onslide<+->{
         \begin{block}{}
             Для поиска общих точек рассмотрим результант \(R(F, H(F))\) по
             переменной \(z\). Получим однородный многочлен 9-той степени.
@@ -215,7 +239,7 @@
             \((x, y)\) и подставляем в \(F\) и в \(H(F)\) для нахождения общей
             точки (или удостоверении, что при данных \((x_0, y_0)\) её нет).
         \end{block}
-
+        }
     \end{frame}
 
     \begin{frame}

@@ -1,5 +1,5 @@
 # Fdb version 3
-["lualatex"] 1669391023 "presentation.tex" "presentation.pdf" "presentation" 1669391027
+["lualatex"] 1669393867 "presentation.tex" "presentation.pdf" "presentation" 1669393871
   "../images/banana.jpg" 1669388729 16695 8257bc9e1464e35ac79f20d7b3759d9d ""
   "/home/andrey/local/texlive/2022/texmf-dist/fonts/opentype/public/cm-unicode/cmunrm.otf" 1278718173 330492 16735f17d996f4a288f258a11e88dd08 ""
   "/home/andrey/local/texlive/2022/texmf-dist/fonts/opentype/public/cm-unicode/cmunsi.otf" 1278718173 222660 b59f71a986690847f822191187db9743 ""
@@ -310,10 +310,10 @@
   "/home/andrey/local/texlive/2022/texmf-var/luatex-cache/generic/names/luaotfload-names.luc.gz" 1668416401 325461 f17349800fe64f07f0af618f75a2e306 ""
   "/home/andrey/local/texlive/2022/texmf-var/tex/generic/config/language.dat" 1658487188 6627 08213a94f030f3ace18040268efbc924 ""
   "/home/andrey/local/texlive/2022/texmf-var/web2c/luahbtex/lualatex.fmt" 1658487238 4615008 f697d35236ace7f27de35f907febfac7 ""
-  "presentation.aux" 1669391027 2802 589e5439fe72be044b7dfd489ca67bba "lualatex"
-  "presentation.nav" 1669391027 1220 30087937e0aa31315d7e89af9500264e "lualatex"
+  "presentation.aux" 1669393870 3448 cc26ebf25f2088d9425c12b98eec08ea "lualatex"
+  "presentation.nav" 1669393870 1313 f7517d7557df68238eee8b0a07cd7087 "lualatex"
   "presentation.out" 0 -1 0 "lualatex"
-  "presentation.tex" 1669391021 14294 0d3fa9143be032292898886cd5cdd6c9 ""
+  "presentation.tex" 1669393866 15158 44c1a7fb8026074402f5a1ca51967172 ""
   (generated)
   "presentation.aux"
   "presentation.log"

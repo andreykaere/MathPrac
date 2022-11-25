@@ -86,6 +86,6 @@ def DrawSumN(a, b, x, y, n):
         xP.append(x0)
         yP.append(y0)
     plt.plot([x], [y], 'yo')
-    #plt.savefig(str(n) + '.png')
+    # plt.savefig(str(n) + '.png')
     plt.show() 
 
