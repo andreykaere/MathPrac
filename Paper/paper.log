@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.15.0 (TeX Live 2022)  (format=lualatex 2022.7.22)  24 NOV 2022 15:05
+This is LuaHBTeX, Version 1.15.0 (TeX Live 2022)  (format=lualatex 2022.7.22)  25 NOV 2022 18:44
  restricted system commands enabled.
 **paper.tex
 (./paper.tex
@@ -66,7 +66,6 @@ luaotfload | db : Font names database loaded from /home/andrey/local/texlive/202
 \belowcaptionskip=\skip48
 \bibindent=\dimen137
 )
-(../preamble.tex
 (/home/andrey/local/texlive/2022/texmf-dist/tex/latex/geometry/geometry.sty
 Package: geometry 2020/01/02 v5.9 Page Geometry
 
@@ -1039,7 +1038,7 @@ Package biblatex Info: ... and expl3
 ty
 Package: blx-case-expl3 2022/07/12 v3.18b expl3 case changing code for biblatex
 
-)))
+))
 Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... found 'babel' package.
 Package csquotes Info: Adjusting default style.
@@ -1047,32 +1046,32 @@ Package csquotes Info: Redefining alias 'default' -> 'russian'.
  (./paper.aux)
 \openout1 = paper.aux
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 5.
-LaTeX Font Info:    ... okay on input line 5.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 5.
-LaTeX Font Info:    ... okay on input line 5.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 5.
-LaTeX Font Info:    ... okay on input line 5.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 5.
-LaTeX Font Info:    ... okay on input line 5.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 5.
-LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 5
-.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 69.
+LaTeX Font Info:    ... okay on input line 69.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 69.
+LaTeX Font Info:    ... okay on input line 69.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 69.
+LaTeX Font Info:    ... okay on input line 69.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 69.
+LaTeX Font Info:    ... okay on input line 69.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 69.
+LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 6
+9.
 
 (/home/andrey/local/texlive/2022/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 5.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 5.
-LaTeX Font Info:    ... okay on input line 5.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 5.
-LaTeX Font Info:    ... okay on input line 5.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 5.
-LaTeX Font Info:    ... okay on input line 5.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 5.
-LaTeX Font Info:    ... okay on input line 5.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 5.
-LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    ... okay on input line 69.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 69.
+LaTeX Font Info:    ... okay on input line 69.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 69.
+LaTeX Font Info:    ... okay on input line 69.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 69.
+LaTeX Font Info:    ... okay on input line 69.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 69.
+LaTeX Font Info:    ... okay on input line 69.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 69.
+LaTeX Font Info:    ... okay on input line 69.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: luatex
@@ -1114,63 +1113,64 @@ Package fontspec Info: Adjusting the maths setup (use [no-math] to avoid
 
 \symlegacymaths=\mathgroup6
 LaTeX Font Info:    Overwriting symbol font `legacymaths' in version `bold'
-(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 5.
-LaTeX Font Info:    Redeclaring math accent \acute on input line 5.
-LaTeX Font Info:    Redeclaring math accent \grave on input line 5.
-LaTeX Font Info:    Redeclaring math accent \ddot on input line 5.
-LaTeX Font Info:    Redeclaring math accent \tilde on input line 5.
-LaTeX Font Info:    Redeclaring math accent \bar on input line 5.
-LaTeX Font Info:    Redeclaring math accent \breve on input line 5.
-LaTeX Font Info:    Redeclaring math accent \check on input line 5.
-LaTeX Font Info:    Redeclaring math accent \hat on input line 5.
-LaTeX Font Info:    Redeclaring math accent \dot on input line 5.
-LaTeX Font Info:    Redeclaring math accent \mathring on input line 5.
-LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 5.
-LaTeX Font Info:    Redeclaring math symbol \Delta on input line 5.
-LaTeX Font Info:    Redeclaring math symbol \Theta on input line 5.
-LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 5.
-LaTeX Font Info:    Redeclaring math symbol \Xi on input line 5.
-LaTeX Font Info:    Redeclaring math symbol \Pi on input line 5.
-LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 5.
-LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 5.
-LaTeX Font Info:    Redeclaring math symbol \Phi on input line 5.
-LaTeX Font Info:    Redeclaring math symbol \Psi on input line 5.
-LaTeX Font Info:    Redeclaring math symbol \Omega on input line 5.
-LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 5.
-LaTeX Font Info:    Redeclaring symbol font `operators' on input line 5.
+(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 69.
+LaTeX Font Info:    Redeclaring math accent \acute on input line 69.
+LaTeX Font Info:    Redeclaring math accent \grave on input line 69.
+LaTeX Font Info:    Redeclaring math accent \ddot on input line 69.
+LaTeX Font Info:    Redeclaring math accent \tilde on input line 69.
+LaTeX Font Info:    Redeclaring math accent \bar on input line 69.
+LaTeX Font Info:    Redeclaring math accent \breve on input line 69.
+LaTeX Font Info:    Redeclaring math accent \check on input line 69.
+LaTeX Font Info:    Redeclaring math accent \hat on input line 69.
+LaTeX Font Info:    Redeclaring math accent \dot on input line 69.
+LaTeX Font Info:    Redeclaring math accent \mathring on input line 69.
+LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 69.
+LaTeX Font Info:    Redeclaring math symbol \Delta on input line 69.
+LaTeX Font Info:    Redeclaring math symbol \Theta on input line 69.
+LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 69.
+LaTeX Font Info:    Redeclaring math symbol \Xi on input line 69.
+LaTeX Font Info:    Redeclaring math symbol \Pi on input line 69.
+LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 69.
+LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 69.
+LaTeX Font Info:    Redeclaring math symbol \Phi on input line 69.
+LaTeX Font Info:    Redeclaring math symbol \Psi on input line 69.
+LaTeX Font Info:    Redeclaring math symbol \Omega on input line 69.
+LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 69.
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 69.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `normal' on input line 5.
+(Font)              `operators' in the math version `normal' on input line 69.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/cmr/m/n --> TU/CMUSerif(0)/m/n on input line 5.
+(Font)                  OT1/cmr/m/n --> TU/CMUSerif(0)/m/n on input line 69.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `bold' on input line 5.
+(Font)              `operators' in the math version `bold' on input line 69.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/cmr/bx/n --> TU/CMUSerif(0)/m/n on input line 5.
+(Font)                  OT1/cmr/bx/n --> TU/CMUSerif(0)/m/n on input line 69.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
 (Font)                  TU/CMUSerif(0)/m/n --> TU/CMUSerif(0)/m/n on input line
- 5.
+ 69.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/cmr/m/it --> TU/CMUSerif(0)/m/it on input line 5.
+(Font)                  OT1/cmr/m/it --> TU/CMUSerif(0)/m/it on input line 69.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/cmr/bx/n --> TU/CMUSerif(0)/b/n on input line 5.
+(Font)                  OT1/cmr/bx/n --> TU/CMUSerif(0)/b/n on input line 69.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> TU/CMUSansSerif(0)/m/n on input line 5
-.
+(Font)                  OT1/cmss/m/n --> TU/CMUSansSerif(0)/m/n on input line 6
+9.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
 (Font)                  OT1/cmtt/m/n --> TU/CMUTypewriterText(0)/m/n on input l
-ine 5.
+ine 69.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
 (Font)                  TU/CMUSerif(0)/m/n --> TU/CMUSerif(0)/b/n on input line
- 5.
+ 69.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmr/bx/it --> TU/CMUSerif(0)/b/it on input line 5.
+(Font)                  OT1/cmr/bx/it --> TU/CMUSerif(0)/b/it on input line 69.
+
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
 (Font)                  OT1/cmss/bx/n --> TU/CMUSansSerif(0)/b/n on input line 
-5.
+69.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 (Font)                  OT1/cmtt/m/n --> TU/CMUTypewriterText(0)/b/n on input l
-ine 5.
-LaTeX Info: Redefining \th on input line 5.
+ine 69.
+LaTeX Info: Redefining \th on input line 69.
 
 (/home/andrey/local/texlive/2022/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -1205,7 +1205,7 @@ Package: lscape 2020/05/28 v3.02 Landscape Pages (DPC)
 )
 Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 )
-Package hyperref Info: Link coloring OFF on input line 5.
+Package hyperref Info: Link coloring OFF on input line 69.
 
 (./paper.out) (./paper.out)
 \@outlinefile=\write4
@@ -1226,9 +1226,9 @@ Package biblatex Info: Automatic encoding selection.
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'paper.bbl' found.
 (./paper.bbl)
-Package biblatex Info: Reference section=0 on input line 5.
-Package biblatex Info: Reference segment=0 on input line 5.
- (../sections/introduction.tex
+Package biblatex Info: Reference section=0 on input line 69.
+Package biblatex Info: Reference segment=0 on input line 69.
+ (./sections/introduction.tex
 LaTeX Font Info:    Trying to load font information for U+msa on input line 8.
 
 (/home/andrey/local/texlive/2022/texmf-dist/tex/latex/amsfonts/umsa.fd
@@ -1242,7 +1242,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 [1
 
 {/home/andrey/local/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-) (../sections/quadric.tex) (../sections/weierstrass.tex
+) (./sections/quadric.tex) (./sections/weierstrass.tex
 warning  (pdf backend): ignoring duplicate destination with the name 'page.1'
 [1]
 Package hyperref Info: bookmark level for unknown theoremf defaults to 0 on inp
@@ -1250,8 +1250,8 @@ ut line 47.
  [2]
 Package hyperref Info: bookmark level for unknown remark* defaults to 0 on inpu
 t line 163.
- [3]) (../sections/weierstrass_special_case.tex [4] [5] [6])
-(../sections/pointsum.tex [7]
+ [3]) (./sections/weierstrass_special_case.tex [4] [5] [6])
+(./sections/pointsum.tex [7]
 Package hyperref Info: bookmark level for unknown remark defaults to 0 on input
  line 36.
 
@@ -1272,16 +1272,16 @@ Package logreq Info: Writing requests to 'paper.run.xml'.
 )
 
 Here is how much of LuaTeX's memory you used:
- 25879 strings out of 477474
+ 25868 strings out of 477474
  125081,1373583 words of node,token memory allocated
  4064 words of node memory still in use:
    103 hlist, 16 vlist, 15 rule, 8 math, 81 glue, 52 kern, 167 glyph, 123 attrib
 ute, 73 glue_spec, 63 attribute_list, 1 write nodes
    avail lists: 1:1,2:1772,3:165,4:26,5:709,6:29,7:8495,8:85,9:1987,10:15,11:120
 9
- 45888 multiletter control sequences out of 65536+600000
+ 45886 multiletter control sequences out of 65536+600000
  97 fonts using 17230279 bytes
- 77i,15n,87p,509b,1679s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 72i,15n,84p,509b,1679s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </home/andrey/local/texlive/2022/texmf-dist/fonts/opentype/public/cm-unicode/cmu
 nti.otf></home/andrey/local/texlive/2022/texmf-dist/fonts/opentype/public/cm-uni
 code/cmunss.otf></home/andrey/local/texlive/2022/texmf-dist/fonts/opentype/publi
@@ -1299,7 +1299,7 @@ andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></
 home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/symbols/ms
 am10.pfb></home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts
 /symbols/msbm10.pfb>
-Output written on paper.pdf (11 pages, 170179 bytes).
+Output written on paper.pdf (11 pages, 170221 bytes).
 
 PDF statistics: 150 PDF objects out of 1000 (max. 8388607)
  112 compressed objects within 2 object streams

@@ -1,17 +1,11 @@
 # Fdb version 3
-["biber paper"] 1669207925 "paper.bcf" "paper.bbl" "paper" 1669291535
-  "paper.bcf" 1669291535 107386 335d11056fefe4d4bf13b91563477bd7 "lualatex"
+["biber paper"] 1669207925 "paper.bcf" "paper.bbl" "paper" 1669391077
+  "paper.bcf" 1669391076 107386 335d11056fefe4d4bf13b91563477bd7 "lualatex"
   "references.bib" 1669208000 520 aa36e24a4fa124e4562aa5383950a90f ""
   (generated)
   "paper.bbl"
   "paper.blg"
-["lualatex"] 1669291532 "paper.tex" "paper.pdf" "paper" 1669291535
-  "../preamble.tex" 1669129231 1704 bb6da32cc01cc2418b2895cbd59b4283 ""
-  "../sections/introduction.tex" 1669291525 1699 2784be563eef3a7953acaddb105e6142 ""
-  "../sections/pointsum.tex" 1669208148 6729 6c57889401cfd15f24d6b2c1ad716cbb ""
-  "../sections/quadric.tex" 1669291038 3398 f83ff00a6adba11fc0597af919824d0e ""
-  "../sections/weierstrass.tex" 1669208093 11390 9814d203b1921432ddd7f4d7d8af2f0d ""
-  "../sections/weierstrass_special_case.tex" 1669129231 15327 4d9a445735f0ca123675275c4199b428 ""
+["lualatex"] 1669391074 "paper.tex" "paper.pdf" "paper" 1669391077
   "/home/andrey/local/texlive/2022/texmf-dist/fonts/opentype/public/cm-unicode/cmunbx.otf" 1278718173 319676 56f874892a7240ca1accbeab7675ad3c ""
   "/home/andrey/local/texlive/2022/texmf-dist/fonts/opentype/public/cm-unicode/cmunrm.otf" 1278718173 330492 16735f17d996f4a288f258a11e88dd08 ""
   "/home/andrey/local/texlive/2022/texmf-dist/fonts/opentype/public/cm-unicode/cmunss.otf" 1278718173 222060 8a74f255370e84edf216a1abf4e2920d ""
@@ -230,15 +224,20 @@
   "/home/andrey/local/texlive/2022/texmf-var/luatex-cache/generic/fonts/otl/cmuntx.luc" 1666349623 178128 72c331659204be4d6c5fd7a6f050dc48 ""
   "/home/andrey/local/texlive/2022/texmf-var/luatex-cache/generic/fonts/otl/lmroman12-bold.luc" 1666349622 128307 d085d67000f2861dd846544188bf4a6c ""
   "/home/andrey/local/texlive/2022/texmf-var/luatex-cache/generic/fonts/otl/lmroman12-regular.luc" 1666349621 127678 86739cb25cc0f94e51ecb2a43e6bb19f ""
-  "/home/andrey/local/texlive/2022/texmf-var/luatex-cache/generic/names/luaotfload-lookup-cache.luc" 1669062321 9907 1bf4ad0f6881e2c8cfab50ef24259f4b ""
+  "/home/andrey/local/texlive/2022/texmf-var/luatex-cache/generic/names/luaotfload-lookup-cache.luc" 1669386706 15994 0e21d175fd0af93a3a3c84af5d5723d3 ""
   "/home/andrey/local/texlive/2022/texmf-var/luatex-cache/generic/names/luaotfload-names.luc.gz" 1668416401 325461 f17349800fe64f07f0af618f75a2e306 ""
   "/home/andrey/local/texlive/2022/texmf-var/tex/generic/config/language.dat" 1658487188 6627 08213a94f030f3ace18040268efbc924 ""
   "/home/andrey/local/texlive/2022/texmf-var/web2c/luahbtex/lualatex.fmt" 1658487238 4615008 f697d35236ace7f27de35f907febfac7 ""
-  "paper.aux" 1669291535 2064 942f5ce1fc5b6d6424ed67d471ae214c "lualatex"
+  "paper.aux" 1669391076 2064 942f5ce1fc5b6d6424ed67d471ae214c "lualatex"
   "paper.bbl" 1669207926 2814 ae293053083ff08a8ba8b7dd33602aa2 "biber paper"
   "paper.out" 0 -1 0 "lualatex"
-  "paper.run.xml" 1669291535 2347 81a69851c89ce17187b728bea585d346 "lualatex"
-  "paper.tex" 1669291015 327 565269c9e03faefaccb2f4005cee3119 ""
+  "paper.run.xml" 1669391076 2347 81a69851c89ce17187b728bea585d346 "lualatex"
+  "paper.tex" 1669301835 2002 687c38cb5431c64f4a6816c925020c27 ""
+  "sections/introduction.tex" 1669301875 1693 d31ccb0d63896e56ad94db7861e4c584 ""
+  "sections/pointsum.tex" 1669301882 6723 0adca31e5d8092158b7d637e6a0657fa ""
+  "sections/quadric.tex" 1669301888 3392 f5b4df8badbac1faa1c1e3d138848818 ""
+  "sections/weierstrass.tex" 1669389370 11395 93f417de5872c4d74743b4b94dce9c91 ""
+  "sections/weierstrass_special_case.tex" 1669301916 15354 682399c2e0a7210f5b4992c1bb3740b4 ""
   (generated)
   "paper.aux"
   "paper.bcf"

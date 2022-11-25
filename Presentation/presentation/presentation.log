@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.15.0 (TeX Live 2022)  (format=lualatex 2022.7.22)  24 NOV 2022 19:31
+This is LuaHBTeX, Version 1.15.0 (TeX Live 2022)  (format=lualatex 2022.7.22)  25 NOV 2022 18:43
  restricted system commands enabled.
  file:line:error style messages enabled.
 **presentation.tex
@@ -155,8 +155,8 @@ Package: pgfrcs 2021/05/15 v3.1.9a (3.1.9a)
 ) (/home/andrey/local/texlive/2022/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.tex
 (/home/andrey/local/texlive/2022/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic.code.tex) (/home/andrey/local/texlive/2022/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigonometric.code.tex) (/home/andrey/local/texlive/2022/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.random.code.tex) (/home/andrey/local/texlive/2022/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.comparison.code.tex) (/home/andrey/local/texlive/2022/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.code.tex) (/home/andrey/local/texlive/2022/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round.code.tex) (/home/andrey/local/texlive/2022/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.code.tex) (/home/andrey/local/texlive/2022/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerarithmetics.code.tex))) (/home/andrey/local/texlive/2022/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
 \c@pgfmathroundto@lastzeros=\count283
-))) (/home/andrey/local/texlive/2022/texmf-dist/tex/latex/base/size11.clo
-File: size11.clo 2021/10/04 v1.4n Standard LaTeX file (size option)
+))) (/home/andrey/local/texlive/2022/texmf-dist/tex/latex/base/size10.clo
+File: size10.clo 2021/10/04 v1.4n Standard LaTeX file (size option)
 luaotfload | db : Font names database loaded from /home/andrey/local/texlive/2022/texmf-var/luatex-cache/generic/names/luaotfload-names.luc.gz) (/home/andrey/local/texlive/2022/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty (/home/andrey/local/texlive/2022/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
  (/home/andrey/local/texlive/2022/texmf-dist/tex/latex/graphics/graphics.sty
@@ -951,23 +951,23 @@ LaTeX Font Info:    ... okay on input line 61.
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: includehead includefoot 
-* h-part:(L,W,R)=(10.95pt, 342.29536pt, 10.95pt)
+* h-part:(L,W,R)=(10.0pt, 344.19536pt, 10.0pt)
 * v-part:(T,H,B)=(0.0pt, 273.14662pt, 0.0pt)
 * \paperwidth=364.19536pt
 * \paperheight=273.14662pt
-* \textwidth=342.29536pt
+* \textwidth=344.19536pt
 * \textheight=244.6939pt
-* \oddsidemargin=-61.31999pt
-* \evensidemargin=-61.31999pt
+* \oddsidemargin=-62.26999pt
+* \evensidemargin=-62.26999pt
 * \topmargin=-72.26999pt
 * \headheight=14.22636pt
 * \headsep=0.0pt
-* \topskip=11.0pt
+* \topskip=10.0pt
 * \footskip=14.22636pt
-* \marginparwidth=4.0pt
-* \marginparsep=10.0pt
+* \marginparwidth=3.0pt
+* \marginparsep=11.0pt
 * \columnsep=10.0pt
-* \skip\footins=10.0pt plus 4.0pt minus 2.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
 * \hoffset=0.0pt
 * \voffset=0.0pt
 * \mag=1000
@@ -1117,35 +1117,51 @@ LaTeX Info: Redefining \th on input line 61.
  (./presentation.nav) [1
 
 {/home/andrey/local/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-<../images/banana.png, id=55, 419.5675pt x 291.0875pt>
-File: ../images/banana.png Graphic file (type png)
-<use ../images/banana.png>
-Package luatex.def Info: ../images/banana.png  used on input line 84.
-(luatex.def)             Requested size: 170.71652pt x 118.44054pt.
+<../images/banana.jpg, id=57, 368.37625pt x 255.95625pt>
+File: ../images/banana.jpg Graphic file (type jpg)
+<use ../images/banana.jpg>
+Package luatex.def Info: ../images/banana.jpg  used on input line 84.
+(luatex.def)             Requested size: 170.71652pt x 118.61613pt.
  [2
 
-<../images/banana.png>]
-File: ../images/banana.png Graphic file (type png)
-<use ../images/banana.png>
-Package luatex.def Info: ../images/banana.png  used on input line 84.
-(luatex.def)             Requested size: 170.71652pt x 118.44054pt.
+<../images/banana.jpg>]
+File: ../images/banana.jpg Graphic file (type jpg)
+<use ../images/banana.jpg>
+Package luatex.def Info: ../images/banana.jpg  used on input line 84.
+(luatex.def)             Requested size: 170.71652pt x 118.61613pt.
  [3
 
 ]
-LaTeX Font Info:    Trying to load font information for U+msa on input line 116.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 127.
  (/home/andrey/local/texlive/2022/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 116.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 127.
  (/home/andrey/local/texlive/2022/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [4
+)
+Overfull \vbox (4.40297pt too high) detected at line 127
+ []
 
-] [5
+[4
 
-] [6
+]
+Overfull \vbox (4.40297pt too high) detected at line 127
+ []
 
-] [7
+[5
+
+]
+Overfull \vbox (4.40297pt too high) detected at line 127
+ []
+
+[6
+
+]
+Overfull \vbox (4.40297pt too high) detected at line 127
+ []
+
+[7
 
 ] [8
 
@@ -1158,6 +1174,26 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ] [12
 
 ] [13
+
+] [14
+
+] [15
+
+] [16
+
+] [17
+
+] [18
+
+] [19
+
+] [20
+
+] [21
+
+] [22
+
+] [23
 
 ]
 \tf@nav=\write6
@@ -1175,19 +1211,19 @@ Package rerunfilecheck Info: File `presentation.out' has not changed.
 )
 
 Here is how much of LuaTeX's memory you used:
- 29164 strings out of 477474
+ 29275 strings out of 477474
  100000,1144653 words of node,token memory allocated
- 14374 words of node memory still in use:
-   387 hlist, 9 vlist, 63 rule, 6 disc, 1 local_par, 4 math, 339 glue, 8 kern, 8 penalty, 40 glyph, 1766 attribute, 67 glue_spec, 885 attribute_list, 4 write, 525 pdf_literal, 34 pdf_colorstack nodes
-   avail lists: 1:1,2:732,3:486,4:217,5:263,6:47,7:2078,8:73,9:318,10:10,11:231
- 48661 multiletter control sequences out of 65536+600000
- 85 fonts using 15945271 bytes
+ 41196 words of node memory still in use:
+   1181 hlist, 18 vlist, 188 rule, 17 disc, 2 local_par, 4 math, 948 glue, 34 kern, 16 penalty, 223 glyph, 4948 attribute, 67 glue_spec, 2476 attribute_list, 4 write, 1494 pdf_literal, 82 pdf_colorstack nodes
+   avail lists: 1:1,2:2044,3:712,4:169,5:297,6:46,7:2689,8:73,9:872,10:17,11:412
+ 48750 multiletter control sequences out of 65536+600000
+ 103 fonts using 18654231 bytes
  128i,14n,115p,415b,612s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</home/andrey/local/texlive/2022/texmf-dist/fonts/opentype/public/cm-unicode/cmunsi.otf></home/andrey/local/texlive/2022/texmf-dist/fonts/opentype/public/cm-unicode/cmunss.otf></home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on presentation.pdf (13 pages, 188540 bytes).
+</home/andrey/local/texlive/2022/texmf-dist/fonts/opentype/public/cm-unicode/cmunrm.otf></home/andrey/local/texlive/2022/texmf-dist/fonts/opentype/public/cm-unicode/cmunsi.otf></home/andrey/local/texlive/2022/texmf-dist/fonts/opentype/public/cm-unicode/cmunss.otf></home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on presentation.pdf (23 pages, 233839 bytes).
 
-PDF statistics: 628 PDF objects out of 1000 (max. 8388607)
- 468 compressed objects within 5 object streams
- 27 named destinations out of 1000 (max. 131072)
- 1226 words of extra memory for PDF output out of 10000 (max. 100000000)
+PDF statistics: 1287 PDF objects out of 1440 (max. 8388607)
+ 909 compressed objects within 10 object streams
+ 47 named destinations out of 1000 (max. 131072)
+ 3196 words of extra memory for PDF output out of 10000 (max. 100000000)
 
