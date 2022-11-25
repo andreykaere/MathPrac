@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.15.0 (TeX Live 2022)  (format=lualatex 2022.7.22)  25 NOV 2022 19:31
+This is LuaHBTeX, Version 1.15.0 (TeX Live 2022)  (format=lualatex 2022.7.22)  25 NOV 2022 20:54
  restricted system commands enabled.
  file:line:error style messages enabled.
 **presentation.tex
@@ -1201,6 +1201,47 @@ Overfull \vbox (4.40297pt too high) detected at line 128
 ] [25
 
 ]
+<../images/add2.png, id=1322, 1927.2pt x 584.1825pt>
+File: ../images/add2.png Graphic file (type png)
+<use ../images/add2.png>
+Package luatex.def Info: ../images/add2.png  used on input line 380.
+(luatex.def)             Requested size: 284.52756pt x 86.24193pt.
+ [26
+
+<../images/add2.png>]
+File: ../images/add2.png Graphic file (type png)
+<use ../images/add2.png>
+Package luatex.def Info: ../images/add2.png  used on input line 380.
+(luatex.def)             Requested size: 284.52756pt x 86.24193pt.
+ [27
+
+]
+File: ../images/add2.png Graphic file (type png)
+<use ../images/add2.png>
+Package luatex.def Info: ../images/add2.png  used on input line 380.
+(luatex.def)             Requested size: 284.52756pt x 86.24193pt.
+ [28
+
+]
+File: ../images/add2.png Graphic file (type png)
+<use ../images/add2.png>
+Package luatex.def Info: ../images/add2.png  used on input line 380.
+(luatex.def)             Requested size: 284.52756pt x 86.24193pt.
+ [29
+
+] [30
+
+] [31
+
+] [32
+
+] [33
+
+] [34
+
+] [35
+
+]
 \tf@nav=\write6
 
 \openout6 = presentation.nav
@@ -1216,19 +1257,19 @@ Package rerunfilecheck Info: File `presentation.out' has not changed.
 )
 
 Here is how much of LuaTeX's memory you used:
- 29304 strings out of 477474
+ 29399 strings out of 477474
  100000,1144653 words of node,token memory allocated
- 41220 words of node memory still in use:
-   1181 hlist, 18 vlist, 188 rule, 17 disc, 2 local_par, 4 math, 948 glue, 34 kern, 16 penalty, 223 glyph, 4956 attribute, 67 glue_spec, 2480 attribute_list, 4 write, 1494 pdf_literal, 82 pdf_colorstack nodes
-   avail lists: 1:1,2:2044,3:712,4:169,5:297,6:46,7:2689,8:73,9:872,10:17,11:412
- 48775 multiletter control sequences out of 65536+600000
+ 55393 words of node memory still in use:
+   1638 hlist, 6 vlist, 282 rule, 3 disc, 1 local_par, 1308 glue, 6 kern, 8 penalty, 23 glyph, 7064 attribute, 67 glue_spec, 3534 attribute_list, 4 write, 2192 pdf_literal, 116 pdf_colorstack nodes
+   avail lists: 1:1,2:1537,3:688,4:156,5:325,6:47,7:2533,8:73,9:532,10:17,11:426
+ 48826 multiletter control sequences out of 65536+600000
  103 fonts using 18654231 bytes
- 128i,14n,115p,415b,612s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</home/andrey/local/texlive/2022/texmf-dist/fonts/opentype/public/cm-unicode/cmunrm.otf></home/andrey/local/texlive/2022/texmf-dist/fonts/opentype/public/cm-unicode/cmunsi.otf></home/andrey/local/texlive/2022/texmf-dist/fonts/opentype/public/cm-unicode/cmunss.otf></home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on presentation.pdf (25 pages, 241118 bytes).
+ 128i,14n,115p,415b,625s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</home/andrey/local/texlive/2022/texmf-dist/fonts/opentype/public/cm-unicode/cmunrm.otf></home/andrey/local/texlive/2022/texmf-dist/fonts/opentype/public/cm-unicode/cmunsi.otf></home/andrey/local/texlive/2022/texmf-dist/fonts/opentype/public/cm-unicode/cmunss.otf></home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on presentation.pdf (35 pages, 407471 bytes).
 
-PDF statistics: 1351 PDF objects out of 1440 (max. 8388607)
- 965 compressed objects within 10 object streams
- 51 named destinations out of 1000 (max. 131072)
- 3256 words of extra memory for PDF output out of 10000 (max. 100000000)
+PDF statistics: 1866 PDF objects out of 2073 (max. 8388607)
+ 1332 compressed objects within 14 object streams
+ 71 named destinations out of 1000 (max. 131072)
+ 4566 words of extra memory for PDF output out of 10000 (max. 100000000)
 

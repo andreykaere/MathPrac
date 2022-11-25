@@ -612,6 +612,15 @@ INPUT /home/andrey/local/texlive/2022/texmf-dist/fonts/tfm/public/amsfonts/symbo
 INPUT /home/andrey/local/texlive/2022/texmf-dist/fonts/tfm/public/cm/cmr12.tfm
 INPUT /home/andrey/local/texlive/2022/texmf-dist/fonts/tfm/public/cm/cmr8.tfm
 INPUT /home/andrey/local/texlive/2022/texmf-dist/fonts/tfm/public/cm/cmr6.tfm
+INPUT ../images/add2.png
+INPUT ../images/add2.png
+INPUT ../images/add2.png
+INPUT ../images/add2.png
+INPUT ../images/add2.png
+INPUT ../images/add2.png
+INPUT ../images/add2.png
+INPUT ../images/add2.png
+INPUT ../images/add2.png
 OUTPUT presentation.nav
 OUTPUT presentation.toc
 OUTPUT presentation.snm
@@ -621,6 +630,7 @@ INPUT /home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/
 INPUT /home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb
 INPUT /home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb
 INPUT /home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb
+INPUT /home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb
 INPUT /home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb
 INPUT /home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb
 INPUT /home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb

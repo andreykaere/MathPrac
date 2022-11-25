@@ -1,5 +1,6 @@
 # Fdb version 3
-["lualatex"] 1669393867 "presentation.tex" "presentation.pdf" "presentation" 1669393871
+["lualatex"] 1669398896 "presentation.tex" "presentation.pdf" "presentation" 1669398901
+  "../images/add2.png" 1669397535 117287 ffd89896896d60080b2f92c9b37aad54 ""
   "../images/banana.jpg" 1669388729 16695 8257bc9e1464e35ac79f20d7b3759d9d ""
   "/home/andrey/local/texlive/2022/texmf-dist/fonts/opentype/public/cm-unicode/cmunrm.otf" 1278718173 330492 16735f17d996f4a288f258a11e88dd08 ""
   "/home/andrey/local/texlive/2022/texmf-dist/fonts/opentype/public/cm-unicode/cmunsi.otf" 1278718173 222660 b59f71a986690847f822191187db9743 ""
@@ -34,6 +35,7 @@
   "/home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb" 1248133631 36299 5f9df58c2139e7edcf37c8fca4bd384d ""
   "/home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb" 1248133631 36281 c355509802a035cadc5f15869451dcee ""
   "/home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1248133631 35752 024fb6c41858982481f6968b5fc26508 ""
+  "/home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb" 1248133631 32722 d7379af29a190c3f453aba36302ff5a9 ""
   "/home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb" 1248133631 32762 224316ccc9ad3ca0423a14971cfa7fc1 ""
   "/home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb" 1248133631 32726 0a1aea6fcd6468ee2cf64d891f5c43c8 ""
   "/home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1248133631 32569 5e5ddc8df908dea60932f3c484a54c0d ""
@@ -310,10 +312,10 @@
   "/home/andrey/local/texlive/2022/texmf-var/luatex-cache/generic/names/luaotfload-names.luc.gz" 1668416401 325461 f17349800fe64f07f0af618f75a2e306 ""
   "/home/andrey/local/texlive/2022/texmf-var/tex/generic/config/language.dat" 1658487188 6627 08213a94f030f3ace18040268efbc924 ""
   "/home/andrey/local/texlive/2022/texmf-var/web2c/luahbtex/lualatex.fmt" 1658487238 4615008 f697d35236ace7f27de35f907febfac7 ""
-  "presentation.aux" 1669393870 3448 cc26ebf25f2088d9425c12b98eec08ea "lualatex"
-  "presentation.nav" 1669393870 1313 f7517d7557df68238eee8b0a07cd7087 "lualatex"
+  "presentation.aux" 1669398900 5600 941846d7078d74b86761c37f96c75cdd "lualatex"
+  "presentation.nav" 1669398900 1685 2c41b481935d437ef3cbaa03b43fd607 "lualatex"
   "presentation.out" 0 -1 0 "lualatex"
-  "presentation.tex" 1669393866 15158 44c1a7fb8026074402f5a1ca51967172 ""
+  "presentation.tex" 1669398887 17878 5e95ce030833958357695782ec4c7232 ""
   (generated)
   "presentation.aux"
   "presentation.log"

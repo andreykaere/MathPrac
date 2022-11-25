@@ -56,7 +56,7 @@
 \institute{Механико-математический факультет МГУ}
 \setbeamertemplate{footline}{}
 \setbeamertemplate{footline}[frame number]{}
-
+% \setbeamertemplate{theorems}[numbered]
 
 
 \begin{document}
@@ -347,6 +347,94 @@
         }
     \end{frame}
 
+    \begin{frame}
+		\onslide<+->{
+        \begin{block}{}
+            Опишем рациональные точки на кубике в форме Вейерштрасса.
+            Пусть нам известно несколько точек, можно ли по ним как в
+            случае квадрики получить ещё?
+        \end{block}
+        }
+
+		\onslide<+->{
+        \begin{block}{Сложение точек}
+            
+            
+        \end{block}
+        }
+
+		\onslide<+->{
+        \begin{figure}[H]
+
+        \includegraphics[width = 10cm]{../images/add2.png}
+        \end{figure}
+        }
+
+		\onslide<+->{
+        \begin{definitionf}
+            Суммой точек \(P\) и \(Q\) назовём точку пересечения прямой \(PQ\) с
+            кубикой, отражённую относительно оси \(x\) и будем обозначать \(P +
+            Q\).
+        \end{definitionf}
+        }
+	\end{frame}
+
+	\begin{frame}
+		\onslide<+->{
+        \begin{theoremf}
+            Множество рациональных точек кубики \(E\mathbb(Q)\) в нормальной
+            форме Вейерштрасса образуют абелеву группу. 
+        \end{theoremf}
+        }
+    
+        \onslide<+->{
+        \begin{theoremf}[Морде]
+            Группа \(E\mathbb(Q)\) конечно порождена.
+        \end{theoremf}
+        }
+		
+        \onslide<+->{
+        \begin{block}{}
+            Это даёт надежду на полное описание рациональных точек на кубике.
+            Ведь есть явные формулы для сложения точек в нормальной форме.
+        \end{block}
+		}
+	\end{frame}
+
+
+	\begin{frame}
+		\onslide<+->{
+		\begin{block}{Явные формулы для $P + Q$}
+			Пусть \(P = (x_{p}, y_{p}), Q = (x_{q}, y_{q}), R =
+			(x_{r}, y_{r})\), где \(R = P + Q\) и \(P \neq Q\). Тогда мы имеем:
+			\[
+			\begin{aligned}
+				x_r &= m^2 - x_p - x_q \\
+				y_r &= y_p + m(x_r - x_p) \\
+			\end{aligned} \qquad \] 
+			где \(m = (y_{p} - y_{q}) / (x_{p} - x_{q})\).
+			\newline
+		\end{block}
+        }
+	
+		\onslide<+->{
+		\begin{block}{}
+			Таким образом зная хотя бы одну точку \(P \notin \mathrm{Tor} \,
+            (E\mathbb(Q))\), можно явно найти бесконечно точек вида \(P, 2P,
+            ... nP\).
+		\end{block}
+		}
+	\end{frame}
+
+	\begin{frame}
+		\onslide<+->{
+ 		тут слайд с картинками 
+		
+		
+		}
+	
+	\end{frame}
+	
 
 
 
