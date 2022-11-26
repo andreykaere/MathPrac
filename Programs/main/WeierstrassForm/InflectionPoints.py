@@ -165,8 +165,8 @@ def intersection_points(cubic1, cubic2):
     a0 = cubic1.coeff(z**3)
     b0 = cubic2.coeff(z**3)
 
-    # if a0 * b0 == 0:
-    #     (cubic1, cubic2, trans) = fix_zero_leading_coefficients(cubic1, cubic2)
+    if a0 * b0 == 0:
+        (cubic1, cubic2, trans) = fix_zero_leading_coefficients(cubic1, cubic2)
 
     t = symbols('t')
     res = resultant(cubic1, cubic2, z)
