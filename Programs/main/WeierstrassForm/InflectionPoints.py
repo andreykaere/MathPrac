@@ -67,13 +67,17 @@ def from_solution_to_rational_points(cubic1, cubic2, solution):
     # x_, y_, z_ = symbols('n x y z')
     xp = solution[0]
     yp = solution[1]
-    
+   
+    print("point", (xp, yp))
     print("cubic1 before point", cubic1)
     cubic1 = cubic1.subs({x: xp, y: yp}).simplify().expand()
+    print("cubic1 after point", cubic1)
 
     if cubic1 == 0:
-        print("maybe reducible?", cubic1, cubic2)
-        return (False, [])
+        return (True, [(xp, yp, 1)])
+
+    if cubic1.as_expr().is_constant():
+        return (True, [])
     
     print("foo")
     print("rational_z, cubic1:", cubic1)
@@ -94,25 +98,31 @@ def from_solution_to_rational_points(cubic1, cubic2, solution):
     
 def fix_zero_leading_coefficients(cubic, hessian):
     n, x, y, z = symbols('n x y z')
-    i = 1 
-
+    
+    flag = 0
     # Searching for point that does not lie on both cubics
-    while cubic.subs({x: 0, y: i, z: 1}) == 0 and \
-          hessian.subs({x: 0, y: i, z: 1}) == 0 and i <= 12:
-        i += 1
-
-    if (i == 12):
-        print("Cubic is reducible")
+    for i in range(-2, 2):
+        for j in range(-2, 2):
+            if i != 0 and j != 0 and cubic.subs({x: i, y: j, z: 1}) != 0 and \
+               hessian.subs({x: i, y: j, z: 1}) != 0:
+                print("I found point, that does not lie on both!")
+                flag = 1
+                break
         
+        if flag == 1:
+            break
+
+    if flag == 0:
+        print("Cubic and hessian coincide!")
    
-    point = (0, i, 1)
+    point = (i, j, 1)
     
     matrix = [
-        [1, 0, 0],
-        [0, 1, i],
-        [1, 0, 1],
+        [1, 0, i],
+        [0, 1, j],
+        [0, 0, 1],
     ]
-
+    matrix = Matrix(matrix).inv().tolist()
     
     a, b, c = symbols('a b c')
     (x1, y1, z1) = tuple(Matrix(matrix).inv() * Matrix([a, b, c]))
@@ -173,14 +183,28 @@ def intersection_points(cubic1, cubic2):
     a0 = cubic1.coeff(z**3)
     b0 = cubic2.coeff(z**3)
 
+    # TODO: Not sure if we need this
     # if a0 * b0 == 0:
     #     (cubic1, cubic2, trans) = fix_zero_leading_coefficients(cubic1, cubic2)
 
+    print("cubic1, after fix", cubic1)
+    print("cubic2, after fix", cubic2)
 
     t = symbols('t')
     res = resultant(cubic1, cubic2, z)
 
-    print("this is resultant", res)
+    print("This is resultant", res)
+
+    if res == 0:
+        print("Resultant is zero, I quit ...")
+        return []
+
+
+    degree = Poly(res).total_degree()
+
+    if degree < 9:
+        print("Resultant is degenerated")
+        # return 
     
     # Creating set and not array, because we don't care if roots are multiple 
     # or not and in fact don't want to have multiple roots
@@ -190,7 +214,7 @@ def intersection_points(cubic1, cubic2):
         solutions.add((1, 0))
 
 
-    res_t = Poly(collect(expand(res/y**9).subs(x/y, t), t), t)
+    res_t = Poly(collect(expand(res/y**degree).subs(x/y, t), t), t)
     
     # Reducing our polynom, so that our enumeration algorithm will not take 
     # forever to finish
@@ -211,7 +235,7 @@ def intersection_points(cubic1, cubic2):
     print(rational_sols)
 
     for sol in rational_sols:
-        solutions.add((sol, 1))
+        solutions.add((sol.numerator, sol.denominator))
 
 
     print(solutions)
@@ -270,8 +294,9 @@ def main():
     # cubic = "-x^3 - 3*x^2*z + y^2*z - 3*x*z^2"
 
     # cubic = "5 y^3 + z^2 x + y^2 x - 34 y^2 z"
-    # cubic = "(x - y) (y^2 - x^2 + z x)"
-    cubic = "(x - z) (x z - y^2) + z^2 y + z y x"
+    # cubic = "(x - y) (y^2 - x^2 + z x) - x^2 y"
+    cubic = "-x^3 + x*y^2 - y^3 + x^2*z - x*y*z"
+    # cubic = "(x - z) (x z - y^2)"
 
     # cubic = "x^3*z + x*y^2*z + x^2*z^2 + y^2*z^2"
     cubic = mathematica(cubic)
