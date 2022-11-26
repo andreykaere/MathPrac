@@ -69,8 +69,7 @@ def from_solution_to_rational_points(cubic1, cubic2, solution):
     yp = solution[1]
 
     cubic1 = cubic1.subs({x: xp, y: yp}).simplify().expand()
-    
-    print("ratoinal_z", Poly(cubic1).subs(z, t))
+
     rational_z = get_rational_roots(Poly(cubic1).subs(z, t))
 
     points = []
@@ -89,13 +88,8 @@ def fix_zero_leading_coefficients(cubic, hessian):
     i = 1 
 
     # Searching for point that does not lie on both cubics
-    while cubic.subs({x: 0, y: i, z: 1}) == 0 and \
-          hessian.subs({x: 0, y: i, z: 1}) == 0 and i <= 12:
+    while cubic.subs({x: 0, y: i, z: 1}) == 0 and hessian.subs({x: 0, y: i, z: 1}) == 0:
         i += 1
-
-    if (i == 12):
-        print("Cubic is reducible")
-        
    
     point = (0, i, 1)
     
@@ -121,6 +115,7 @@ def fix_zero_leading_coefficients(cubic, hessian):
 # Considering, that poly is polynomial of variable `t`
 def get_rational_roots(poly_t):
     t = symbols('t')
+    coeff_t = poly_t.all_coeffs()
     solutions = set()
 
     if poly_t.subs(t, 0) == 0:
@@ -131,15 +126,8 @@ def get_rational_roots(poly_t):
     while poly_t.subs(t, 0) == 0:
         poly_t = expand(poly_t / t)
 
-    coeff_t = Poly(poly_t).all_coeffs()
     last  = coeff_t[-1]
     first = coeff_t[0]
-
-    print(poly_t)
-    print(last, first)
-
-    if first == 0:
-        return list(solutions)
 
     # Function `divisors` gives us positive integer solutions, so we have to
     # consider negative possible ones ourselves
@@ -165,8 +153,8 @@ def intersection_points(cubic1, cubic2):
     a0 = cubic1.coeff(z**3)
     b0 = cubic2.coeff(z**3)
 
-    # if a0 * b0 == 0:
-    #     (cubic1, cubic2, trans) = fix_zero_leading_coefficients(cubic1, cubic2)
+    if a0 * b0 == 0:
+        (cubic1, cubic2, trans) = fix_zero_leading_coefficients(cubic1, cubic2)
 
     t = symbols('t')
     res = resultant(cubic1, cubic2, z)
@@ -187,24 +175,18 @@ def intersection_points(cubic1, cubic2):
     gcd = np.gcd.reduce(coeff_t)
     res_t = simplify(res_t / gcd).expand()
 
-    print(res_t)
-
     if res_t.subs(t, 0) == 0:
         solutions.add((0, 1))
         res_t = expand(res_t / t)
     
     rational_sols = get_rational_roots(Poly(res_t))
 
-    print(rational_sols)
-
     for sol in rational_sols:
         solutions.add((sol, 1))
-
-
-    print(solutions)
     
     points_all = []
 
+    
     for solution in list(solutions):
         (result, points) = from_solution_to_rational_points(cubic1, cubic2, solution)
         
@@ -256,7 +238,6 @@ def main():
     # cubic = "-x^3 - 3*x^2*z + y^2*z - 3*x*z^2"
 
     cubic = "5 y^3 + z^2 x + y^2 x - 34 y^2 z"
-    # cubic = "x^3*z + x*y^2*z + x^2*z^2 + y^2*z^2"
     cubic = mathematica(cubic)
     # cubic = cubic.subs(n, 4)
 

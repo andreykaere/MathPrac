@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.15.0 (TeX Live 2022)  (format=lualatex 2022.7.22)  25 NOV 2022 20:54
+This is LuaHBTeX, Version 1.15.0 (TeX Live 2022)  (format=lualatex 2022.7.22)  26 NOV 2022 15:46
  restricted system commands enabled.
  file:line:error style messages enabled.
 **presentation.tex
@@ -911,7 +911,59 @@ Package csquotes Info: Trying to load configuration file 'csquotes.cfg'...
 Package csquotes Info: ... configuration file loaded successfully.
  (/home/andrey/local/texlive/2022/texmf-dist/tex/latex/csquotes/csquotes.cfg
 File: csquotes.cfg 
-)) (/home/andrey/local/texlive/2022/texmf-dist/tex/latex/beamer/beamerthemeMadrid.sty (/home/andrey/local/texlive/2022/texmf-dist/tex/latex/beamer/beamercolorthemewhale.sty) (/home/andrey/local/texlive/2022/texmf-dist/tex/latex/beamer/beamercolorthemeorchid.sty) (/home/andrey/local/texlive/2022/texmf-dist/tex/latex/beamer/beamerinnerthemerounded.sty) (/home/andrey/local/texlive/2022/texmf-dist/tex/latex/beamer/beamerouterthemeinfolines.sty))
+)) (/home/andrey/local/texlive/2022/texmf-dist/tex/latex/beamer/beamerthemeMadrid.sty (/home/andrey/local/texlive/2022/texmf-dist/tex/latex/beamer/beamercolorthemewhale.sty) (/home/andrey/local/texlive/2022/texmf-dist/tex/latex/beamer/beamercolorthemeorchid.sty) (/home/andrey/local/texlive/2022/texmf-dist/tex/latex/beamer/beamerinnerthemerounded.sty) (/home/andrey/local/texlive/2022/texmf-dist/tex/latex/beamer/beamerouterthemeinfolines.sty)) (/home/andrey/local/texlive/2022/texmf-dist/tex/latex/animate/animate.sty
+Package: animate 2022/02/21 PDF & SVG animations from files and inline graphics
+ (/home/andrey/local/texlive/2022/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+Package: xkeyval 2022/06/16 v2.9 package option processing (HA)
+ (/home/andrey/local/texlive/2022/texmf-dist/tex/generic/xkeyval/xkeyval.tex (/home/andrey/local/texlive/2022/texmf-dist/tex/generic/xkeyval/xkvutils.tex
+\XKV@toks=\toks53
+\XKV@tempa@toks=\toks54
+)
+\XKV@depth=\count364
+File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
+)) (/home/andrey/local/texlive/2022/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2022/04/13 v1.1d Standard LaTeX ifthen package (DPC)
+) (/home/andrey/local/texlive/2022/texmf-dist/tex/latex/oberdiek/ifdraft.sty
+Package: ifdraft 2016/05/16 v1.4 Detect class options draft and final (HO)
+) (/home/andrey/local/texlive/2022/texmf-dist/tex/latex/zref/zref-abspage.sty
+Package: zref-abspage 2022-04-07 v2.34 Module abspage for zref (HO)
+ (/home/andrey/local/texlive/2022/texmf-dist/tex/latex/zref/zref-base.sty
+Package: zref-base 2022-04-07 v2.34 Module base for zref (HO)
+Package zref Info: New property list: main on input line 767.
+Package zref Info: New property: default on input line 768.
+Package zref Info: New property: page on input line 769.
+)
+\c@abspage=\count365
+Package zref Info: New property: abspage on input line 65.
+)
+(/home/andrey/local/texlive/2022/texmf-dist/tex/latex/media9/pdfbase.sty (/home/andrey/local/texlive/2022/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty
+Package: l3keys2e 2022-06-22 LaTeX2e option processing using LaTeX3 keys
+)
+Package: pdfbase 2022/03/18 v0.54 driver independent access to low-level PDF features
+\g_pbs_page_int=\count366
+\g_pbs_oc_int=\count367
+) (/home/andrey/local/texlive/2022/texmf-dist/tex/latex/ocgx2/ocgbase.sty
+Package: ocgbase 2022/04/01 v0.21 support package for ocgx2.sty
+\g_ocgbase_nd_int=\count368
+)
+\@anim@box=\box80
+\@anim@measbox=\box81
+\@anim@tmpdima=\dimen307
+\@anim@tmpdimb=\dimen308
+\@anim@num=\count369
+\@anim@curframe=\count370
+\@anim@curframe@zb=\count371
+\@anim@resizeflags=\count372
+\@anim@skipfram=\count373
+\@anim@mulframecnt=\count374
+\@anim@@tmlnfile=\read4
+\@anim@tmpcnt=\count375
+\c@@anim@ltxcnt=\count376
+\@anim@curlayer=\count377
+\@anim@lineno=\count378
+\@anim@curfield=\count379
+\@anim@@resizeflags=\count380
+)
 Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... found 'babel' package.
 Package csquotes Info: Adjusting default style.
@@ -980,17 +1032,17 @@ LaTeX Font Info:    ... okay on input line 62.
 
 (/home/andrey/local/texlive/2022/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count364
-\scratchdimen=\dimen307
-\scratchbox=\box80
-\nofMPsegments=\count365
-\nofMParguments=\count366
-\everyMPshowfont=\toks53
-\MPscratchCnt=\count367
-\MPscratchDim=\dimen308
-\MPnumerator=\count368
-\makeMPintoPDFobject=\count369
-\everyMPtoPDFconversion=\toks54
+\scratchcounter=\count381
+\scratchdimen=\dimen309
+\scratchbox=\box82
+\nofMPsegments=\count382
+\nofMParguments=\count383
+\everyMPshowfont=\toks55
+\MPscratchCnt=\count384
+\MPscratchDim=\dimen310
+\MPnumerator=\count385
+\makeMPintoPDFobject=\count386
+\everyMPtoPDFconversion=\toks56
 ) (/home/andrey/local/texlive/2022/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
@@ -1118,7 +1170,7 @@ LaTeX Info: Redefining \th on input line 62.
  (./presentation.nav) [1
 
 {/home/andrey/local/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-<../images/banana.jpg, id=57, 368.37625pt x 255.95625pt>
+<../images/banana.jpg, id=58, 368.37625pt x 255.95625pt>
 File: ../images/banana.jpg Graphic file (type jpg)
 <use ../images/banana.jpg>
 Package luatex.def Info: ../images/banana.jpg  used on input line 85.
@@ -1201,7 +1253,7 @@ Overfull \vbox (4.40297pt too high) detected at line 128
 ] [25
 
 ]
-<../images/add2.png, id=1322, 1927.2pt x 584.1825pt>
+<../images/add2.png, id=1347, 1927.2pt x 584.1825pt>
 File: ../images/add2.png Graphic file (type png)
 <use ../images/add2.png>
 Package luatex.def Info: ../images/add2.png  used on input line 380.
@@ -1239,7 +1291,55 @@ Package luatex.def Info: ../images/add2.png  used on input line 380.
 
 ] [34
 
-] [35
+]
+<../gifs/sum-3.png, id=1819, 578.16pt x 578.16pt>
+File: ../gifs/sum-3.png Graphic file (type png)
+<use ../gifs/sum-3.png>
+Package luatex.def Info: ../gifs/sum-3.png  used on input line 436.
+(luatex.def)             Requested size: 578.15858pt x 578.15858pt.
+<../gifs/sum-3.png> <a0,fr0> <a0,fr1>
+<../gifs/sum-5.png, id=1823, 578.16pt x 578.16pt>
+File: ../gifs/sum-5.png Graphic file (type png)
+<use ../gifs/sum-5.png>
+Package luatex.def Info: ../gifs/sum-5.png  used on input line 436.
+(luatex.def)             Requested size: 578.15858pt x 578.15858pt.
+<../gifs/sum-5.png> <a0,fr2> <a0,fr3>
+<../gifs/sum-7.png, id=1827, 578.16pt x 578.16pt>
+File: ../gifs/sum-7.png Graphic file (type png)
+<use ../gifs/sum-7.png>
+Package luatex.def Info: ../gifs/sum-7.png  used on input line 436.
+(luatex.def)             Requested size: 578.15858pt x 578.15858pt.
+<../gifs/sum-7.png> <a0,fr4> <a0,fr5>
+<../gifs/sum-9.png, id=1831, 578.16pt x 578.16pt>
+File: ../gifs/sum-9.png Graphic file (type png)
+<use ../gifs/sum-9.png>
+Package luatex.def Info: ../gifs/sum-9.png  used on input line 436.
+(luatex.def)             Requested size: 578.15858pt x 578.15858pt.
+<../gifs/sum-9.png> <a0,fr6> <a0,fr7>
+<../gifs/sum-11.png, id=1835, 578.16pt x 578.16pt>
+File: ../gifs/sum-11.png Graphic file (type png)
+<use ../gifs/sum-11.png>
+Package luatex.def Info: ../gifs/sum-11.png  used on input line 436.
+(luatex.def)             Requested size: 578.15858pt x 578.15858pt.
+<../gifs/sum-11.png> <a0,fr8> <a0,fr9>
+<../gifs/sum-13.png, id=1839, 578.16pt x 578.16pt>
+File: ../gifs/sum-13.png Graphic file (type png)
+<use ../gifs/sum-13.png>
+Package luatex.def Info: ../gifs/sum-13.png  used on input line 436.
+(luatex.def)             Requested size: 578.15858pt x 578.15858pt.
+<../gifs/sum-13.png> <a0,fr10> <a0,fr11>
+<../gifs/sum-15.png, id=1843, 578.16pt x 578.16pt>
+File: ../gifs/sum-15.png Graphic file (type png)
+<use ../gifs/sum-15.png>
+Package luatex.def Info: ../gifs/sum-15.png  used on input line 436.
+(luatex.def)             Requested size: 578.15858pt x 578.15858pt.
+<../gifs/sum-15.png> <a0,fr12> <a0,fr13>
+Overfull \vbox (10.22343pt too high) detected at line 436
+ []
+
+[35
+
+] [36
 
 ]
 \tf@nav=\write6
@@ -1257,19 +1357,19 @@ Package rerunfilecheck Info: File `presentation.out' has not changed.
 )
 
 Here is how much of LuaTeX's memory you used:
- 29399 strings out of 477474
+ 31155 strings out of 477474
  100000,1144653 words of node,token memory allocated
  55393 words of node memory still in use:
    1638 hlist, 6 vlist, 282 rule, 3 disc, 1 local_par, 1308 glue, 6 kern, 8 penalty, 23 glyph, 7064 attribute, 67 glue_spec, 3534 attribute_list, 4 write, 2192 pdf_literal, 116 pdf_colorstack nodes
-   avail lists: 1:1,2:1537,3:688,4:156,5:325,6:47,7:2533,8:73,9:532,10:17,11:426
- 48826 multiletter control sequences out of 65536+600000
+   avail lists: 1:1,2:1540,3:688,4:156,5:337,6:47,7:2545,8:122,9:550,10:17,11:426
+ 50320 multiletter control sequences out of 65536+600000
  103 fonts using 18654231 bytes
- 128i,14n,115p,415b,625s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 128i,14n,115p,415b,667s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </home/andrey/local/texlive/2022/texmf-dist/fonts/opentype/public/cm-unicode/cmunrm.otf></home/andrey/local/texlive/2022/texmf-dist/fonts/opentype/public/cm-unicode/cmunsi.otf></home/andrey/local/texlive/2022/texmf-dist/fonts/opentype/public/cm-unicode/cmunss.otf></home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on presentation.pdf (35 pages, 407471 bytes).
+Output written on presentation.pdf (36 pages, 741451 bytes).
 
-PDF statistics: 1866 PDF objects out of 2073 (max. 8388607)
- 1332 compressed objects within 14 object streams
- 71 named destinations out of 1000 (max. 131072)
- 4566 words of extra memory for PDF output out of 10000 (max. 100000000)
+PDF statistics: 1992 PDF objects out of 2073 (max. 8388607)
+ 1426 compressed objects within 15 object streams
+ 73 named destinations out of 1000 (max. 131072)
+ 4691 words of extra memory for PDF output out of 10000 (max. 100000000)
 

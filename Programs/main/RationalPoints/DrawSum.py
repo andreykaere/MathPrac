@@ -59,8 +59,8 @@ def DrawSum(a, b, xPoints = [], yPoints = []):
     else:
         m = (yp - yq)/ (xp - xq)
     yLine = m * (xL - xq) + yq
-    xLine1 = [xr]*60000
-    yLine1 = np.arange(-30000, 30000, 1)    
+    xLine1 = [xr]*100000
+    yLine1 = np.arange(-50000, 50000, 1)    
     plt.title('Sum of points')
 
     plt.plot(xL, yLine, linestyle = '-', linewidth = 1, color = 'y')

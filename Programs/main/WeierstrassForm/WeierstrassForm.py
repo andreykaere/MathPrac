@@ -331,9 +331,11 @@ def main():
     # cubic = "x^3 + y^3 + z^3 + (1 - n) (x^2 y + x^2 z + y^2 x + y^2 z + z^2 x + z^2 y) + (3 - 2 n) x y z"
     # cubic = "x^3 + y^3 + z^3 + 4 x y z"
     # cubic = "x^3 + y^2 z + z^3"
-    cubic = "x^3 + y^3 + z^3 + 3 x y z"
+    # cubic = "x^3 + y^3 + z^3 + 3 x y z"
     # cubic = "-x^3 - 3*x^2*z + y^2*z - 3*x*z^2 - z^3"
     cubic = mathematica(cubic)
+    
+    cubic = "(x + z) (y^2 + z^2)"
     # cubic = cubic.subs(n, 4)
 
     # print("hessian", infp.get_hessian(cubic))

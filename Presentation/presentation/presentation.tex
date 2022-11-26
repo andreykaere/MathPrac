@@ -57,7 +57,7 @@
 \setbeamertemplate{footline}{}
 \setbeamertemplate{footline}[frame number]{}
 % \setbeamertemplate{theorems}[numbered]
-
+\usepackage{animate}
 
 \begin{document}
     
@@ -382,14 +382,14 @@
 	\begin{frame}
 		\onslide<+->{
         \begin{theoremf}
-            Множество рациональных точек кубики \(E\mathbb(Q)\) в нормальной
+            Множество рациональных точек кубики \(E(\QQ)\) в нормальной
             форме Вейерштрасса образуют абелеву группу. 
         \end{theoremf}
         }
     
         \onslide<+->{
         \begin{theoremf}[Морде]
-            Группа \(E\mathbb(Q)\) конечно порождена.
+            Группа \(E(\QQ)\) конечно порождена.
         \end{theoremf}
         }
 		
@@ -420,11 +420,21 @@
 		\onslide<+->{
 		\begin{block}{}
 			Таким образом зная хотя бы одну точку \(P \notin \mathrm{Tor} \,
-            (E\mathbb(Q))\), можно явно найти бесконечно точек вида \(P, 2P,
-            ... nP\).
+            (E(\QQ))\), можно явно найти бесконечно точек вида \(P, 2P,
+            \ldots, nP\).
 		\end{block}
 		}
 	\end{frame}
+    
+    %{Сложение точек на эллиптической кривой}
+    \begin{frame}
+        \begin{center}
+            \vspace{-0.8cm} 
+            \animategraphics[loop, controls={play,stop},
+            width=9.5cm]{1}{../gifs/sum-}{3}{16}
+        \end{center}
+    \end{frame}
+
 
 	\begin{frame}
 		\onslide<+->{
