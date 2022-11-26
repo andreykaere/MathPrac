@@ -67,10 +67,18 @@ def from_solution_to_rational_points(cubic1, cubic2, solution):
     # x_, y_, z_ = symbols('n x y z')
     xp = solution[0]
     yp = solution[1]
-
-    cubic1 = cubic1.subs({x: xp, y: yp}).simplify().expand()
     
-    print("ratoinal_z", Poly(cubic1).subs(z, t))
+    print("cubic1 before point", cubic1)
+    cubic1 = cubic1.subs({x: xp, y: yp}).simplify().expand()
+
+    if cubic1 == 0:
+        print("maybe reducible?", cubic1, cubic2)
+        return (False, [])
+    
+    print("foo")
+    print("rational_z, cubic1:", cubic1)
+    print("rational_z, cubic1:", Poly(cubic1).subs(z, t))
+    print("bar")
     rational_z = get_rational_roots(Poly(cubic1).subs(z, t))
 
     points = []
@@ -130,16 +138,16 @@ def get_rational_roots(poly_t):
     # algorithm 
     while poly_t.subs(t, 0) == 0:
         poly_t = expand(poly_t / t)
+    
+    if poly_t.as_expr().is_constant():
+        print("poly_t is constant")
+        return list(solutions)
+
 
     coeff_t = Poly(poly_t).all_coeffs()
     last  = coeff_t[-1]
     first = coeff_t[0]
-
-    print(poly_t)
-    print(last, first)
-
-    if first == 0:
-        return list(solutions)
+    
 
     # Function `divisors` gives us positive integer solutions, so we have to
     # consider negative possible ones ourselves
@@ -165,11 +173,14 @@ def intersection_points(cubic1, cubic2):
     a0 = cubic1.coeff(z**3)
     b0 = cubic2.coeff(z**3)
 
-    if a0 * b0 == 0:
-        (cubic1, cubic2, trans) = fix_zero_leading_coefficients(cubic1, cubic2)
+    # if a0 * b0 == 0:
+    #     (cubic1, cubic2, trans) = fix_zero_leading_coefficients(cubic1, cubic2)
+
 
     t = symbols('t')
     res = resultant(cubic1, cubic2, z)
+
+    print("this is resultant", res)
     
     # Creating set and not array, because we don't care if roots are multiple 
     # or not and in fact don't want to have multiple roots
@@ -184,10 +195,12 @@ def intersection_points(cubic1, cubic2):
     # Reducing our polynom, so that our enumeration algorithm will not take 
     # forever to finish
     coeff_t = res_t.all_coeffs()
+
+    print(coeff_t)
     gcd = np.gcd.reduce(coeff_t)
     res_t = simplify(res_t / gcd).expand()
 
-    print(res_t)
+    print("this is res_t", res_t)
 
     if res_t.subs(t, 0) == 0:
         solutions.add((0, 1))
@@ -219,21 +232,22 @@ def find_inflection_points(cubic):
     n, x, y, z = symbols('n x y z')
     
     hessian = get_hessian(cubic)
+    if hessian == 0:
+        print("Fatal: Hessian is zero")
+        return (False, [])
     
-
     points = intersection_points(cubic, hessian)
-
     if points == []:
         print("Fatal: No rational inflection point exists on the cubic, can't proceed, aborting ...")
-        return []
+        return (False, [])
 
-    return points
+    return (True, points)
 
 
 def find_non_singular_inflection_point(cubic):
-    points = find_inflection_points(cubic)
+    (res, points) = find_inflection_points(cubic)
 
-    if points == []:
+    if not res:
         return (False, ())
 
     for point in points:
@@ -255,16 +269,20 @@ def main():
     # cubic = "-x^3 - 4*x^2*z + y^2*z - 5*x*z^2 + 2*y*z^2 - z^3"
     # cubic = "-x^3 - 3*x^2*z + y^2*z - 3*x*z^2"
 
-    cubic = "5 y^3 + z^2 x + y^2 x - 34 y^2 z"
+    # cubic = "5 y^3 + z^2 x + y^2 x - 34 y^2 z"
+    # cubic = "(x - y) (y^2 - x^2 + z x)"
+    cubic = "(x - z) (x z - y^2) + z^2 y + z y x"
+
     # cubic = "x^3*z + x*y^2*z + x^2*z^2 + y^2*z^2"
     cubic = mathematica(cubic)
     # cubic = cubic.subs(n, 4)
 
+    print("Hessian", get_hessian(cubic))
     # print(cubic)
     # print(get_hessian(cubic))
 
     print(find_non_singular_inflection_point(cubic))
-    print(cubic)
+    # print(cubic)
 
 
 
