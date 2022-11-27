@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.15.0 (TeX Live 2022)  (format=lualatex 2022.7.22)  26 NOV 2022 15:46
+This is LuaHBTeX, Version 1.15.0 (TeX Live 2022)  (format=lualatex 2022.7.22)  27 NOV 2022 12:52
  restricted system commands enabled.
  file:line:error style messages enabled.
 **presentation.tex
@@ -1252,36 +1252,36 @@ Overfull \vbox (4.40297pt too high) detected at line 128
 
 ] [25
 
+] [26
+
 ]
-<../images/add2.png, id=1347, 1927.2pt x 584.1825pt>
+<../images/add2.png, id=1425, 1927.2pt x 584.1825pt>
 File: ../images/add2.png Graphic file (type png)
 <use ../images/add2.png>
-Package luatex.def Info: ../images/add2.png  used on input line 380.
+Package luatex.def Info: ../images/add2.png  used on input line 392.
 (luatex.def)             Requested size: 284.52756pt x 86.24193pt.
- [26
+ [27
 
 <../images/add2.png>]
 File: ../images/add2.png Graphic file (type png)
 <use ../images/add2.png>
-Package luatex.def Info: ../images/add2.png  used on input line 380.
-(luatex.def)             Requested size: 284.52756pt x 86.24193pt.
- [27
-
-]
-File: ../images/add2.png Graphic file (type png)
-<use ../images/add2.png>
-Package luatex.def Info: ../images/add2.png  used on input line 380.
+Package luatex.def Info: ../images/add2.png  used on input line 392.
 (luatex.def)             Requested size: 284.52756pt x 86.24193pt.
  [28
 
 ]
 File: ../images/add2.png Graphic file (type png)
 <use ../images/add2.png>
-Package luatex.def Info: ../images/add2.png  used on input line 380.
+Package luatex.def Info: ../images/add2.png  used on input line 392.
 (luatex.def)             Requested size: 284.52756pt x 86.24193pt.
  [29
 
-] [30
+]
+File: ../images/add2.png Graphic file (type png)
+<use ../images/add2.png>
+Package luatex.def Info: ../images/add2.png  used on input line 392.
+(luatex.def)             Requested size: 284.52756pt x 86.24193pt.
+ [30
 
 ] [31
 
@@ -1291,55 +1291,57 @@ Package luatex.def Info: ../images/add2.png  used on input line 380.
 
 ] [34
 
+] [35
+
 ]
-<../gifs/sum-3.png, id=1819, 578.16pt x 578.16pt>
+<../gifs/sum-3.png, id=1898, 578.16pt x 578.16pt>
 File: ../gifs/sum-3.png Graphic file (type png)
 <use ../gifs/sum-3.png>
-Package luatex.def Info: ../gifs/sum-3.png  used on input line 436.
+Package luatex.def Info: ../gifs/sum-3.png  used on input line 448.
 (luatex.def)             Requested size: 578.15858pt x 578.15858pt.
 <../gifs/sum-3.png> <a0,fr0> <a0,fr1>
-<../gifs/sum-5.png, id=1823, 578.16pt x 578.16pt>
+<../gifs/sum-5.png, id=1902, 578.16pt x 578.16pt>
 File: ../gifs/sum-5.png Graphic file (type png)
 <use ../gifs/sum-5.png>
-Package luatex.def Info: ../gifs/sum-5.png  used on input line 436.
+Package luatex.def Info: ../gifs/sum-5.png  used on input line 448.
 (luatex.def)             Requested size: 578.15858pt x 578.15858pt.
 <../gifs/sum-5.png> <a0,fr2> <a0,fr3>
-<../gifs/sum-7.png, id=1827, 578.16pt x 578.16pt>
+<../gifs/sum-7.png, id=1906, 578.16pt x 578.16pt>
 File: ../gifs/sum-7.png Graphic file (type png)
 <use ../gifs/sum-7.png>
-Package luatex.def Info: ../gifs/sum-7.png  used on input line 436.
+Package luatex.def Info: ../gifs/sum-7.png  used on input line 448.
 (luatex.def)             Requested size: 578.15858pt x 578.15858pt.
 <../gifs/sum-7.png> <a0,fr4> <a0,fr5>
-<../gifs/sum-9.png, id=1831, 578.16pt x 578.16pt>
+<../gifs/sum-9.png, id=1910, 578.16pt x 578.16pt>
 File: ../gifs/sum-9.png Graphic file (type png)
 <use ../gifs/sum-9.png>
-Package luatex.def Info: ../gifs/sum-9.png  used on input line 436.
+Package luatex.def Info: ../gifs/sum-9.png  used on input line 448.
 (luatex.def)             Requested size: 578.15858pt x 578.15858pt.
 <../gifs/sum-9.png> <a0,fr6> <a0,fr7>
-<../gifs/sum-11.png, id=1835, 578.16pt x 578.16pt>
+<../gifs/sum-11.png, id=1914, 578.16pt x 578.16pt>
 File: ../gifs/sum-11.png Graphic file (type png)
 <use ../gifs/sum-11.png>
-Package luatex.def Info: ../gifs/sum-11.png  used on input line 436.
+Package luatex.def Info: ../gifs/sum-11.png  used on input line 448.
 (luatex.def)             Requested size: 578.15858pt x 578.15858pt.
 <../gifs/sum-11.png> <a0,fr8> <a0,fr9>
-<../gifs/sum-13.png, id=1839, 578.16pt x 578.16pt>
+<../gifs/sum-13.png, id=1918, 578.16pt x 578.16pt>
 File: ../gifs/sum-13.png Graphic file (type png)
 <use ../gifs/sum-13.png>
-Package luatex.def Info: ../gifs/sum-13.png  used on input line 436.
+Package luatex.def Info: ../gifs/sum-13.png  used on input line 448.
 (luatex.def)             Requested size: 578.15858pt x 578.15858pt.
 <../gifs/sum-13.png> <a0,fr10> <a0,fr11>
-<../gifs/sum-15.png, id=1843, 578.16pt x 578.16pt>
+<../gifs/sum-15.png, id=1922, 578.16pt x 578.16pt>
 File: ../gifs/sum-15.png Graphic file (type png)
 <use ../gifs/sum-15.png>
-Package luatex.def Info: ../gifs/sum-15.png  used on input line 436.
+Package luatex.def Info: ../gifs/sum-15.png  used on input line 448.
 (luatex.def)             Requested size: 578.15858pt x 578.15858pt.
 <../gifs/sum-15.png> <a0,fr12> <a0,fr13>
-Overfull \vbox (10.22343pt too high) detected at line 436
+Overfull \vbox (10.22343pt too high) detected at line 448
  []
 
-[35
+[36
 
-] [36
+] [37
 
 ]
 \tf@nav=\write6
@@ -1357,19 +1359,19 @@ Package rerunfilecheck Info: File `presentation.out' has not changed.
 )
 
 Here is how much of LuaTeX's memory you used:
- 31155 strings out of 477474
+ 31169 strings out of 477474
  100000,1144653 words of node,token memory allocated
- 55393 words of node memory still in use:
-   1638 hlist, 6 vlist, 282 rule, 3 disc, 1 local_par, 1308 glue, 6 kern, 8 penalty, 23 glyph, 7064 attribute, 67 glue_spec, 3534 attribute_list, 4 write, 2192 pdf_literal, 116 pdf_colorstack nodes
-   avail lists: 1:1,2:1540,3:688,4:156,5:337,6:47,7:2545,8:122,9:550,10:17,11:426
- 50320 multiletter control sequences out of 65536+600000
+ 58291 words of node memory still in use:
+   1725 hlist, 6 vlist, 297 rule, 3 disc, 1 local_par, 1377 glue, 6 kern, 8 penalty, 23 glyph, 7438 attribute, 67 glue_spec, 3721 attribute_list, 4 write, 2309 pdf_literal, 122 pdf_colorstack nodes
+   avail lists: 1:1,2:1540,3:688,4:156,5:337,6:47,7:2476,8:122,9:550,10:17,11:426
+ 50332 multiletter control sequences out of 65536+600000
  103 fonts using 18654231 bytes
  128i,14n,115p,415b,667s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </home/andrey/local/texlive/2022/texmf-dist/fonts/opentype/public/cm-unicode/cmunrm.otf></home/andrey/local/texlive/2022/texmf-dist/fonts/opentype/public/cm-unicode/cmunsi.otf></home/andrey/local/texlive/2022/texmf-dist/fonts/opentype/public/cm-unicode/cmunss.otf></home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></home/andrey/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on presentation.pdf (36 pages, 741451 bytes).
+Output written on presentation.pdf (37 pages, 752066 bytes).
 
-PDF statistics: 1992 PDF objects out of 2073 (max. 8388607)
- 1426 compressed objects within 15 object streams
- 73 named destinations out of 1000 (max. 131072)
- 4691 words of extra memory for PDF output out of 10000 (max. 100000000)
+PDF statistics: 2070 PDF objects out of 2073 (max. 8388607)
+ 1476 compressed objects within 15 object streams
+ 75 named destinations out of 1000 (max. 131072)
+ 4961 words of extra memory for PDF output out of 10000 (max. 100000000)
 

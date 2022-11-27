@@ -240,6 +240,13 @@
             точки (или удостоверении, что при данных \((x_0, y_0)\) её нет).
         \end{block}
         }
+
+        \onslide<+->{
+        \begin{block}{}
+            Этот шаг реализован в файле \textsf{InflectionPoints.py} в функции
+            \textsf{find\_non\_singular\_inflection\_point}.
+        \end{block}
+        }
     \end{frame}
 
     \begin{frame}
@@ -281,12 +288,6 @@
         \end{block}
         }
 
-        \onslide<+->{
-        \begin{block}{}
-            Этот шаг реализован в файле \textsf{WeierstrassForm.py} в функции
-            \textsf{weierstrass\_form\_step2}.
-        \end{block}
-        }
     \end{frame}
     
     \begin{frame}
@@ -344,6 +345,17 @@
             \left( z'' \right)^2 + b \left( z'' \right)^3
             .\] 
         \end{block}
+        }
+    
+        \onslide<+->{
+        \begin{remark*}
+            Отметим, что все коэффициенты в ходе алгоритма получались
+            целочисленными или рациональными (так как совершались только
+            целочисленные проективные преобразования). Соответственно, если
+            коэффициенты \(a, b\) оказались рациональными, мы их можем сделать
+            целыми с помощью замены \(x''' = \dfrac{1}{d} x'', z''' = \dfrac{1}{d^3}
+            z''\), где \(d\) -- наименьшее общее кратное знаменателей \(a, b\).
+        \end{remark*}
         }
     \end{frame}
 
