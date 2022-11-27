@@ -68,10 +68,10 @@ def from_solution_to_rational_points(cubic1, cubic2, solution):
     xp = solution[0]
     yp = solution[1]
    
-    print("point", (xp, yp))
-    print("cubic1 before point", cubic1)
+    # print("point", (xp, yp))
+    # print("cubic1 before point", cubic1)
     cubic1 = cubic1.subs({x: xp, y: yp}).simplify().expand()
-    print("cubic1 after point", cubic1)
+    # print("cubic1 after point", cubic1)
 
     if cubic1 == 0:
         return (True, [(xp, yp, 1)])
@@ -79,10 +79,10 @@ def from_solution_to_rational_points(cubic1, cubic2, solution):
     if cubic1.as_expr().is_constant():
         return (True, [])
     
-    print("foo")
-    print("rational_z, cubic1:", cubic1)
-    print("rational_z, cubic1:", Poly(cubic1).subs(z, t))
-    print("bar")
+    # print("foo")
+    # print("rational_z, cubic1:", cubic1)
+    # print("rational_z, cubic1:", Poly(cubic1).subs(z, t))
+    # print("bar")
     rational_z = get_rational_roots(Poly(cubic1).subs(z, t))
 
     points = []
@@ -150,7 +150,7 @@ def get_rational_roots(poly_t):
         poly_t = expand(poly_t / t)
     
     if poly_t.as_expr().is_constant():
-        print("poly_t is constant")
+        # print("poly_t is constant")
         return list(solutions)
 
 
@@ -187,23 +187,23 @@ def intersection_points(cubic1, cubic2):
     # if a0 * b0 == 0:
     #     (cubic1, cubic2, trans) = fix_zero_leading_coefficients(cubic1, cubic2)
 
-    print("cubic1, after fix", cubic1)
-    print("cubic2, after fix", cubic2)
+    # print("cubic1, after fix", cubic1)
+    # print("cubic2, after fix", cubic2)
 
     t = symbols('t')
     res = resultant(cubic1, cubic2, z)
 
-    print("This is resultant", res)
+    # print("This is resultant", res)
 
     if res == 0:
-        print("Resultant is zero, I quit ...")
-        return []
+        print("Resultant is zero, cubic is reducible, can't proceed ...")
+        return (False, [])
 
 
     degree = Poly(res).total_degree()
 
     if degree < 9:
-        print("Resultant is degenerated")
+        print("WARNING: Resultant is degenerated")
         # return 
     
     # Creating set and not array, because we don't care if roots are multiple 
@@ -220,11 +220,11 @@ def intersection_points(cubic1, cubic2):
     # forever to finish
     coeff_t = res_t.all_coeffs()
 
-    print(coeff_t)
+    # print(coeff_t)
+    # print("this is res_t", res_t)
     gcd = np.gcd.reduce(coeff_t)
     res_t = simplify(res_t / gcd).expand()
 
-    print("this is res_t", res_t)
 
     if res_t.subs(t, 0) == 0:
         solutions.add((0, 1))
@@ -232,13 +232,13 @@ def intersection_points(cubic1, cubic2):
     
     rational_sols = get_rational_roots(Poly(res_t))
 
-    print(rational_sols)
+    # print(rational_sols)
 
     for sol in rational_sols:
         solutions.add((sol.numerator, sol.denominator))
 
 
-    print(solutions)
+    # print(solutions)
     
     points_all = []
 
@@ -249,7 +249,7 @@ def intersection_points(cubic1, cubic2):
             for point in points:
                 points_all += [tuple(Matrix(trans).inv() * Matrix(list(point)))]
 
-    return points_all
+    return (True, points_all)
    
 
 def find_inflection_points(cubic):
@@ -260,7 +260,11 @@ def find_inflection_points(cubic):
         print("Fatal: Hessian is zero")
         return (False, [])
     
-    points = intersection_points(cubic, hessian)
+    (res, points) = intersection_points(cubic, hessian)
+    
+    if not res:
+        return (False, [])
+    
     if points == []:
         print("Fatal: No rational inflection point exists on the cubic, can't proceed, aborting ...")
         return (False, [])
@@ -295,6 +299,7 @@ def main():
 
     # cubic = "5 y^3 + z^2 x + y^2 x - 34 y^2 z"
     # cubic = "(x - y) (y^2 - x^2 + z x) - x^2 y"
+    cubic = "(x - y) (y^2 - x^2 + z x) - x^2 y"
     cubic = "-x^3 + x*y^2 - y^3 + x^2*z - x*y*z"
     # cubic = "(x - z) (x z - y^2)"
 
