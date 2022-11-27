@@ -439,24 +439,126 @@
 	\end{frame}
     
     %{Сложение точек на эллиптической кривой}
+    %\begin{frame}
+     %   \begin{center}
+      %      \vspace{-0.8cm} 
+       %     \animategraphics[loop, controls={play,stop},
+        %    width=9.5cm]{1}{../gifs/sum-}{3}{16}
+        %\end{center}
+    %\end{frame}
+    
+    
     \begin{frame}
-        \begin{center}
-            \vspace{-0.8cm} 
-            \animategraphics[loop, controls={play,stop},
-            width=9.5cm]{1}{../gifs/sum-}{3}{16}
-        \end{center}
-    \end{frame}
+    		\onslide<+->{
+    		\begin{block}{Наглядное умножение на скаляр в исходной задаче}
+    			\begin{figure}[H]
+    			
+    				\includegraphics[width = 5cm]{../images/sum1.png}
+    				\includegraphics[width = 5cm]{../images/sum2.png}
+    			\end{figure}
+    	 	\end{block}
 
+    	}
+	\end{frame}
+	
+	\begin{frame}
+		\onslide<+->{
+			\begin{block}{Наглядное умножение на скаляр в исходной задаче}
+				\begin{figure}[H]
+					
+					\includegraphics[width = 5cm]{../images/sum3.png}
+					\includegraphics[width = 5cm]{../images/sum4.png}
+				\end{figure}
+			\end{block}
+			
+		}
+	\end{frame}
+	
+	\begin{frame}
+		\onslide<+->{
+			\begin{block}{Финальная картинка}
+				\begin{figure}[H]
+					
+					\includegraphics[width = 9cm]{../images/sum6.png}
+		
+				\end{figure}
+			\end{block}
+			
+		}
+	\end{frame}
+	
+	
+	\begin{frame}
+		\onslide<+->{
+			\begin{block}{}
+				Теперь у нас все готово для решения первоначальной задачи.
+				Дадим краткое описания алгоритма, который был реализован.
+			\end{block}
+			\begin{block}{Алгоритм. Шаг 1.}
+				Программа приводит кубику
+				 \[
+				x^3 + y^3 + z^3 + (1 - N) (x^2 y + y^2 x + x^2 z + z^2 x + y^2 z + z^2 y)
+				+ (3 - 2 N) x y z = 0 \qquad (*)
+				.\]  
+				к нормальной форме Вейештрасса. То есть находит коэффициенты a, b
+				и прямое и обратное преобразование.
+				
+			\end{block}
+		
+					\begin{block}{Замечание}
+					Хоть для кубик вида $(*)$ известны явные формолы для коэффициентов $a, b$, а так же для преобразования в терминах $N$, программа проделывает это вычисления отдельно. Это позволяет применить этот алгоритм почти для произвольной кубики. 
+				
+					\end{block}
+		
+		
+			
+		}
+	\end{frame}
 
 	\begin{frame}
 		\onslide<+->{
- 		тут слайд с картинками 
+			\begin{block}{Алгоритм. Шаг 2.}
+				На кубике находится произвольная рациональная точка \(P \notin \mathrm{Tor} \, (E(\QQ)) \). Это выполняется простым перебором числа $x = \frac{p}{q}$ где $p, q$ ищутся в определенных пределах.
 		
+			\end{block}
 		
-		}
+			\begin{block}{Алгоритм. Шаг 3.}
+				Далее найденная точка умножается на себя $n$ раз. Именно поэтому важно, чтобы исходная точка не являлась точкой кручения.
+				
+			\end{block}
+		
+			\begin{block}{Алгоритм. Шаг 4.}
+				Находятся координаты точек в изначальной системе. Отбираются точки у которых все координаты одного знака. 
+			
+			
+			\end{block}
+		
 	
+	}	
 	\end{frame}
+
+	\begin{frame}
+		\onslide<+->{
+
+			\begin{block}{Алгоритм. Итог}
+				В случае исходной задачи
+	            \[
+				\frac{x}{y + z}  + \frac{y}{x + z} + \frac{z}{x + y} = 4,
+				\qquad x, y, z \in \NN
+				.\]
+				При удачном выборе  $P$, точка  $9P$ будет соответсвовать решению уравнения. В котором будет порядка 80 цифр.
+
+		
+			\end{block}
+		
+		
+			}
+		\end{frame}
 	
+
+	
+	
+
 
 
 
