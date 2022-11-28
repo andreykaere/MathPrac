@@ -299,9 +299,12 @@ def main():
 
     # cubic = "5 y^3 + z^2 x + y^2 x - 34 y^2 z"
     # cubic = "(x - y) (y^2 - x^2 + z x) - x^2 y"
-    cubic = "(x - y) (y^2 - x^2 + z x) - x^2 y"
-    cubic = "-x^3 + x*y^2 - y^3 + x^2*z - x*y*z"
+    # cubic = "(x - y) (y^2 - x^2 + z x) - x^2 y"
+    # cubic = "-x^3 + x*y^2 - y^3 + x^2*z - x*y*z"
     # cubic = "(x - z) (x z - y^2)"
+
+    cubic = "y z^2 + 2 z^3 - (x - z)^3 - 3 (x - z)^2 z"
+    # cubic = "-x^3 + 6*x^2*z - 9*x*z^2 + y*z^2 + 6*z^3"
 
     # cubic = "x^3*z + x*y^2*z + x^2*z^2 + y^2*z^2"
     cubic = mathematica(cubic)

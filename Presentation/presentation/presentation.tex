@@ -13,6 +13,7 @@
 \setmonofont{CMU Typewriter Text}
 
 \usepackage{amsmath, amssymb, amsthm, mathtools, thmtools, mathdots}
+\usepackage{subcaption}
 
 \newcommand\NN{\ensuremath{\mathbb{N}}}
 \newcommand\RR{\ensuremath{\mathbb{R}}}
@@ -47,6 +48,20 @@
 \BODY
 \end{array}\right)
 }
+
+% figure support
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+
+\newcommand{\incfig}[2][1]{%
+    \def\svgwidth{#1\columnwidth}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+
+
 \usetheme{Madrid}
 % \title{Необычная задача кубического представления}
 % \author{Алексей Кислицын, Всеволод Триль, Андрей Владимиров}
@@ -147,6 +162,7 @@
         }
 
         <здесь будет продолжение про квадрику> 
+        <картинка с секущими диофанта>
     \end{frame}
 	
 	
@@ -247,6 +263,55 @@
         }
 
     \end{frame}
+    
+    \begin{frame}
+        \onslide<+->{
+        \begin{block}{Пример}
+            \begin{figure}[H]
+                \centering
+                \includegraphics[width = 6cm]{../images/inflection_point_example/inflection_point_ex.png}
+                \caption*{уравнение кубики \(y = x^3 - 3 x\), уравнение
+                касательной  \(y = -3x\); \\
+                точка \((0, 0)\) особая}
+            \end{figure}
+        \end{block}
+        }
+        
+    \end{frame}
+
+
+    \begin{frame}
+
+        \onslide<+->{
+        \begin{definitionf}
+            Точка \(P_0\) кубики \(F(x^{1}, x^{2}, x^{3}) = 0\) называется
+            \textit{особой}, если 
+            \[
+            \frac{\partial F}{\partial x^{1}}(P_0) = \frac{\partial
+            F}{\partial x^{2}}(P_0) = \frac{\partial F}{\partial x^{3}}(P_0) = 0
+            .\] 
+            
+        \end{definitionf}
+        }
+
+        \onslide<+->{
+        \begin{block}{Примеры}
+            \begin{figure}
+                \centering
+                \begin{subfigure}[b]{0.35\textwidth}
+                    \includegraphics[width = \textwidth]{../images/singular_examples/ex1.png}
+                    \caption{\(y^2 = x^3\)}
+                \end{subfigure}
+                \begin{subfigure}[b]{0.35\textwidth}
+                    \includegraphics[width = \textwidth]{../images/singular_examples/ex2.png}
+                    \caption{\(y^2 = x^3 - 3 x + 2\)}
+                \end{subfigure}
+            \end{figure}
+        \end{block}
+        }
+
+
+    \end{frame}
 
     \begin{frame}
         \onslide<+->{
@@ -336,7 +401,21 @@
             нашей кубикой имеет порядок 3, таким образом нет монома \(x^2 y\). 
         \end{block}
         }
+    \end{frame}
 
+    \begin{frame}
+        \onslide<+->{
+            \begin{block}{}
+                Схематично это себе можно представлять так:
+
+                \begin{figure}[H]
+                    \centering
+                    \incfig[.5]{step2_weierstrass}
+                    %\caption{}
+                    %\label{fig:step2_weierstrass}
+                \end{figure}
+            \end{block}
+        }
     \end{frame}
     
     \begin{frame}
@@ -410,6 +489,28 @@
 
     \begin{frame}
 		\onslide<+->{
+        \begin{block}{Примеры кубик в нормальной форме Вейерштрасса}
+            \begin{figure}
+                \centering
+                \begin{subfigure}[b]{0.3\textwidth}
+                    \includegraphics[width = \textwidth]{../images/elliptic_curves_examples/ex1.png}
+                    \caption{\(y^2 = x^3 - 3x + 1\)}
+                \end{subfigure}
+                \begin{subfigure}[b]{0.3\textwidth}
+                    \includegraphics[width = \textwidth]{../images/elliptic_curves_examples/ex2.png}
+                    \caption{\(y^2 = x^3 + 2x\)}
+                \end{subfigure}
+                \begin{subfigure}[b]{0.3\textwidth}
+                    \includegraphics[width = \textwidth]{../images/elliptic_curves_examples/ex3.png}
+                    \caption{\(y^2 = x^3 - x + 1\)}
+                \end{subfigure}
+            \end{figure}
+        \end{block}
+        }
+    \end{frame}
+
+    \begin{frame}
+		\onslide<+->{
         \begin{block}{}
             Опишем рациональные точки на кубике в форме Вейерштрасса.
             Пусть нам известно несколько точек, можно ли по ним как в
@@ -426,8 +527,7 @@
 
 		\onslide<+->{
         \begin{figure}[H]
-
-        \includegraphics[width = 10cm]{../images/add2.png}
+            \includegraphics[width = 10cm]{../images/sum_of_points/add2.png}
         \end{figure}
         }
 
@@ -501,8 +601,8 @@
         \onslide<+->{
         \begin{block}{Наглядное умножение на скаляр в исходной задаче}
             \begin{figure}[H]
-                \includegraphics[width = 5cm]{../images/sum1.png}
-                \includegraphics[width = 5cm]{../images/sum2.png}
+                \includegraphics[width = 5cm]{../images/sum_of_points/sum1.png}
+                \includegraphics[width = 5cm]{../images/sum_of_points/sum2.png}
             \end{figure}
         \end{block}
         }
@@ -512,8 +612,8 @@
 		\onslide<+->{
         \begin{block}{Наглядное умножение на скаляр в исходной задаче}
             \begin{figure}[H]
-                \includegraphics[width = 5cm]{../images/sum3.png}
-                \includegraphics[width = 5cm]{../images/sum4.png}
+                \includegraphics[width = 5cm]{../images/sum_of_points/sum3.png}
+                \includegraphics[width = 5cm]{../images/sum_of_points/sum4.png}
             \end{figure}
         \end{block}
 			
@@ -524,7 +624,7 @@
 		\onslide<+->{
         \begin{block}{Финальная картинка}
             \begin{figure}[H]
-                \includegraphics[width = 9cm]{../images/sum6.png}
+                \includegraphics[width = 9cm]{../images/sum_of_points/sum6.png}
             \end{figure}
         \end{block}
 		}
