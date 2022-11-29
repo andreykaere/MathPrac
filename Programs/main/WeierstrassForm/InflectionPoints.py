@@ -303,6 +303,16 @@ def main():
     # cubic = "-x^3 + x*y^2 - y^3 + x^2*z - x*y*z"
     # cubic = "(x - z) (x z - y^2)"
 
+    cubic1 = "5 y^3 + z^2 x + y^2 x - 34 y^2 z"
+    cubic2 = "5 y^3 +  34 y^2 z + x^3 - x^2 z + z^3"
+    cubic1 = mathematica(cubic1)
+    cubic2 = mathematica(cubic2)
+
+    print(intersection_points(cubic1, cubic2))
+
+    return
+
+
     cubic = "y z^2 + 2 z^3 - (x - z)^3 - 3 (x - z)^2 z"
     # cubic = "-x^3 + 6*x^2*z - 9*x*z^2 + y*z^2 + 6*z^3"
 
