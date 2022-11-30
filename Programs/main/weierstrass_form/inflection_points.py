@@ -1,10 +1,8 @@
 #!/usr/bin/python3
 
 from sympy import *
-# from sympy.parsing.sympy_parser import parse_expr
 from sympy.parsing.mathematica import mathematica
 from sympy.ntheory import factorint
-# from sympy.ntheory import primefactors
 
 from fractions import Fraction
 import numpy as np
@@ -207,7 +205,7 @@ def intersection_points(cubic1, cubic2):
 
     if degree < 9:
         print("WARNING: Resultant is degenerated")
-        print("Resulant:", res)
+        # print("Resulant:", res)
         # return 
     
     # Creating set and not array, because we don't care if roots are multiple 
@@ -280,8 +278,6 @@ def find_inflection_points(cubic):
 def find_non_singular_inflection_point(cubic):
     (res, points) = find_inflection_points(cubic)
 
-    print(points)
-
     if not res:
         return (False, ())
 
@@ -295,38 +291,21 @@ def find_non_singular_inflection_point(cubic):
 
 
 def main():
+    print("""Enter your cubic's equation in homogenious coordinates x, y, z:
+    For example: x^3 + y^3 + z^3 + 3 x y z
+    """)
+
     n, x, y, z = symbols('n x y z')
 
-    # cubic = "x^3 + y^3 + z^3 + (1 - n) (x^2 y + x^2 z + y^2 x + y^2 z + z^2 x + z^2 y) + (3 - 2 n) x y z"
-    # cubic = "y^2 z - x^3 - x^2 z"
-    # cubic = "-x^3 - x^2*z + y^2*z + 2*y*z^2 + z^3"
-    # cubic = "-x^3 - 4*x^2*z + y^2*z - 5*x*z^2 - 2*z^3"
-    # cubic = "-x^3 - 4*x^2*z + y^2*z - 5*x*z^2 + 2*y*z^2 - z^3"
-    # cubic = "-x^3 - 3*x^2*z + y^2*z - 3*x*z^2"
-
-    # cubic = "5 y^3 + z^2 x + y^2 x - 34 y^2 z"
-    # cubic = "(x - y) (y^2 - x^2 + z x) - x^2 y"
-    # cubic = "(x - y) (y^2 - x^2 + z x) - x^2 y"
-    cubic = "x^3 - y^2 z"
-
-    # cubic = "-x^3 + x*y^2 - y^3 + x^2*z - x*y*z"
-    # cubic = "(x - z) (x z - y^2)"
-
-
-
-    # cubic = "5 y^3 + z^2 x + y^2 x - 34 y^2 z"
-    # cubic = "5 y^3 + z^2 x + y^2 x - 34 y^2 z"
-    
-    # cubic = "(x - z) (x z - y^2)"
-
-    # cubic = "(z + y) (3 x - y) (x + 3 z)"
-
-
+    cubic = input()
     cubic = mathematica(cubic)
 
-    print("hessian", get_hessian(cubic))
-    # cubic = cubic.subs(n, 4)
-    print(find_non_singular_inflection_point(cubic))
+    (res, point) = find_non_singular_inflection_point(cubic)
+
+    if res:
+        print("Rational inflection point is:", point)
+    else:
+        print("There is no rational infleciton point on the cubic")
 
 
 
