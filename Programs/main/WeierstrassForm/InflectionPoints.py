@@ -207,6 +207,7 @@ def intersection_points(cubic1, cubic2):
 
     if degree < 9:
         print("WARNING: Resultant is degenerated")
+        print("Resulant:", res)
         # return 
     
     # Creating set and not array, because we don't care if roots are multiple 
@@ -232,13 +233,14 @@ def intersection_points(cubic1, cubic2):
     if res_t.subs(t, 0) == 0:
         solutions.add((0, 1))
         res_t = expand(res_t / t)
-    
-    rational_sols = get_rational_roots(Poly(res_t))
 
-    # print(rational_sols)
 
-    for sol in rational_sols:
-        solutions.add((sol.numerator, sol.denominator))
+    # If there are some other roots, besides 0
+    if not res_t.as_expr().is_constant():
+        rational_sols = get_rational_roots(Poly(res_t))
+
+        for sol in rational_sols:
+            solutions.add((sol.numerator, sol.denominator))
 
 
     # print(solutions)
@@ -278,6 +280,8 @@ def find_inflection_points(cubic):
 def find_non_singular_inflection_point(cubic):
     (res, points) = find_inflection_points(cubic)
 
+    print(points)
+
     if not res:
         return (False, ())
 
@@ -303,50 +307,28 @@ def main():
     # cubic = "5 y^3 + z^2 x + y^2 x - 34 y^2 z"
     # cubic = "(x - y) (y^2 - x^2 + z x) - x^2 y"
     # cubic = "(x - y) (y^2 - x^2 + z x) - x^2 y"
+    cubic = "x^3 - y^2 z"
+
     # cubic = "-x^3 + x*y^2 - y^3 + x^2*z - x*y*z"
     # cubic = "(x - z) (x z - y^2)"
 
-    # cubic1 = "5 y^3 + z^2 x + y^2 x - 34 y^2 z"
-    # cubic2 = "y z^2 + 2 z^3 - (x - z)^3 - 3 (x - z)^2 z"
-    # cubic1 = mathematica(cubic1)
-    # cubic2 = mathematica(cubic2)
 
-    # print(intersection_points(cubic1, cubic2))
-    # print(intersection_points(cubic2, cubic1))
-
-    # return
 
     # cubic = "5 y^3 + z^2 x + y^2 x - 34 y^2 z"
     # cubic = "5 y^3 + z^2 x + y^2 x - 34 y^2 z"
     
-    cubic = "(x - z) (x z - y^2)"
+    # cubic = "(x - z) (x z - y^2)"
 
     # cubic = "(z + y) (3 x - y) (x + 3 z)"
 
-    
 
-
-    # cubic = "y z^2 + 2 z^3 - (x - z)^3 - 3 (x - z)^2 z"
-    # cubic = "-x^3 + 6*x^2*z - 9*x*z^2 + y*z^2 + 6*z^3"
-
-    # cubic = "x^3*z + x*y^2*z + x^2*z^2 + y^2*z^2"
     cubic = mathematica(cubic)
-    
-    print(cubic.as_expr().expand())
+
+    print("hessian", get_hessian(cubic))
     # cubic = cubic.subs(n, 4)
-
-    print("Hessian", get_hessian(cubic))
-
-    print(resultant(cubic, get_hessian(cubic), z))
-
-    # print(intersection_points(cubic, get_hessian(cubic)))
-    # print(cubic)
-    # print(get_hessian(cubic))
-
-    # print(find_non_singular_inflection_point(cubic))
+    print(find_non_singular_inflection_point(cubic))
 
 
-    # print(cubic)
 
 
 
