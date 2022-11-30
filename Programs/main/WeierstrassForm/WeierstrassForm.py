@@ -319,48 +319,47 @@ def weierstrass_form(cubic):
     return (True, ((a, b), trans))
 
 
+def print_form(form):
+    ((a, b), trans) = form
+
+    a_str = ""
+    b_str = ""
+
+    if b < 0:
+        b_str = " - {} z^3".format(-b)
+    
+    if b > 0:
+        b_str = " + {} z^3".format(b)
+    
+    if a < 0:
+        a_str = " - {} x z^2".format(-a)
+
+    if a > 0:
+        a_str = " + {} x z^2".format(a)
+
+
+    print("""Cubic equation in Weierstrass form:\n
+        y^2 z = x^3{}{}
+    """.format(a_str, b_str))
+
+    print("""Corresponding transformation matrix:\n """)
+
+    pprint(Matrix(trans))
+
+    print("\n")
+    
+
 def main():
-    # print("""Enter your cubic's equation in homogenious coordinates x, y, z:
-    # For example: x^3 + y^3 + z^3 + 3 x y z
-    # """)
-
-    # cubic = input()
-    n, x, y, z = symbols('n x y z')
-    # cubic = "5 y^3 + z^2 x + y^2 x - 34 y^2 z"
-
-    cubic = "x^3 + y^3 + z^3 + (1 - n) (x^2 y + x^2 z + y^2 x + y^2 z + z^2 x + z^2 y) + (3 - 2 n) x y z"
-    # cubic = "x^3 + y^3 + z^3 + 4 x y z"
-    # cubic = "x^3 + y^2 z + z^3"
-    # cubic = "x^3 + y^3 + z^3 + 3 x y z"
-    # cubic = "-x^3 - 3*x^2*z + y^2*z - 3*x*z^2 - z^3"
-    # cubic = "(x - z) (y^2 z + x^2 z + z^3)"
-    # cubic = "(x - z) (y^2 + x^2 - z^2)"
-    # cubic = "(x - y) (y^2 + x^2)"
-    # cubic = "x^3 + y^3 + 3 x y z"
-    # cubic = "5 y^3 + z^2 x + y^2 x - 34 y^2 z"
-    # cubic = "(x - y) (y^2 - x^2 + z x) - x^2 y"
-    # cubic = "-x^3 + x*y^2 - y^3 + x^2*z - x*y*z"
-    # cubic = "(x - z) (x z - y^2)"
-
-    # cubic = "x^3*z + x*y^2*z + x^2*z^2 + y^2*z^2"
+    print("""Enter your cubic's equation in homogenious coordinates x, y, z:
+    For example: x^3 + y^3 + z^3 + 3 x y z
+    """)
+    cubic = input()
     cubic = mathematica(cubic)
-    cubic = cubic.subs(n, 4)
-
-    # print("hessian", infp.get_hessian(cubic))
 
     (res, form) = weierstrass_form(cubic)
-
+    
     if res:
-        print(form)
-
-    # print(weierstrass_form_step1(cubic, (-1, 1, 0)))
-    # (trans1, cubic) = weierstrass_form_step1(cubic, (-1, 1, 0))
-    # print(trans1, cubic)
-    # (trans2, cubic) = weierstrass_form_step2(cubic)
-    # (trans3, cubic) = weierstrass_form_step3(cubic)
-    # print(trans3, cubic)
-    # print(cubic)
-    # print(weierstrass_form_step3(cubic))
+        print_form(form)
 
 
 if __name__ == '__main__':
