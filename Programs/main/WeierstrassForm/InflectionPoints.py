@@ -207,6 +207,7 @@ def intersection_points(cubic1, cubic2):
 
     if degree < 9:
         print("WARNING: Resultant is degenerated")
+        print("Resulant:", res)
         # return 
     
     # Creating set and not array, because we don't care if roots are multiple 
@@ -232,13 +233,14 @@ def intersection_points(cubic1, cubic2):
     if res_t.subs(t, 0) == 0:
         solutions.add((0, 1))
         res_t = expand(res_t / t)
-    
-    rational_sols = get_rational_roots(Poly(res_t))
 
-    # print(rational_sols)
 
-    for sol in rational_sols:
-        solutions.add((sol.numerator, sol.denominator))
+    # If there are some other roots, besides 0
+    if not res_t.as_expr().is_constant():
+        rational_sols = get_rational_roots(Poly(res_t))
+
+        for sol in rational_sols:
+            solutions.add((sol.numerator, sol.denominator))
 
 
     # print(solutions)
@@ -295,7 +297,7 @@ def find_non_singular_inflection_point(cubic):
 def main():
     n, x, y, z = symbols('n x y z')
 
-    cubic = "x^3 + y^3 + z^3 + (1 - n) (x^2 y + x^2 z + y^2 x + y^2 z + z^2 x + z^2 y) + (3 - 2 n) x y z"
+    # cubic = "x^3 + y^3 + z^3 + (1 - n) (x^2 y + x^2 z + y^2 x + y^2 z + z^2 x + z^2 y) + (3 - 2 n) x y z"
     # cubic = "y^2 z - x^3 - x^2 z"
     # cubic = "-x^3 - x^2*z + y^2*z + 2*y*z^2 + z^3"
     # cubic = "-x^3 - 4*x^2*z + y^2*z - 5*x*z^2 - 2*z^3"
@@ -305,6 +307,8 @@ def main():
     # cubic = "5 y^3 + z^2 x + y^2 x - 34 y^2 z"
     # cubic = "(x - y) (y^2 - x^2 + z x) - x^2 y"
     # cubic = "(x - y) (y^2 - x^2 + z x) - x^2 y"
+    cubic = "x^3 - y^2 z"
+
     # cubic = "-x^3 + x*y^2 - y^3 + x^2*z - x*y*z"
     # cubic = "(x - z) (x z - y^2)"
 
@@ -319,7 +323,9 @@ def main():
 
 
     cubic = mathematica(cubic)
-    cubic = cubic.subs(n, 4)
+
+    print("hessian", get_hessian(cubic))
+    # cubic = cubic.subs(n, 4)
     print(find_non_singular_inflection_point(cubic))
 
 
