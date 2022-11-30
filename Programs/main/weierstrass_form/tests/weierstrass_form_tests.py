@@ -66,9 +66,6 @@ def test8():
     cubic = "(z + y) (3 x - y) (x + 3 z)"
     return cubic
 
-def test9():
-    cubic = 
-
 
 def main():
     n, x, y, z = symbols('n x y z')

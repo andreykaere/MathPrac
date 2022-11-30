@@ -7,13 +7,6 @@ from sympy.ntheory import factorint
 from fractions import Fraction
 import numpy as np
 
-# import importlib
-# from weierstrass_form.inflection_points import find_non_singular_inflection_point
-# from inflection_points import find_non_singular_inflection_point
-# importlib.import_module('inflection_points')
-# importlib.import_module('weierstrass_form.inflection_points')
-# from weierstrass_form.inflection_points import find_non_singular_inflection_point
-
 try:
     from inflection_points import find_non_singular_inflection_point
 except ModuleNotFoundError:
@@ -112,21 +105,15 @@ def weierstrass_form_step2(cubic):
     p = diff(cubic, x).subs({x: 0, y: 1, z: 0})
     q = diff(cubic, z).subs({x: 0, y: 1, z: 0})
 
-
-    # print(p)
-    # print(q)
-
     if p == 0 and q == 0:
         print("SOMETHING IS WRONG OR UNHANDLED CASE: p == 0 and q == 0")
 
-    
     if p != 0:
         matrix = [
             [-q/p, 0, -q/p - 1],
             [1, 1, 1],
             [1, 0, 1],
         ]
-
 
     elif q != 0:
         matrix = [
@@ -135,10 +122,6 @@ def weierstrass_form_step2(cubic):
             [-p/q, 0, -p/q - 1],
         ]
 
-    # print(matrix)
-    # print(diff(cubic, x).subs({x: 0, y: 1, z: 0}))
-    # print(diff(cubic, y).subs({x: 0, y: 1, z: 0}))
-    # print(diff(cubic, z).subs({x: 0, y: 1, z: 0}))
 
     a, b, c = symbols('a b c')
     (x1, y1, z1) = tuple(Matrix(matrix) * Matrix([a, b, c]))
@@ -149,12 +132,6 @@ def weierstrass_form_step2(cubic):
     (matrix1, cubic) = simplify_cubic(cubic)
     matrix = Matrix(matrix).inv().tolist()
     
-
-    # print(diff(cubic, x))
-    # print(diff(cubic, x).subs({x: 0, y: 1, z: 0}))
-    # print(diff(cubic, y).subs({x: 0, y: 1, z: 0}))
-    # print(diff(cubic, z).subs({x: 0, y: 1, z: 0}))
-
     return (multiply(matrix1, matrix), cubic)
 
 
@@ -213,14 +190,7 @@ def weierstrass_form_step3(cubic):
     a = 1
     b = cubic.coeff(y * x * z)
     c = cubic.coeff(y * z**2)
-    
-    # h, k, t = symbols('h k t')
-    # (p, q)  = tuple(solve((t + h)**2 + k  - (t**2  + b * t * x  + c * t * z), [h, k])[0])
     p = (b * x + c * z)/2
-    # print(p, q)
-
-    # print(solve((t + h)**2 + k  - (t**2  + b * t * x  + c * t * z), [h, k]))
-    # print(cubic)
 
     cubic = cubic.subs(y, y_ - p).expand().simplify().expand()
     cubic = cubic.subs(y_, y)
@@ -236,19 +206,12 @@ def weierstrass_form_step3(cubic):
     # Reduce coefficients, because otherwise they are enormous
     (matrix1, cubic) = simplify_cubic(cubic)
 
-    
     a = cubic.coeff(x**3)
     b = cubic.coeff(x**2 * z)
-    # c = cubic.coeff(x * z**2)
-    # d = cubic.coeff(z**3)
 
     if (a == 0):
         print("UNHANDLED CASE a == 0, step 3")
     
-    # print(Fraction(b, 3 * a))
-
-    
-    # Eliminating the x^2 z monomial
     cubic = cubic.subs(x, x_ - Fraction(b, 3 * a) * z).expand().simplify().expand()
     cubic = cubic.subs(x_, x)
     matrix2 = [
@@ -257,7 +220,6 @@ def weierstrass_form_step3(cubic):
         [0, 0, 1],
     ]
     
-
     # Normalizing the coefficient of x^3
     a = cubic.coeff(x**3)
     cubic = (cubic.subs(z, z_ * a) / a).expand().simplify().expand()
@@ -267,7 +229,6 @@ def weierstrass_form_step3(cubic):
         [0, 1, 0],
         [0, 0, Fraction(1, a)],
     ]
-   
     
     lcm = np.lcm.reduce([coeff.denominator for coeff in Poly(cubic).coeffs()])
 
@@ -304,8 +265,6 @@ def weierstrass_form(cubic):
     (trans1, cubic) = weierstrass_form_step1(cubic, point)
     (trans2, cubic) = weierstrass_form_step2(cubic)
     (trans3, cubic) = weierstrass_form_step3(cubic)
-    # print(cubic)
-    # return 
 
     trans = multiply(trans3,
             multiply(trans2,

@@ -47,10 +47,6 @@ def resultant(f, g, var):
     coeff_f = f.all_coeffs()
     coeff_g = g.all_coeffs()
 
-    # # Just a test 
-    # coeff_f = [i for i in range(1, n+2)]
-    # coeff_g = [-i for i in range(1, m+2)]
-
     for i in range(m):
         matrix += [[0]*i + coeff_f + [0]*(size - i - (n+1))]
             
@@ -62,14 +58,10 @@ def resultant(f, g, var):
 
 def from_solution_to_rational_points(cubic1, cubic2, solution):
     n, x, y, z, t = symbols('n x y z t')
-    # x_, y_, z_ = symbols('n x y z')
     xp = solution[0]
     yp = solution[1]
    
-    # print("point", (xp, yp))
-    # print("cubic1 before point", cubic1)
     cubic1 = cubic1.subs({x: xp, y: yp}).simplify().expand()
-    # print("cubic1 after point", cubic1)
 
     if cubic1 == 0:
         if cubic2.subs({x: xp, y: yp, z: 1}) == 0:
@@ -80,10 +72,6 @@ def from_solution_to_rational_points(cubic1, cubic2, solution):
     if cubic1.as_expr().is_constant():
         return (True, [])
     
-    # print("foo")
-    # print("rational_z, cubic1:", cubic1)
-    # print("rational_z, cubic1:", Poly(cubic1).subs(z, t))
-    # print("bar")
     rational_z = get_rational_roots(Poly(cubic1).subs(z, t))
 
     points = []
@@ -96,47 +84,6 @@ def from_solution_to_rational_points(cubic1, cubic2, solution):
 
     return (False, [])    
      
-    
-def fix_zero_leading_coefficients(cubic, hessian):
-    n, x, y, z = symbols('n x y z')
-    
-    flag = 0
-    # Searching for point that does not lie on both cubics
-    for i in range(-2, 2):
-        for j in range(-2, 2):
-            if i != 0 and j != 0 and cubic.subs({x: i, y: j, z: 1}) != 0 and \
-               hessian.subs({x: i, y: j, z: 1}) != 0:
-                print("I found point, that does not lie on both!")
-                flag = 1
-                break
-        
-        if flag == 1:
-            break
-
-    if flag == 0:
-        print("Cubic and hessian coincide!")
-   
-    point = (i, j, 1)
-    
-    matrix = [
-        [1, 0, i],
-        [0, 1, j],
-        [0, 0, 1],
-    ]
-    matrix = Matrix(matrix).inv().tolist()
-    
-    a, b, c = symbols('a b c')
-    (x1, y1, z1) = tuple(Matrix(matrix).inv() * Matrix([a, b, c]))
-    
-    cubic = simplify(cubic.subs({x: x1, y: y1, z: z1})).expand()
-    cubic = cubic.subs({a: x, b: y, c: z})
-    hessian = simplify(hessian.subs({x: x1, y: y1, z: z1})).expand()
-    hessian = hessian.subs({a: x, b: y, c: z})
-    
-    return (cubic, hessian, matrix)
-
-
-
 # Considering, that poly is polynomial of variable `t`
 def get_rational_roots(poly_t):
     t = symbols('t')
@@ -151,7 +98,6 @@ def get_rational_roots(poly_t):
         poly_t = expand(poly_t / t)
     
     if poly_t.as_expr().is_constant():
-        # print("poly_t is constant")
         return list(solutions)
 
 
@@ -184,30 +130,15 @@ def intersection_points(cubic1, cubic2):
     a0 = cubic1.coeff(z**3)
     b0 = cubic2.coeff(z**3)
 
-    # TODO: Not sure if we need this
-    # if a0 * b0 == 0:
-    #     (cubic1, cubic2, trans) = fix_zero_leading_coefficients(cubic1, cubic2)
-
-    # print("cubic1, after fix", cubic1)
-    # print("cubic2, after fix", cubic2)
-
     t = symbols('t')
     res = resultant(cubic1, cubic2, z)
-
-    # print("This is resultant", res)
 
     if res == 0:
         print("Resultant is zero, cubic is reducible, can't proceed ...")
         return (False, [])
 
-
     degree = Poly(res).total_degree()
 
-    if degree < 9:
-        print("WARNING: Resultant is degenerated")
-        # print("Resulant:", res)
-        # return 
-    
     # Creating set and not array, because we don't care if roots are multiple 
     # or not and in fact don't want to have multiple roots
     solutions = {(0, 0)}
@@ -222,16 +153,12 @@ def intersection_points(cubic1, cubic2):
     # forever to finish
     coeff_t = res_t.all_coeffs()
 
-    # print(coeff_t)
-    # print("this is res_t", res_t)
     gcd = np.gcd.reduce(coeff_t)
     res_t = simplify(res_t / gcd).expand()
-
 
     if res_t.subs(t, 0) == 0:
         solutions.add((0, 1))
         res_t = expand(res_t / t)
-
 
     # If there are some other roots, besides 0
     if not res_t.as_expr().is_constant():
@@ -239,10 +166,8 @@ def intersection_points(cubic1, cubic2):
 
         for sol in rational_sols:
             solutions.add((sol.numerator, sol.denominator))
-
-
-    # print(solutions)
     
+   
     points_all = []
 
     for solution in list(solutions):
