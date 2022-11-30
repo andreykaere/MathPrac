@@ -1,28 +1,28 @@
 #!/usr/bin/python3
 
 from sympy import *
-# from sympy.parsing.sympy_parser import parse_expr
 from sympy.parsing.mathematica import mathematica
 from sympy.ntheory import factorint
-# from sympy.ntheory import primefactors
 
 from fractions import Fraction
 import numpy as np
 
-try:
-    import InflectionPoints as infp
-except ModuleNotFoundError:
-    from . import InflectionPoints as infp
+# import importlib
+# from weierstrass_form.inflection_points import find_non_singular_inflection_point
+# from inflection_points import find_non_singular_inflection_point
+# importlib.import_module('inflection_points')
+# importlib.import_module('weierstrass_form.inflection_points')
+# from weierstrass_form.inflection_points import find_non_singular_inflection_point
 
-# We assume, that cubic is given in coordinates x = x1, y = x2, z = x3
-# n, x, y, z = symbols('n x y z')
-# n = symbols('n', integer = True)
+try:
+    from inflection_points import find_non_singular_inflection_point
+except ModuleNotFoundError:
+    from .inflection_points import find_non_singular_inflection_point
 
 
 def multiply(matrix1, matrix2):
     return np.matmul(np.array(matrix1),
                      np.array(matrix2)).tolist() 
-
 
 def eliminate_denominators(cubic):
     denom = 1
@@ -30,6 +30,7 @@ def eliminate_denominators(cubic):
         denom = max(denom, abs(coeff.denominator))
     
     return cubic * denom
+
 
 # In step1 we map inflection point `point` to (0 : 1 : 0)
 def weierstrass_form_step1(cubic, point):
@@ -296,7 +297,7 @@ def weierstrass_form_step3(cubic):
 def weierstrass_form(cubic):
     n, x, y, z = symbols('n x y z')
 
-    (res, point) = infp.find_non_singular_inflection_point(cubic)
+    (res, point) = find_non_singular_inflection_point(cubic)
     if not res:
         return (False, []) 
         
@@ -347,38 +348,25 @@ def print_form(form):
     pprint(Matrix(trans))
 
     print("\n")
-    
+
 
 def main():
     print("""Enter your cubic's equation in homogenious coordinates x, y, z:
     For example: x^3 + y^3 + z^3 + 3 x y z
     """)
 
-    # cubic = input()
     n, x, y, z = symbols('n x y z')
-    # cubic = "5 y^3 + z^2 x + y^2 x - 34 y^2 z"
 
-    # cubic = "x^3 + y^3 + z^3 + (1 - n) (x^2 y + x^2 z + y^2 x + y^2 z + z^2 x + z^2 y) + (3 - 2 n) x y z"
-    # cubic = "x^3 + y^3 + z^3 + 4 x y z"
-    # cubic = "x^3 + y^2 z + z^3"
-    # cubic = "x^3 + y^3 + z^3 + 3 x y z"
-    # cubic = "-x^3 - 3*x^2*z + y^2*z - 3*x*z^2 - z^3"
-    # cubic = "(x - z) (y^2 z + x^2 z + z^3)"
-    # cubic = "(x - z) (y^2 + x^2 - z^2)"
-    # cubic = "(x - y) (y^2 + x^2)"
-    # cubic = "x^3 + y^3 + 3 x y z"
-    # cubic = "5 y^3 + z^2 x + y^2 x - 34 y^2 z"
-    # cubic = "(x - y) (y^2 - x^2 + z x) - x^2 y"
-    cubic = "-x^3 + x*y^2 - y^3 + x^2*z - x*y*z"
-    # cubic = "(x - z) (x z - y^2)"
-
-    # cubic = "x^3*z + x*y^2*z + x^2*z^2 + y^2*z^2"
+    cubic = input()
     cubic = mathematica(cubic)
 
     (res, form) = weierstrass_form(cubic)
     
     if res:
         print_form(form)
+    else:
+        print("Couldn't apply algorithm due to previous error")
+
 
 
 if __name__ == '__main__':

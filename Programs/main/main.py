@@ -1,9 +1,12 @@
 #!/usr/bin/python3
 
-from RationalPoints.PointSum import *
-from RationalPoints.DrawSum import *
-from WeierstrassForm.WeierstrassForm import weierstrass_form
+from rational_points.point_sum import (FindRational, RevNFind)
+from rational_points.draw_sum import (DrawSumN, )
 
+
+from weierstrass_form.weierstrass_main import weierstrass_form
+
+from fractions import Fraction
 from sympy import *
 from sympy.parsing.mathematica import mathematica
 import numpy as np
