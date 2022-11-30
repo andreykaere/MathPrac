@@ -306,29 +306,46 @@ def main():
     # cubic = "-x^3 + x*y^2 - y^3 + x^2*z - x*y*z"
     # cubic = "(x - z) (x z - y^2)"
 
-    cubic1 = "5 y^3 + z^2 x + y^2 x - 34 y^2 z"
-    cubic2 = "y z^2 + 2 z^3 - (x - z)^3 - 3 (x - z)^2 z"
-    cubic1 = mathematica(cubic1)
-    cubic2 = mathematica(cubic2)
+    # cubic1 = "5 y^3 + z^2 x + y^2 x - 34 y^2 z"
+    # cubic2 = "y z^2 + 2 z^3 - (x - z)^3 - 3 (x - z)^2 z"
+    # cubic1 = mathematica(cubic1)
+    # cubic2 = mathematica(cubic2)
 
-    print(intersection_points(cubic1, cubic2))
-    print(intersection_points(cubic2, cubic1))
+    # print(intersection_points(cubic1, cubic2))
+    # print(intersection_points(cubic2, cubic1))
 
-    return
+    # return
+
+    # cubic = "5 y^3 + z^2 x + y^2 x - 34 y^2 z"
+    # cubic = "5 y^3 + z^2 x + y^2 x - 34 y^2 z"
+    
+    cubic = "(x - z) (x z - y^2)"
+
+    # cubic = "(z + y) (3 x - y) (x + 3 z)"
+
+    
 
 
-    cubic = "y z^2 + 2 z^3 - (x - z)^3 - 3 (x - z)^2 z"
+    # cubic = "y z^2 + 2 z^3 - (x - z)^3 - 3 (x - z)^2 z"
     # cubic = "-x^3 + 6*x^2*z - 9*x*z^2 + y*z^2 + 6*z^3"
 
     # cubic = "x^3*z + x*y^2*z + x^2*z^2 + y^2*z^2"
     cubic = mathematica(cubic)
+    
+    print(cubic.as_expr().expand())
     # cubic = cubic.subs(n, 4)
 
     print("Hessian", get_hessian(cubic))
+
+    print(resultant(cubic, get_hessian(cubic), z))
+
+    # print(intersection_points(cubic, get_hessian(cubic)))
     # print(cubic)
     # print(get_hessian(cubic))
 
-    print(find_non_singular_inflection_point(cubic))
+    # print(find_non_singular_inflection_point(cubic))
+
+
     # print(cubic)
 
 

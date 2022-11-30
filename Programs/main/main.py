@@ -34,7 +34,8 @@ if P[1] == 1:
     print("Start point is :", P[0])
     x = P[0][0]
     y = P[0][1]
-    # better point for a picture for N = 4
+   
+    # Special point for a picture for N = 4
     x = Fraction(246, 1)
     y = Fraction(2106, 1)     
     
@@ -42,12 +43,9 @@ if P[1] == 1:
     
     RevNFind(a, b, x, y, n, inv_trans)
     
-    # n = 4
-    # DrawSumN(a, b, x, y, n)    
+    n = 4
+    DrawSumN(a, b, x, y, n)    
 
-    for n in range(2, 9):
-        DrawSumN(a, b, x, y, n)    
-        
     
 else:
     print("No good rational points found, can't apply algoritm")
