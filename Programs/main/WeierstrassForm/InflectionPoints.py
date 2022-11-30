@@ -74,7 +74,10 @@ def from_solution_to_rational_points(cubic1, cubic2, solution):
     # print("cubic1 after point", cubic1)
 
     if cubic1 == 0:
-        return (True, [(xp, yp, 1)])
+        if cubic2.subs({x: xp, y: yp, z: 1}) == 0:
+            return (True, [(xp, yp, 1)])
+        else:
+            return (True, [])
 
     if cubic1.as_expr().is_constant():
         return (True, [])
@@ -88,7 +91,7 @@ def from_solution_to_rational_points(cubic1, cubic2, solution):
     points = []
     for zp in rational_z:
         if (xp, yp, zp) != (0, 0, 0) and cubic2.subs({x: xp, y: yp, z: zp}) == 0:
-            points = [(xp, yp, zp)]
+            points += [(xp, yp, zp)]
 
     if points != []: 
         return (True, points)
@@ -304,11 +307,12 @@ def main():
     # cubic = "(x - z) (x z - y^2)"
 
     cubic1 = "5 y^3 + z^2 x + y^2 x - 34 y^2 z"
-    cubic2 = "5 y^3 +  34 y^2 z + x^3 - x^2 z + z^3"
+    cubic2 = "y z^2 + 2 z^3 - (x - z)^3 - 3 (x - z)^2 z"
     cubic1 = mathematica(cubic1)
     cubic2 = mathematica(cubic2)
 
     print(intersection_points(cubic1, cubic2))
+    print(intersection_points(cubic2, cubic1))
 
     return
 
