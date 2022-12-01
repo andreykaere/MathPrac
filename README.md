@@ -21,11 +21,25 @@ also known as __Weierstrass form__.
 
 This form is very useful when it comes to addition of the points on the cubic
 curve. So, now we're looking for any rational point on this cubic and once we
-find it, we add it to itself and look at the inverse image of the point. This inverse image has a rational coordinates and if all signs are the same -- we win and the problem is solved. If not, we continue adding point to itself. There is a chance, however, that this point is from finite cyclic subgroup of group of all rational points on our Weierstrass cubic. If this happens, we have to search for point from another subgroup and start process from the top.
+find it, we add it to itself and look at the inverse image of the point. This
+inverse image has a rational coordinates and if all signs are the same -- we
+win and the problem is solved. If not, we continue adding point to itself.
+There is a chance, however, that this point is from finite cyclic subgroup of
+group of all rational points on our Weierstrass cubic. If this happens, we
+have to search for point from another subgroup and start process from the top.
+
 
 ## Requirements
-First you need to install `python3` (I think with any version of `python3` you will be good to go). And you will also have to install the following packages for `python3`, which you can install via `pip`:
+First you need to install `python3` (I think with any version of `python3` you 
+will be good to go). And you will also have to install the following packages 
+for `python3`, which you can install via `pip`: 
 - `matplotlib`
 - `sympy`
 - `numpy`
+
+
+## Usage
+To find the solution for the problem run `Programs/main/main.py`. You can also
+run the file `Programs/main/weierstrass_form/weierstrass_main.py` to find a
+Weierstrass form for the given cubic (if possible).
 
