@@ -22,7 +22,8 @@ def PointSum(a, b, xp, yp, xq, yq):
     if (yq**2 != xq**3 + a * xq + b):
         print("!!!!Point not on curve!!!!")
         return -1
-    #dont work when tangent is verlical
+
+    # Doesn't work when tangent is vertical
     if (xp == xq) and (yp == yq):
         if (yp == 0):
             print("!!Tangent is vertical!!")
@@ -37,19 +38,19 @@ def PointSum(a, b, xp, yp, xq, yq):
     
     return [xr, -yr]
 
-#for P = (x, y) return n*P = P + P +... + P
+# For P = (x, y) return n*P = P + P +... + P
 def ScMult(a, b, x, y, n):
     x0 = x
     y0 = y
-    #print(1,x, y)
+
     for i in range(n - 1):
         A = PointSum(a, b, x, y, x0, y0)
         x = A[0]
         y = A[1]
-        #print(i + 2, x, y)
+
     return [x, y]
 
-#for point P = (x, y) return list of n point: P, P+P, .. n*P
+# For point P = (x, y) return list of n point: P, P+P, .. n*P
 def GenerateNpoints(a, b, x, y, n):
     xP = [x]
     yP = [y]
@@ -63,7 +64,7 @@ def GenerateNpoints(a, b, x, y, n):
     return [xP, yP]
 
 
-#https://stackoverflow.com/questions/2489435/check-if-a-number-is-a-perfect-square
+# https://stackoverflow.com/questions/2489435/check-if-a-number-is-a-perfect-square
 def is_square(apositiveint):
     if (apositiveint == 1):
         return True
@@ -110,7 +111,7 @@ def FindRational(a, b, R):
     return [[], 0]
 
 
-#finds coordinate of point in the original coordinate system
+# Finds coordinate of point in the original coordinate system
 def Reverse(x, y, z, matrix):
     a = matrix
     #to do: chech if point on curve
@@ -119,9 +120,9 @@ def Reverse(x, y, z, matrix):
     z0 = a[2][0] * x + a[2][1] * y + a[2][2] * z
     return [x0, y0, z0]
 
-# finds first point from P_1, .. P_n,
-# that has natural coordinates in the original coordinate system
-# and return these coordinates
+# Finds first point from P_1, .. P_n,
+# that has positive integer coordinates in the original coordinate system
+# and returns these coordinates
 def RevFind(xP, yP, matrix, start = 0):
     n = len(xP)
     zP = []
@@ -145,11 +146,10 @@ def RevFind(xP, yP, matrix, start = 0):
     print("No more points")
     return 0
 
-# for point P = (x, y) finds 2*P, .. n*P
-# and finds all points that have natural coordinate
-# in the original system 
-# return their coordinates
-# it is the solution for our equation
+# For point P = (x, y) finds 2*P, .. n*P and finds all points that have
+# positive integer coordinates # in the original system 
+# Returns their coordinates
+# It is the solution for our equation
 def RevNFind(a, b, x, y, n, matrix):
     
     V = GenerateNpoints(a, b, x, y, n)
@@ -161,6 +161,7 @@ def RevNFind(a, b, x, y, n, matrix):
         Ans = RevFind(xP, yP, matrix, start)
         if type(Ans) == int:
             break
+
         PointNum += 1
         a = Ans[0][0]
         b = Ans[0][1]
@@ -171,8 +172,9 @@ def RevNFind(a, b, x, y, n, matrix):
         bd = b.denominator
         cd = c.denominator
         sgn = 1
-        if (a < 0):
+        if a < 0:
             sgn = -1
+
         a = a.numerator * bd * cd * sgn
         b = b.numerator * ad * cd * sgn
         c = c.numerator * ad * bd * sgn
@@ -180,6 +182,7 @@ def RevNFind(a, b, x, y, n, matrix):
         a = a // d
         b = b // d
         c = c // d
+
         if PointNum == 1:
             minLen = min(len(str(a)), len(str(b)), len(str(c)))
         else:
@@ -198,7 +201,7 @@ def RevNFind(a, b, x, y, n, matrix):
         c = Fraction(c, 1)
 
         print()
-        print("a/(b+c) + b/(a+c) + c/(a+b) =", a/ (b + c) + b/(a + c) + c/ (a + b))
+        print("a/(b+c) + b/(a+c) + c/(a+b) =", a/(b + c) + b/(a + c) + c/(a + b))
         print("-------------------------------")
    
     print()
@@ -206,19 +209,3 @@ def RevNFind(a, b, x, y, n, matrix):
     print("Min length", minLen)
 
 
-##-----------------------
-#N = 4
-#a = -432 * (N**4) - 2592 * (N**3) - 3240 * (N**2) + 4536 * N + 7533
-#b = 3456 * (N**6) + 31104 * (N**5) + 85536 * (N**4) + 15552 * (N**3) - 250776 * (N**2) - 239112 * N + 68526
-#x = Fraction(246, 1)
-#y = Fraction(2106, 1)
-
-
-#n = 9
-
-
-
-#DrawSumN(a, b, x, y, n)
-
-##RevNFind(a, b, x, y, n)
-##-----------------------

@@ -228,7 +228,8 @@ def main():
     (res, point) = find_non_singular_inflection_point(cubic)
 
     if res:
-        print("Rational inflection point is:", point)
+        (x, y, z) = point
+        print("Found rational inflection point: ({} : {} : {})".format(x, y, z))
     else:
         print("There is no rational infleciton point on the cubic")
 

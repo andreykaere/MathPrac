@@ -14,6 +14,7 @@ try:
 except ModuleNotFoundError:
     from .point_sum import PointSum
 
+
 def DrawCurve(a, b, rng = 1000):
     x = np.arange(-rng,rng, 0.1)
     yCurveU = []
@@ -25,19 +26,16 @@ def DrawCurve(a, b, rng = 1000):
             yCurveD += [-((i**3 + a * i + b))**(1/2)]
         else:
             i0 = int(x.tolist().index(i))
-            #x = np.delete(x, i0, 0)
             x[i0] = np.nan
             yCurveU += [np.nan]
             yCurveD += [np.nan]            
-            #yCurveU += [0]
-            #yCurveD += [0]
    
     yCurveU = np.array(yCurveU)
     yCurveD = np.array(yCurveD)    
     
     plt.plot(x,yCurveU,'b', x, yCurveD, 'b')
 
-#draws sum of P, Q, coordinates in lists xPoints for P.x, and Q.x 
+# Draws sum of P, Q, coordinates in lists xPoints for P.x, and Q.x 
 def DrawSum(a, b, xPoints = [], yPoints = []):
 
     xL = np.arange(-1000,1000,0.1)
@@ -67,9 +65,8 @@ def DrawSum(a, b, xPoints = [], yPoints = []):
     plt.plot(xL, yLine, linestyle = '-', linewidth = 1, color = 'y')
     plt.plot(xLine1, yLine1, linestyle = '--', linewidth = 1, color = 'darkmagenta')
     plt.plot(xPoints, yPoints, 'ro', xr, yr, 'go')
-    #plt.show()
 
-#Draws Sum of n Points: P = (x, y), 2*P, 3*P,... n*P
+# Draws Sum of n Points: P = (x, y), 2*P, 3*P,... n*P
 def DrawSumN(a, b, x, y, n):
     xP = [x]
     yP = [y]
@@ -87,6 +84,5 @@ def DrawSumN(a, b, x, y, n):
         xP.append(x0)
         yP.append(y0)
     plt.plot([x], [y], 'yo')
-    # plt.savefig(str(n) + '.png')
     plt.show() 
 
